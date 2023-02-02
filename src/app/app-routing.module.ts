@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartComponent } from './comp/cart/cart.component';
 import { NavComponent } from './comp/nav/nav.component';
 import { RegisterComponent } from './comp/register/register.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent },
-  {path: 'nav', component: NavComponent }
+  {path: 'nav', component: NavComponent },
+  {path: 'cart', component: CartComponent}
 ];
 
 @NgModule({

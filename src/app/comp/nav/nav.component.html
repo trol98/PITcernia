@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#about">About</a>
-        <a href="#koszyk" class="logo-image"><img src="/assets/basket-cart-icon-27.png" class="img-fluid"></a>
+        <a class="active" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
+        <a [routerLink]="['/menu']" routerLinkActive="router-link-active" >Menu</a>
+        <a [routerLink]="['/about']" routerLinkActive="router-link-active" >About</a>
+        <a [routerLink]="['/cart']" routerLinkActive="router-link-active"  class="logo-image"><img src="/assets/basket-cart-icon-27.png" class="img-fluid"></a>
         <input type="text" placeholder="Search...">
     </div>
     

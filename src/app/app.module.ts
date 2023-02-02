@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './comp/register/register.component';
 import { NavComponent } from './comp/nav/nav.component';
+import { CartComponent } from './comp/cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    NavComponent
+    NavComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
