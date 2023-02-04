@@ -9,6 +9,7 @@ import { NavComponent } from './comp/nav/nav.component';
 import { CartComponent } from './comp/cart/cart.component';
 import { MenuComponent } from './comp/menu/menu.component';
 import { HomeComponent } from './comp/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     CarouselModule
   ],
   providers: [],
