@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <app-nav></app-nav>
+    <div class="banner">
+        <div class="text">
+          <h1 class="text-center">Welcome to our menu!</h1>
+          <h5 class="text-center">The best pizza is one click away!</h5>
+        </div>  
+      </div>
+    <div *ngFor="let p of pizza">
+        <div class="pizza-container">
+            <div class="image-container"><img [src]="p.image" alt="" style="max-height: 50px; max-width: 50px"></div>
+            <div class="name-container"><h6>{{ p.name }}</h6></div>
+            <div class ="detailContainer"></div>
+            <div class="details"><b> Price: </b> {{ p.price }}</div>
+            <div class="options">
+                <button class ="btn btn-warning">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
