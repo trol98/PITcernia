@@ -5,10 +5,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -19,18 +18,18 @@ export class HomeComponent {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 1
+        items: 1,
       },
       740: {
-        items: 1
+        items: 1,
       },
       940: {
-        items: 1
-      }
+        items: 1,
+      },
     },
-    nav: true
-  }
+    nav: true,
+  };
 }
