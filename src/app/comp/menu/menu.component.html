@@ -15,14 +15,14 @@
           <h5 class="text-center">The best pizza is one click away!</h5>
         </div>  
       </div>
-    <div *ngFor="let p of pizza">
-        <div class="pizza-container">
-            <div class="image-container"><img [src]="p.image" alt="" style="max-height: 50px; max-width: 50px"></div>
-            <div class="name-container"><h6>{{ p.name }}</h6></div>
-            <div class ="detailContainer"></div>
-            <div class="details"><b> Price: </b> {{ p.price }}</div>
-            <div class="options">
-                <button class ="btn btn-warning">Add to Cart</button>
+    <div class="background">
+        <div class ="container">
+            <div class="item" *ngFor="let p of pizza">
+                <img [src]="p.image" alt="" style="width:100%">
+                <h6>{{ p.name }}</h6>
+                <p class="price">{{ p.price }}<p>
+                <p class = "toppings">{{ p.toppings }}</p>
+                <p class = "card button"><button>Add to Cart</button></p>
             </div>
         </div>
     </div>
