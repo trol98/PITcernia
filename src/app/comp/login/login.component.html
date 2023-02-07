@@ -1,21 +1,19 @@
 <div class="col-md-4 mx-auto">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-        <p class="h4 mb-4">Sign up</p>
+        <p class="h4 mb-4">Login</p>
         <div class="form-row mb-4">
             <div class="col">
                 <input type="text" formControlName="login" id="defaultRegisterFormLogin" class="form-control mb-4" placeholder="Login">
-    
-                <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control" placeholder="E-mail">
             </div>
         </div>
         <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control mb-4" placeholder="Password">
-        <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+        <button class="btn btn-info my-4 btn-block" type="submit">Login</button>
         <hr>
       </form>
-    <p *ngIf="attemptedRegistration && registrationFailed" class="bg-warning">
-        Registration failed
+    <p *ngIf="attemptedLogin && loginFailed" class="bg-warning">
+        Login failed
     </p>
-    <p *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
-        Registration was successful
+    <p *ngIf="attemptedLogin && !loginFailed" class="bg-success">
+        Login was successful
     </p>
 </div>

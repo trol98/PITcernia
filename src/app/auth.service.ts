@@ -11,6 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   isUserLoggedIn: boolean = false;
   registrationFailed: boolean = true;
+  loginFailed: boolean = true;
   register(registerUser: RegisterUser) {
     const url = 'http://localhost:3000/auth/register/';
     // const url2 = 'https://httpbin.org/post'

@@ -11,6 +11,7 @@ import { MenuComponent } from './comp/menu/menu.component';
 import { HomeComponent } from './comp/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { LoginComponent } from './comp/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CartComponent,
     MenuComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
