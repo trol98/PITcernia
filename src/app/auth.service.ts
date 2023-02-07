@@ -10,17 +10,29 @@ import { RegisterUser } from './registerUser.interface';
 export class AuthService {
   constructor(private http: HttpClient) {}
   isUserLoggedIn: boolean = false;
-
+  registrationFailed: boolean = true;
   register(registerUser: RegisterUser) {
-    // move url to env
-    this.http
-      .post('http://localhost:3000/auth/register/', JSON.stringify(registerUser))
-      .subscribe((data) => {
-        console.log(data);
-      });
+    const url = 'http://localhost:3000/auth/register/';
+    // const url2 = 'https://httpbin.org/post'
+
+    this.http.post<any>(url, registerUser).subscribe((data) => {
+      if (data.error !== null){
+        this.registrationFailed = false; 
+        return true;
+      }
+      this.registrationFailed = true;
+      return false;
+    });
+    // const headers = { 'My-Custom-Header': 'foobar' };
+    // this.http
+    //   .post<any>(url, registerUser, { headers })
+    //   .subscribe((data) => {
+    //     console.log(data);
+    //   });
   }
   login(): void {
-    this.isUserLoggedIn = false;
+    // fetch JWT token needed
+    this.isUserLoggedIn = true;
     // create cookie
   }
 

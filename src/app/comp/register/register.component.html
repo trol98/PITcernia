@@ -12,4 +12,10 @@
         <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
         <hr>
       </form>
+    <p *ngIf="attemptedRegistration && registrationFailed" class="bg-warning">
+        Rejestracja się nie powiodła
+    </p>
+    <p *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
+        Rejestracja się powiodła
+    </p>
 </div>
