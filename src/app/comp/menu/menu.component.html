@@ -19,12 +19,13 @@
         <div class ="container">
             <div class="item" *ngFor="let p of pizza">
                 <img [src]="p.image" alt="" style="width:100%">
-                <h6>{{ p.name }}</h6>
-                <p class="price">{{ p.price }}<p>
+                <h6 href><b>{{ p.name }}</b></h6>
+                <p class="price">{{ p.price | currency:'GBP' }}<p>
                 <p class = "toppings">{{ p.toppings }}</p>
                 <p class = "card button"><button>Add to Cart</button></p>
             </div>
         </div>
     </div>
+<app-footer></app-footer>
 </body>
 </html>

@@ -12,6 +12,8 @@ import { HomeComponent } from './comp/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginComponent } from './comp/login/login.component';
+import { AboutComponent } from './comp/about/about.component';
+import { FooterComponent } from './comp/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,8 @@ import { LoginComponent } from './comp/login/login.component';
     MenuComponent,
     HomeComponent,
     LoginComponent,
+    AboutComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
