@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,26 +17,20 @@ export class LoginComponent {
   ) {}
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      login: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
   onSubmit() {
     this.attemptedLogin = true;
     if (this.userForm.valid) {
-      this.authService.register({
-        login: this.userForm.value.login,
+      this.authService.login({
         email: this.userForm.value.email,
         password: this.userForm.value.password,
-        active: false,
-        verified: false,
-        admin: false,
       });
       this.loginFailed = this.authService.loginFailed;
     } else {
       alert('User form is not valid!!');
     }
-    // Remove this on production
-    console.log(this.userForm.value);
   }
 }

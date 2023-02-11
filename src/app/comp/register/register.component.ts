@@ -1,6 +1,6 @@
-import { AuthService } from './../../auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +37,5 @@ export class RegisterComponent {
     } else {
       alert('User form is not valid!!');
     }
-    // Remove this on production
-    console.log(this.userForm.value);
   }
 }
