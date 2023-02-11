@@ -14,6 +14,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginComponent } from './comp/login/login.component';
 import { AboutComponent } from './comp/about/about.component';
 import { FooterComponent } from './comp/footer/footer.component';
+import { CookieService } from 'ngx-cookie-service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +33,10 @@ import { FooterComponent } from './comp/footer/footer.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    FontAwesomeModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
