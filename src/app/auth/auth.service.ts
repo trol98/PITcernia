@@ -2,54 +2,36 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterUser } from './registerUser.interface';
 import { LoginUser } from './loginUser.interface';
-import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  errorMsg: string = '';
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
   HOST: string = 'http://localhost:3000';
-  registrationFailed: boolean = true;
 
-  register(registerUser: RegisterUser) {
+  register(registerUser: RegisterUser): Observable<any> {
     const url = this.HOST + '/auth/register';
-
-    this.http.post<any>(url, registerUser).subscribe((res) => {
-      this.registrationFailed = res.ok;
-      return this.registrationFailed;
-    });
+    return this.http.post<any>(url, registerUser)
   }
 
-  async login(loginUser: LoginUser): Promise<void> {
+  login(loginUser: LoginUser): Observable<any> {
     const url = this.HOST + '/auth/log-in';
     const options = { observe: 'response' as 'body', withCredentials: true };
-    this.http.post<any>(url, loginUser, options).subscribe((res) => {});
-    console.log(4);
+    return this.http.post<any>(url, loginUser, options);
   }
 
-  logout(): void {
+  logout(): Observable<any> {
     const url = this.HOST + '/auth/log-out';
     const options = { observe: 'response' as 'body', withCredentials: true };
-
-    this.http.post<any>(url, options).subscribe((res) => {});
+    return this.http.post<any>(url, options);
   }
 
-  authenticate(): string {
+  authenticate(): Observable<any> {
     const url = this.HOST + '/auth';
     const options = { observe: 'response' as 'body', withCredentials: true };
 
-    this.http.get<any>(url, options).subscribe((res) => {
-      if (res) {
-        return JSON.stringify(res);
-      }
-      return '';
-    });
-    return '';
-  }
-
-  isLogedIn(): boolean{
-    return this.cookieService.get('Authentication') !== '';
+    return this.http.get<any>(url, options)
   }
 }

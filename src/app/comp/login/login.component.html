@@ -10,10 +10,10 @@
         <button class="btn btn-info my-4 btn-block" type="submit">Login</button>
         <hr>
       </form>
-      <p *ngIf="attemptedLogin && isLogedIn" class="bg-success">
-          Login was successful {{counter}}
+      <p *ngIf="userForm.submited && isLoggedIn" class="bg-success">
+          Login was successful
       </p>
-    <p *ngIf="attemptedLogin && (!isLogedIn)" class="bg-warning">
-        Login failed {{counter}}
+    <p *ngIf="userForm.submited && (!isLoggedIn)" class="bg-warning">
+        Login failed
     </p>
 </div>

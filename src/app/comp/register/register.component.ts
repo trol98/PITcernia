@@ -33,7 +33,7 @@ export class RegisterComponent {
         verified: false,
         admin: false,
       });
-      this.registrationFailed = this.authService.registrationFailed;
+      this.registrationFailed = true;
     } else {
       alert('User form is not valid!!');
     }
