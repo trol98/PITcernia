@@ -2,6 +2,7 @@ import { StorageService } from './../../auth/storage.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -26,6 +28,9 @@ export class LoginComponent {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
+    if(this.storageService.isLoggedIn()){
+      this.router.navigateByUrl("/dashboard");
+    }
   }
   async onSubmit() {
     if (this.userForm.valid) {
@@ -33,7 +38,7 @@ export class LoginComponent {
 
       this.authService.login({ email, password }).subscribe({
         next: (data) => {
-          this.storageService.saveUser(data);
+          this.storageService.saveUser(data.body);
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;
@@ -45,7 +50,7 @@ export class LoginComponent {
         },
       });
     } else {
-      alert('User form is not valid!!');
+      this.errorMessage = "The form is not valid";
     }
   }
   reloadPage(): void {

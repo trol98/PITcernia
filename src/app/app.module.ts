@@ -16,6 +16,8 @@ import { AboutComponent } from './comp/about/about.component';
 import { FooterComponent } from './comp/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { DashboardComponent } from './comp/dashboard/dashboard.component';
+import { NotfoundComponent } from './comp/notfound/notfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LoginComponent,
     AboutComponent,
     FooterComponent,
+    DashboardComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

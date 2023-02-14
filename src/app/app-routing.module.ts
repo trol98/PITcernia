@@ -1,6 +1,8 @@
-import { LoginComponent } from './comp/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotfoundComponent } from './comp/notfound/notfound.component';
+import { DashboardComponent } from './comp/dashboard/dashboard.component';
+import { LoginComponent } from './comp/login/login.component';
 import { CartComponent } from './comp/cart/cart.component';
 import { HomeComponent } from './comp/home/home.component';
 import { MenuComponent } from './comp/menu/menu.component';
@@ -10,6 +12,7 @@ import { AboutComponent } from './comp/about/about.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },
   { path: 'menu', component: MenuComponent },
@@ -17,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent},
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({

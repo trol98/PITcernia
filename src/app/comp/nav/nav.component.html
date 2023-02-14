@@ -13,8 +13,13 @@
         <a [routerLink]="['/about']" routerLinkActive="router-link-active" >About</a>
         <a [routerLink]="['/cart']"><fa-icon [icon]="faShoppingCart"></fa-icon></a>
         <input type="text" placeholder="Search...">
-        <a [routerLink]="['/register']"><fa-icon [icon]="faRightToBracket"></fa-icon></a>
-        <a [routerLink]="['/login']"><fa-icon [icon]="faUser"></fa-icon></a>
+
+        <a *ngIf="!isLoggedIn()" [routerLink]="['/register']"><fa-icon [icon]="faRightToBracket"></fa-icon></a>
+        <a *ngIf="!isLoggedIn()" [routerLink]="['/login']"><fa-icon [icon]="faUser"></fa-icon></a>
+
+        <a *ngIf="isLoggedIn()" (click)="logout()"><fa-icon [icon]="faDoorOpen"></fa-icon></a>
+        <a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']"><fa-icon [icon]="faGripHorizontal"></fa-icon></a>
+
     </div>
     
 </body>
