@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterUser } from './registerUser.interface';
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-  HOST: string = 'http://localhost:3000';
+  HOST: string = environment.HOST;
 
   register(registerUser: RegisterUser): Observable<any> {
     const url = this.HOST + '/auth/register';
