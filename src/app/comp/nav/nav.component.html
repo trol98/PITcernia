@@ -2,25 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>sticky navbar</title>
 </head>
 <body>
-    <div class="navbar navbar-expand-xl  topnav">
-        <a class="logo-image" [routerLink]="['/home']" routerLinkActive="router-link-active" ><img src="/assets/banner3.jpg" class="img-fluid"></a>
-        <a [routerLink]="['/menu']" routerLinkActive="router-link-active" >Menu</a>
-        <a [routerLink]="['/about']" routerLinkActive="router-link-active" >About</a>
-        <a [routerLink]="['/cart']"><fa-icon [icon]="faShoppingCart"></fa-icon></a>
-        <input type="text" placeholder="Search...">
-
-        <a *ngIf="!isLoggedIn()" [routerLink]="['/register']"><fa-icon [icon]="faRightToBracket"></fa-icon></a>
-        <a *ngIf="!isLoggedIn()" [routerLink]="['/login']"><fa-icon [icon]="faUser"></fa-icon></a>
-
-        <a *ngIf="isLoggedIn()" (click)="logout()"><fa-icon [icon]="faDoorOpen"></fa-icon></a>
-        <a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']"><fa-icon [icon]="faGripHorizontal"></fa-icon></a>
-
-    </div>
-    
+    <header>
+        <a href="#" class="logo"><img src="/assets/logou.png" alt=""></a>  
+        <ul>
+            <li><a [routerLink]="['/menu']" routerLinkActive="router-link-active" >Menu</a></li>
+            <li><a [routerLink]="['/about']" routerLinkActive="router-link-active" >About</a></li>
+            <li><a *ngIf="!isLoggedIn()" [routerLink]="['/register']"><fa-icon [icon]="faRightToBracket"></fa-icon></a></li>
+            <li><a *ngIf="!isLoggedIn()" [routerLink]="['/login']"><fa-icon [icon]="faUser"></fa-icon></a></li>
+            <li><a class="cart" [routerLink]="['/cart']"><fa-icon [icon]="faShoppingCart"></fa-icon></a>
+            <li><input type="text" placeholder="Search..."></li>
+        </ul>
+    </header>
+    <section class="banner"></section>
+    <script src="/assets/nav.js" type="text/javascript"></script>
 </body>
 </html>

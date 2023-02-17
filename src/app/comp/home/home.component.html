@@ -5,18 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="background-image">
+  
+  
+  
+    <!-- ---------------------------------------------------- zmieniające się obrazki -->
+  
+      <div class="background-image">
         <owl-carousel-o [options]="customOptions">
           <ng-template carouselSlide>
-            <img src="/assets/img_mountains_wide.jpg" alt="">
+            <img src="/assets/pizza_tlo1.jpg" alt="">
           </ng-template>  
           <ng-template carouselSlide>
-            <img src="/assets/img_nature_wide.jpg" alt="">
+            <img src="/assets/pizza_tlo2.jpg" alt="">
           </ng-template>  
           <ng-template carouselSlide>
-            <img src="/assets/img_snow_wide.jpg" alt="">
+            <img src="/assets/pizza_tlo3.jpg" alt="">
           </ng-template>  
         </owl-carousel-o>
+      </div>
+    
+    
+    <div class="best-sellers">
+      
+      <!-- ----------------------------------------------------------------- best-seller -->
+      
+      <img class="best-img" src="\assets\best.png" alt="kurwa mac">
+
+      <!-- ---------------------------------------------------------------------- pizza1 -->
+      
+      <div class="card4">
+        <div class="circle"></div>
+        <div class="content">
+          <h2>Napoletana</h2>
+          <p>składniki: sos, ser mozzarella, ser Pecorino Romano, pomidory, bazylia. </p>
+          <a href="#">Dodaj do koszyka!</a>
+        </div>
+        <img src="\assets\pizza.png" alt="bruh">
+      </div>
+      
+      <!-- --------------------------------------------------------------------- pizza2 -->
+      
+      <div class="card4">
+        <div class="circle"></div>
+        <div class="content">
+          <h2>Capriciossa</h2>
+          <p>składniki: sos, ser mozzarella, pieczona szynka, pieczarki, pomidory, oliwki. </p>
+          <a href="#">Dodaj do koszyka!</a>
+        </div>
+        <img src="\assets\pizza.png" alt="bruh">
+      </div>
+      
+      <!-- --------------------------------------------------------------------- pizza 3-->
+      
+      <div class="card4">
+        <div class="circle"></div>
+        <div class="content">
+          <h2>Wiejska</h2>
+          <p>składniki: sos, ser, paprika, pieczarki, salami, owilki. </p>
+          <a href="#">Dodaj do koszyka!</a>
+        </div>
+        <img src="\assets\pizza.png" alt="bruh">
+      </div>
+                
     </div>
-</body>
-</html>
+
+  </body>
+  </html>
