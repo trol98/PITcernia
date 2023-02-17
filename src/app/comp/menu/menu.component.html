@@ -16,11 +16,11 @@
       </div>
     <div class="background">
         <div class ="container">
-            <div class="item" *ngFor="let p of pizza">
-                <img [src]="p.image" alt="" style="width:100%">
-                <h6 href><b>{{ p.name }}</b></h6>
+            <div class="item" *ngFor="let p of pizza; let i = index" (click)="pizzaDetails(p)">
+                <img [src]="p.img_path" alt="" style="width:100%">
+                <h6 href><b>{{ p.name | titlecase}}</b></h6>
                 <p class="price">{{ p.price | currency:'GBP' }}<p>
-                <p class = "toppings">{{ p.toppings }}</p>
+                <p class = "toppings">{{ formatToppings(p) | titlecase }}</p>
                 <p class = "card button"><button>Add to Cart</button></p>
             </div>
         </div>

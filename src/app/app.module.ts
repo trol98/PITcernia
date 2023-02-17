@@ -18,7 +18,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DashboardComponent } from './comp/dashboard/dashboard.component';
 import { NotfoundComponent } from './comp/notfound/notfound.component';
+<<<<<<< HEAD
 
+=======
+import { PizzaDetailsComponent } from './comp/pizza-details/pizza-details.component';
+>>>>>>> 7001877faa7120fead3d875a15a108af546ffbe9
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,11 @@ import { NotfoundComponent } from './comp/notfound/notfound.component';
     FooterComponent,
     DashboardComponent,
     NotfoundComponent,
+<<<<<<< HEAD
 
+=======
+    PizzaDetailsComponent,
+>>>>>>> 7001877faa7120fead3d875a15a108af546ffbe9
   ],
   imports: [
     BrowserModule,
