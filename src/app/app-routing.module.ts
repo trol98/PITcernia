@@ -1,3 +1,4 @@
+import { PizzaDetailsComponent } from './comp/pizza-details/pizza-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotfoundComponent } from './comp/notfound/notfound.component';
@@ -13,6 +14,7 @@ import { AboutComponent } from './comp/about/about.component';
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'details/:id', component: PizzaDetailsComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },
   { path: 'menu', component: MenuComponent },

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PizzaService } from './../../pizza/pizza.service';
 import { Component } from '@angular/core';
 import { Pizza } from 'src/app/pizza/pizza.interface';
@@ -9,7 +10,7 @@ import { Pizza } from 'src/app/pizza/pizza.interface';
 })
 export class MenuComponent {
   pizza: Pizza[] = [];
-  constructor(private pizzaService: PizzaService) {
+  constructor(private pizzaService: PizzaService, private router: Router) {
     this.pizzaService.getPizzas().subscribe({
       next: (data) => {
         this.pizza = data;
@@ -21,8 +22,12 @@ export class MenuComponent {
     });
   }
 
-  formatToppings(p: Pizza){
+  formatToppings(p: Pizza) {
     return p.toppings.map((v) => v.name).join(', ');
+  }
+
+  pizzaDetails(pizza: Pizza) {
+    this.router.navigateByUrl(`details/${pizza.id}`);
   }
 
   // pizza = [

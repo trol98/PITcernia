@@ -23,7 +23,8 @@ export class PizzaService {
 
   // TODO: implement a method for getting pizza info,for the "po wybraniu pizzy..." requirement
   getPizzaDetials(id: number) {
-    throw new Error('Method not implemented.');
+    const url = this.HOST + `/pizza/${id}`;
+    return this.http.get<Pizza>(url);
   }
   // TODO: implement a method for filtering pizza by size, toppings, prize
   // for the "możliwe jest wyszukwianie ..." requirements
