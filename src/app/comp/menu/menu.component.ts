@@ -1,3 +1,4 @@
+import { CartService } from './../../cart/cart.service';
 import { Router } from '@angular/router';
 import { PizzaService } from './../../pizza/pizza.service';
 import { Component } from '@angular/core';
@@ -10,7 +11,11 @@ import { Pizza } from 'src/app/pizza/pizza.interface';
 })
 export class MenuComponent {
   pizza: Pizza[] = [];
-  constructor(private pizzaService: PizzaService, private router: Router) {
+  constructor(
+    private pizzaService: PizzaService,
+    private cartService: CartService,
+    private router: Router
+  ) {
     this.pizzaService.getPizzas().subscribe({
       next: (data) => {
         this.pizza = data;
@@ -28,6 +33,10 @@ export class MenuComponent {
 
   pizzaDetails(pizza: Pizza) {
     this.router.navigateByUrl(`details/${pizza.id}`);
+  }
+
+  addToCart(pizza: Pizza) {
+    this.cartService.add(pizza);
   }
 
   // pizza = [
