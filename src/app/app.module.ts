@@ -1,5 +1,5 @@
 import { NgModule, isDevMode } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +39,7 @@ import { NotfoundComponent } from './comp/notfound/notfound.component';
     HttpClientModule,
     CarouselModule,
     FontAwesomeModule,
+    FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

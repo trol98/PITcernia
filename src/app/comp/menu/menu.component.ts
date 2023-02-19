@@ -37,6 +37,7 @@ export class MenuComponent {
 
   addToCart(pizza: Pizza) {
     this.cartService.add(pizza);
+    this.router.navigateByUrl('/cart');
   }
 
   // pizza = [

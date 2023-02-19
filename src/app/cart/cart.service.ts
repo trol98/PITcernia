@@ -47,17 +47,11 @@ export class CartService {
 
   delete(pizza: Pizza) {
     const index = this.getIndex(pizza);
-
-    if (index > -1) {
-      const count = this.lines[index].quantity--;
-      if (count <= 0) {
-        this.lines.splice(index, 1);
-      }
-      this.saveCart();
-    }
+    this.lines.splice(index, 1);
+    this.saveCart();
   }
 
   private getIndex(pizza: Pizza): number {
-    return this.lines.findIndex(line => line.pizza.id == pizza.id);
+    return this.lines.findIndex((line) => line.pizza.id == pizza.id);
   }
 }
