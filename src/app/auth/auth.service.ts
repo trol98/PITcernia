@@ -2,8 +2,9 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterUser } from './registerUser.interface';
-import { LoginUser } from './loginUser.interface';
+import { LoginUser } from './interface/loginUser.interface';
 import { Observable } from 'rxjs';
+import { User } from './interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,6 @@ export class AuthService {
     const url = this.HOST + '/auth';
     const options = { observe: 'response' as 'body', withCredentials: true };
 
-    return this.http.get<any>(url, options)
+    return this.http.get<User>(url, options)
   }
 }

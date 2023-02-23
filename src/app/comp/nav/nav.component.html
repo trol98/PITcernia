@@ -12,7 +12,8 @@
             <li><a [routerLink]="['/about']" routerLinkActive="router-link-active" >About</a></li>
             <li><a *ngIf="!isLoggedIn()" [routerLink]="['/register']"><fa-icon [icon]="faRightToBracket"></fa-icon></a></li>
             <li><a *ngIf="!isLoggedIn()" [routerLink]="['/login']"><fa-icon [icon]="faUser"></fa-icon></a></li>
-            <!-- TODO: Add sign-out button -->
+            <li><a *ngIf="isLoggedIn()" [routerLink]="['/home']"(click)="logout()"><fa-icon [icon]="faDoorOpen"></fa-icon></a></li>
+            <li><a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']"><fa-icon [icon]="faGripHorizontal"></fa-icon></a></li>
             <li><a class="cart" [routerLink]="['/cart']"><fa-icon [icon]="faShoppingCart"></fa-icon></a>
             <li><input type="text" placeholder="Search..."></li>
         </ul>
