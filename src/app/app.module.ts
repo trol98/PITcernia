@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DashboardComponent } from './comp/dashboard/dashboard.component';
 import { NotfoundComponent } from './comp/notfound/notfound.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { NotfoundComponent } from './comp/notfound/notfound.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     CarouselModule,
     FontAwesomeModule,
     FormsModule,
