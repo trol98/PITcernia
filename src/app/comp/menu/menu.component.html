@@ -15,13 +15,13 @@
         </div>  
       </div>
     <div class="background">
-        <div class="d-flex justify-content-center flex-column">
+        <div class="d-flex justify-content-center flex-column ">
             <!-- price range slider-->
-            <div>
+            <div class="custom-slider justify-content-center m-3 w-50 mx-auto">
                 <!-- TODO: Change the style of slider -->
-                <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider> 
-                <div>Lower Range Value: {{value}}</div>
-                <div>High Range Value: {{highValue}}</div>
+                <!-- Styling inside of styles.css -->
+                <!-- https://github.com/angular-slider/ngx-slider/blob/master/STYLING.md -->
+                <ngx-slider  [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider> 
             </div>
 
 
@@ -33,7 +33,6 @@
                 </div>  
             </div>
             <!-- toppings pill-buttons -->
-            <!-- Generate with ng-for -->
             <div class="d-flex flex-row justify-content-center flex-wrap">
                 <div class="m-1" *ngFor="let topping of toppings">
                     <input type="checkbox" class="btn-check" id="size-button-{{topping.name}}" autocomplete="off">

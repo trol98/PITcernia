@@ -1,7 +1,7 @@
 import { CartService } from './../../cart/cart.service';
 import { Router } from '@angular/router';
 import { PizzaService } from './../../pizza/pizza.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Pizza } from 'src/app/pizza/pizza.interface';
 import { Topping } from 'src/app/pizza/topping.interface';
 import { Options } from 'ngx-slider-v2';
@@ -17,11 +17,13 @@ export class MenuComponent {
   toppings: Topping[] = [];
   sizes: string[] = [];
 
-  value: number = 0;
-  highValue: number = 0;
+  value: number = 20;
+  highValue: number = 35;
+  manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   options: Options = {
     floor: 0,
-    ceil: 100
+    ceil: 100,
+    step: 0.1
   };
 
   constructor(
@@ -32,7 +34,6 @@ export class MenuComponent {
     this.pizzaService.getPizzas().subscribe({
       next: (data) => {
         this.pizza = data;
-        console.log(this.pizza);
       },
       error: (err) => {
         this.pizza = [];
@@ -41,9 +42,20 @@ export class MenuComponent {
         this.sizes = this.pizza
           .map((pizza: Pizza) => pizza.size)
           .filter((v, i, s) => s.indexOf(v) === i);
+        const prices: number[] = this.pizza.map((p: Pizza) => p.price);
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+
+        this.options = {
+          floor: min,
+          ceil: max,
+          step: 0.1,
+        };
+        this.value = min + (max - min) / 3;
+        this.highValue = min + (max - min) * 2 / 3;
+
       },
     });
-
 
     this.pizzaService.getToppings().subscribe({
       next: (data) => {
