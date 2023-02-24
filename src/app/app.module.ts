@@ -19,6 +19,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { DashboardComponent } from './comp/dashboard/dashboard.component';
 import { NotfoundComponent } from './comp/notfound/notfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSliderModule } from 'ngx-slider-v2';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CarouselModule,
     FontAwesomeModule,
     FormsModule,
+    NgxSliderModule, 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

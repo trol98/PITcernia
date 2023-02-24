@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { PizzaService } from './../../pizza/pizza.service';
 import { Component } from '@angular/core';
 import { Pizza } from 'src/app/pizza/pizza.interface';
+import { Topping } from 'src/app/pizza/topping.interface';
+import { Options } from 'ngx-slider-v2';
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +13,17 @@ import { Pizza } from 'src/app/pizza/pizza.interface';
 })
 export class MenuComponent {
   pizza: Pizza[] = [];
+
+  toppings: Topping[] = [];
+  sizes: string[] = [];
+
+  value: number = 0;
+  highValue: number = 0;
+  options: Options = {
+    floor: 0,
+    ceil: 100
+  };
+
   constructor(
     private pizzaService: PizzaService,
     private cartService: CartService,
@@ -23,6 +36,21 @@ export class MenuComponent {
       },
       error: (err) => {
         this.pizza = [];
+      },
+      complete: () => {
+        this.sizes = this.pizza
+          .map((pizza: Pizza) => pizza.size)
+          .filter((v, i, s) => s.indexOf(v) === i);
+      },
+    });
+
+
+    this.pizzaService.getToppings().subscribe({
+      next: (data) => {
+        this.toppings = data;
+      },
+      error: (err) => {
+        this.toppings = [];
       },
     });
   }

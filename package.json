@@ -25,6 +25,7 @@
     "bootstrap": "^5.2.3",
     "ng-image-slider": "^7.0.0",
     "ngx-owl-carousel-o": "^15.0.0",
+    "ngx-slider-v2": "^15.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.5.0",
     "zone.js": "~0.12.0"
