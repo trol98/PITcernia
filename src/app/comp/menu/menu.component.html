@@ -21,22 +21,22 @@
                 <!-- TODO: Change the style of slider -->
                 <!-- Styling inside of styles.css -->
                 <!-- https://github.com/angular-slider/ngx-slider/blob/master/STYLING.md -->
-                <ngx-slider  [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider> 
+                <ngx-slider  [(value)]="value" [(highValue)]="highValue" [options]="options" (userChangeEnd)="searchPizza()"></ngx-slider> 
             </div>
 
 
             <!-- size pill-buttons -->
             <div class="d-flex flex-row justify-content-center flex-wrap">
-                <div class="m-1" *ngFor="let size of sizes">
-                    <input type="checkbox" class="btn-check" id="size-button-{{size}}" autocomplete="off">
-                    <label class="btn btn-danger btn-sm" for="size-button-{{size}}">{{size}}</label>
+                <div class="m-1" *ngFor="let filter of sizeFilters">
+                    <input [(ngModel)]="filter.on" (change)="searchPizza()" type="checkbox" class="btn-check" id="size-button-{{filter.size}}" autocomplete="off">
+                    <label class="btn btn-danger btn-sm" for="size-button-{{filter.size}}">{{filter.size}}</label>
                 </div>  
             </div>
             <!-- toppings pill-buttons -->
             <div class="d-flex flex-row justify-content-center flex-wrap">
-                <div class="m-1" *ngFor="let topping of toppings">
-                    <input type="checkbox" class="btn-check" id="size-button-{{topping.name}}" autocomplete="off">
-                    <label class="btn btn-success btn-sm" for="size-button-{{topping.name}}">{{topping.name}}</label>
+                <div class="m-1" *ngFor="let filter of toppingFilters">
+                    <input [(ngModel)]="filter.on" (change)="searchPizza()" type="checkbox" class="btn-check" id="size-button-{{filter.topping.name}}" autocomplete="off">
+                    <label class="btn btn-success btn-sm" for="size-button-{{filter.topping.name}}">{{filter.topping.name}}</label>
                 </div>
             </div>
         </div>

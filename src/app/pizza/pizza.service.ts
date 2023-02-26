@@ -21,14 +21,24 @@ export class PizzaService {
     return this.http.get<Pizza[]>(url);
   }
 
-  // TODO: implement a method for getting pizza info,for the "po wybraniu pizzy..." requirement
   getPizzaDetials(id: number) {
     const url = this.HOST + `/pizza/${id}`;
     return this.http.get<Pizza>(url);
   }
-  // TODO: implement a method for filtering pizza by size, toppings, prize
-  // for the "możliwe jest wyszukwianie ..." requirements
-  searchPizza() {
-    throw new Error('Method not implemented.');
+
+  searchPizza(min: number, max: number, sizes: string[], toppings: string[]) {
+    let url = this.HOST + `/pizza/search?`;
+
+    // generate the url encoding
+    url += `minPrice=${min}`;
+    toppings.forEach((topping) => {
+      url += `&toppings[]=${topping}`;
+    });
+    sizes.forEach((size) => {
+      url += `&sizes[]=${size}`;
+    });
+    url += `&maxPrice=${max}`;
+
+    return this.http.get<Pizza[]>(url);
   }
 }

@@ -1,3 +1,5 @@
+import { SizeFilter } from './interfaces/sizeFilter.interface';
+import { ToppingFilter } from './interfaces/toppingFilter.interface';
 import { CartService } from './../../cart/cart.service';
 import { Router } from '@angular/router';
 import { PizzaService } from './../../pizza/pizza.service';
@@ -14,8 +16,8 @@ import { Options } from 'ngx-slider-v2';
 export class MenuComponent {
   pizza: Pizza[] = [];
 
-  toppings: Topping[] = [];
-  sizes: string[] = [];
+  toppingFilters: ToppingFilter[] = [];
+  sizeFilters: SizeFilter[] = [];
 
   value: number = 20;
   highValue: number = 35;
@@ -23,7 +25,7 @@ export class MenuComponent {
   options: Options = {
     floor: 0,
     ceil: 100,
-    step: 0.1
+    step: 0.1,
   };
 
   constructor(
@@ -39,32 +41,56 @@ export class MenuComponent {
         this.pizza = [];
       },
       complete: () => {
-        this.sizes = this.pizza
-          .map((pizza: Pizza) => pizza.size)
+        this.sizeFilters = this.pizza
+          .map((pizza: Pizza) => {
+            return { size: pizza.size, on: false };
+          })
           .filter((v, i, s) => s.indexOf(v) === i);
-        const prices: number[] = this.pizza.map((p: Pizza) => p.price);
-        const min = Math.min(...prices);
-        const max = Math.max(...prices);
+        // const prices: number[] = this.pizza.map((p: Pizza) => p.price);
+        // const min = Math.min(...prices);
+        // const max = Math.max(...prices);
 
         this.options = {
-          floor: min,
-          ceil: max,
-          step: 0.1,
+          floor: 0,
+          ceil: 100,
+          step: 1,
         };
-        this.value = min + (max - min) / 3;
-        this.highValue = min + (max - min) * 2 / 3;
-
+        // this.value = min + (max - min) / 3;
+        // this.highValue = min + ((max - min) * 2) / 3;
+        this.value = 20;
+        this.highValue = 80;
       },
     });
 
     this.pizzaService.getToppings().subscribe({
       next: (data) => {
-        this.toppings = data;
+        this.toppingFilters = data.map((topping: Topping) => {
+          return { topping, on: false };
+        });
       },
       error: (err) => {
-        this.toppings = [];
+        this.toppingFilters = [];
       },
     });
+  }
+  searchPizza() {
+    const size: string[] = this.sizeFilters
+      .filter((filter: SizeFilter) => filter.on)
+      .map((filter: SizeFilter) => filter.size);
+
+    const toppings: string[] = this.toppingFilters
+      .filter((filter: ToppingFilter) => filter.on)
+      .map((filter: ToppingFilter) => filter.topping.name);
+    this.pizzaService
+      .searchPizza(this.value, this.highValue, size, toppings)
+      .subscribe({
+        next: (data: Pizza[]) => {
+          this.pizza = data;
+        },
+        error: (e) => {
+          this.pizza = [];
+        },
+      });
   }
 
   formatToppings(p: Pizza) {
