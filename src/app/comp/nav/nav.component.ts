@@ -21,13 +21,23 @@ export class NavComponent {
     private storageService: StorageService,
     private authService: AuthService
   ) {}
+  ngOnInit() {
+    this.authService.authenticate().subscribe({
+      next: (user: User) => {
+        this.username = user.login;
+      },
+      error: () => {
+        this.username = 'Guest';
+      },
+    });
+  }
   faRightToBracket = faRightToBracket;
   faUser = faUser;
   faShoppingCart = faShoppingCart;
   faGripHorizontal = faGripHorizontal;
   faDoorOpen = faDoorOpen;
 
-  username = 'user';
+  username = 'Guest';
 
   isLoggedIn() {
     // TODO: Consider making an authorization call to backend
@@ -36,8 +46,7 @@ export class NavComponent {
     return this.storageService.isLoggedIn();
   }
   logout() {
-    // TODO: Implement an mechanism that doesn't allow further use of
-    // Authorization cookie
+    this.authService.logout();
     this.storageService.clean();
   }
 }

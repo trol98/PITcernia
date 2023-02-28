@@ -3,7 +3,7 @@ import { ToppingFilter } from './interfaces/toppingFilter.interface';
 import { CartService } from './../../cart/cart.service';
 import { Router } from '@angular/router';
 import { PizzaService } from './../../pizza/pizza.service';
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Pizza } from 'src/app/pizza/pizza.interface';
 import { Topping } from 'src/app/pizza/topping.interface';
 import { Options } from 'ngx-slider-v2';
@@ -21,7 +21,6 @@ export class MenuComponent {
 
   value: number = 20;
   highValue: number = 35;
-  manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   options: Options = {
     floor: 0,
     ceil: 100,

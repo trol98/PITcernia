@@ -15,7 +15,7 @@
             <li><a *ngIf="isLoggedIn()" [routerLink]="['/home']"(click)="logout()"><fa-icon [icon]="faDoorOpen"></fa-icon></a></li>
             <li><a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']"><fa-icon [icon]="faGripHorizontal"></fa-icon></a></li>
             <li><a class="cart" [routerLink]="['/cart']"><fa-icon [icon]="faShoppingCart"></fa-icon></a>
-            <li><input type="text" placeholder="Search..."></li>
+            <li><input type="text" placeholder="{{username}}..."></li>
         </ul>
     </header>
     <section class="banner"></section>

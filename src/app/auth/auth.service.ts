@@ -27,12 +27,12 @@ export class AuthService {
   logout(): Observable<any> {
     const url = this.HOST + '/auth/log-out';
     const options = { observe: 'response' as 'body', withCredentials: true };
-    return this.http.post<any>(url, options);
+    return this.http.post<any>(url, {}, options);
   }
 
-  authenticate(): Observable<any> {
+  authenticate(): Observable<User> {
     const url = this.HOST + '/auth';
-    const options = { observe: 'response' as 'body', withCredentials: true };
+    const options = {withCredentials: true };
 
     return this.http.get<User>(url, options)
   }
