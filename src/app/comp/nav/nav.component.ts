@@ -19,9 +19,13 @@ import {
 export class NavComponent {
   constructor(
     private storageService: StorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
   ngOnInit() {
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => {
+    //   return false;
+    // };
     this.authService.authenticate().subscribe({
       next: (user: User) => {
         this.username = user.login;
@@ -46,7 +50,11 @@ export class NavComponent {
     return this.storageService.isLoggedIn();
   }
   logout() {
-    this.authService.logout();
+    this.authService.logout().subscribe();
     this.storageService.clean();
+    this.router.navigateByUrl('/home');
+    // FIXME: Totally non-angularish way of refreshing
+    // A work around for the username, not refreshing after logging out
+    window.location.reload();
   }
 }

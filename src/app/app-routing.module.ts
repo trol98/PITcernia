@@ -14,7 +14,11 @@ import { AuthGuard } from './auth/guards/authGuard.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'details/:id', component: PizzaDetailsComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },
@@ -27,6 +31,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  // refer to FIXME in nav.component.ts
+  // { onSameUrlNavigation: 'reload' }
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })

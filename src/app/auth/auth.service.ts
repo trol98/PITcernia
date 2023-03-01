@@ -25,8 +25,9 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    console.log("Hello");
     const url = this.HOST + '/auth/log-out';
-    const options = { observe: 'response' as 'body', withCredentials: true };
+    const options = { withCredentials: true };
     return this.http.post<any>(url, {}, options);
   }
 
