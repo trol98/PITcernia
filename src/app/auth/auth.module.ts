@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/authGuard.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,6 +8,7 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [AuthGuard]
 })
 export class AuthModule { }

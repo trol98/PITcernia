@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +21,7 @@ import { DashboardComponent } from './comp/dashboard/dashboard.component';
 import { NotfoundComponent } from './comp/notfound/notfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from 'ngx-slider-v2';
+import { AuthGuard } from './auth/guards/authGuard.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,18 +42,19 @@ import { NgxSliderModule } from 'ngx-slider-v2';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AuthModule,
     CarouselModule,
     FontAwesomeModule,
     FormsModule,
-    NgxSliderModule, 
+    NgxSliderModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -10,10 +10,11 @@ import { MenuComponent } from './comp/menu/menu.component';
 import { NavComponent } from './comp/nav/nav.component';
 import { RegisterComponent } from './comp/register/register.component';
 import { AboutComponent } from './comp/about/about.component';
+import { AuthGuard } from './auth/guards/authGuard.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'details/:id', component: PizzaDetailsComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },
