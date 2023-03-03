@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   userForm: any;
 
-  isLoggedIn: boolean = false;
-  isLoginFailed: boolean = false;
+  loginFailed: boolean = false;
+  attemptedLogin: boolean = false;
   errorMessage: string = '';
 
   constructor(
@@ -25,31 +25,32 @@ export class LoginComponent {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
     if(this.storageService.isLoggedIn()){
       this.router.navigateByUrl("/dashboard");
     }
   }
-  async onSubmit() {
+  onSubmit() {
+    this.attemptedLogin = true;
     if (this.userForm.valid) {
+      this.loginFailed = false;
       const { email, password } = this.userForm.value;
 
       this.authService.login({ email, password }).subscribe({
         next: (data) => {
-          this.storageService.saveUser(data.body);
-
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
+          this.storageService.saveUser(data);
+          this.loginFailed = false;
           this.reloadPage();
         },
         error: (err) => {
           this.errorMessage = err.error.message;
-          this.isLoginFailed = true;
+          this.loginFailed = true;
         },
       });
     } else {
+      this.loginFailed = true;
       this.errorMessage = "The form is not valid";
     }
   }

@@ -10,6 +10,7 @@ import {
   faShoppingCart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -50,11 +51,17 @@ export class NavComponent {
     return this.storageService.isLoggedIn();
   }
   logout() {
-    this.authService.logout().subscribe();
-    this.storageService.clean();
-    this.router.navigateByUrl('/home');
-    // FIXME: Totally non-angularish way of refreshing
-    // A work around for the username, not refreshing after logging out
-    window.location.reload();
+    this.authService
+      .logout()
+      .pipe(
+        finalize(() => {
+          this.storageService.clean();
+          this.router.navigateByUrl('/home');
+          // FIXME: Totally non-angularish way of refreshing
+          // A work around for the username, not refreshing after logging out
+          window.location.reload();
+        })
+      )
+      .subscribe();
   }
 }

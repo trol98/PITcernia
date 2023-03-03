@@ -1,19 +1,36 @@
 <div class="col-md-4 mx-auto">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-        <p class="h4 mb-4">Login</p>
-        <div class="form-row mb-4">
-            <div class="col">
-                <input type="text" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Email">
-            </div>
-        </div>
-        <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control mb-4" placeholder="Password">
-        <button class="btn btn-info my-4 btn-block" type="submit">Login</button>
-        <hr>
-      </form>
-      <p *ngIf="userForm.submited && isLoggedIn" class="bg-success">
-          Login was successful
-      </p>
-    <p *ngIf="userForm.submited && (!isLoggedIn)" class="bg-warning">
-        Login failed
-    </p>
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="text-center border border-light p-5"
+  >
+    <p class="h4 mb-4">Login</p>
+    <div class="form-row mb-4">
+      <div class="col">
+        <input
+          type="text"
+          formControlName="email"
+          id="defaultRegisterFormEmail"
+          class="form-control mb-4"
+          placeholder="Email"
+        />
+      </div>
+    </div>
+    <input
+      type="password"
+      formControlName="password"
+      id="defaultRegisterFormPassword"
+      class="form-control mb-4"
+      placeholder="Password"
+    />
+    <button class="btn btn-info my-4 btn-block" type="submit">Login</button>
+    <hr/>
+  </form>
+  <p *ngIf="attemptedLogin && !loginFailed" class="bg-success">
+    Login was successful
+  </p>
+  <div *ngIf="attemptedLogin && loginFailed" class="bg-warning">
+    <p>Login failed</p>
+    <p>{{errorMessage}}</p>
+  </div>
 </div>

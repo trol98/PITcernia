@@ -13,15 +13,15 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   HOST: string = environment.HOST;
 
-  register(registerUser: RegisterUser): Observable<any> {
+  register(registerUser: RegisterUser): Observable<User> {
     const url = this.HOST + '/auth/register';
-    return this.http.post<any>(url, registerUser)
+    return this.http.post<User>(url, registerUser)
   }
 
-  login(loginUser: LoginUser): Observable<any> {
+  login(loginUser: LoginUser): Observable<User> {
     const url = this.HOST + '/auth/log-in';
-    const options = { observe: 'response' as 'body', withCredentials: true };
-    return this.http.post<any>(url, loginUser, options);
+    const options = {withCredentials: true };
+    return this.http.post<User>(url, loginUser, options);
   }
 
   logout(): Observable<any> {
