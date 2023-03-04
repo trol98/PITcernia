@@ -27,35 +27,28 @@ export class MenuComponent {
     step: 0.1,
   };
 
-  constructor(
-    private pizzaService: PizzaService,
-    private cartService: CartService,
-    private router: Router
-  ) {
+  ngOnInit() {
     this.pizzaService.getPizzas().subscribe({
       next: (data) => {
         this.pizza = data;
+
+        let sizes = this.pizza.map((pizza: Pizza) => {
+          return pizza.size;
+        });
+        sizes = [...new Set(sizes)];
+        this.sizeFilters = sizes.map((size: string) => {
+          return { size, on: false };
+        });
       },
       error: (err) => {
         this.pizza = [];
       },
       complete: () => {
-        this.sizeFilters = this.pizza
-          .map((pizza: Pizza) => {
-            return { size: pizza.size, on: false };
-          })
-          .filter((v, i, s) => s.indexOf(v) === i);
-        // const prices: number[] = this.pizza.map((p: Pizza) => p.price);
-        // const min = Math.min(...prices);
-        // const max = Math.max(...prices);
-
         this.options = {
           floor: 0,
           ceil: 100,
           step: 1,
         };
-        // this.value = min + (max - min) / 3;
-        // this.highValue = min + ((max - min) * 2) / 3;
         this.value = 20;
         this.highValue = 80;
       },
@@ -72,6 +65,12 @@ export class MenuComponent {
       },
     });
   }
+
+  constructor(
+    private pizzaService: PizzaService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
   searchPizza() {
     const size: string[] = this.sizeFilters
       .filter((filter: SizeFilter) => filter.on)
