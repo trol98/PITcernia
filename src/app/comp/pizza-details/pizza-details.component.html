@@ -1,1 +1,5 @@
-<p>{{justForTesting()}}</p>
+<h1>{{ pizza.name }}</h1>
+<p>{{ pizza.description }}</p>
+<ul>
+    <li *ngFor="let top of pizza.toppings">{{top.name}}</li>
+</ul>

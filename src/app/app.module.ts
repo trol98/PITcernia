@@ -1,3 +1,4 @@
+import { PizzaDetailsComponent } from './comp/pizza-details/pizza-details.component';
 import { AuthModule } from './auth/auth.module';
 import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +22,7 @@ import { DashboardComponent } from './comp/dashboard/dashboard.component';
 import { NotfoundComponent } from './comp/notfound/notfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from 'ngx-slider-v2';
-import { AuthGuard } from './auth/guards/authGuard.guard';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +36,10 @@ import { AuthGuard } from './auth/guards/authGuard.guard';
     FooterComponent,
     DashboardComponent,
     NotfoundComponent,
+    PizzaDetailsComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

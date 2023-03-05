@@ -12,23 +12,23 @@ export class PizzaDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private pizzaService: PizzaService
-  ) {}
-  pizza?: Pizza;
-  ngOnInit() {
+  ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.pizzaService.getPizzaDetials(id).subscribe({
+    this.pizzaService.getPizzaDetails(id).subscribe({
       next: (pizza: Pizza) => {
         this.pizza = pizza;
-      },
-      error: (err) => {
-        this.pizza = undefined;
+        console.log(pizza.toppings);
       },
     });
   }
-  justForTesting() {
-    if (this.pizza) {
-      return `${this.pizza.name} ${this.pizza.id}`;
-    }
-    return '';
-  }
+  pizaaaaa: string[] = ['ala', 'bala'];
+  pizza: Pizza = {
+    id: -1,
+    name: 'No pizza',
+    description: 'No pizza',
+    img_path: 'assets/pizza_not_found.png',
+    price: -1,
+    size: 'no',
+    toppings: [],
+  };
 }
