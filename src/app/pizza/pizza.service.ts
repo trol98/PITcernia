@@ -21,7 +21,7 @@ export class PizzaService {
     return this.http.get<Pizza[]>(url);
   }
 
-  getPizzaDetials(id: number) {
+  getPizzaDetails(id: number) {
     const url = this.HOST + `/pizza/${id}`;
     return this.http.get<Pizza>(url);
   }
