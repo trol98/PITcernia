@@ -1,38 +1,36 @@
-
-<!DOCTYPE html>  <!-- kupa -->
+<!DOCTYPE html> <!-- kupa -->
 <html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-  
-  
-  
+  <div>
+    <!-- Ogarnąć ten szajs -->
+    <img src="/assets/bg.png" alt="" width="2400" height="auto" style="vertical-align: middle;">
     <!-- ---------------------------------------------------- zmieniające się obrazki -->
-  
-      <div class="background-image">
-        <owl-carousel-o [options]="customOptions">
-          <ng-template carouselSlide>
-            <img src="/assets/pizza_tlo1.jpg" alt="">
-          </ng-template>  
-          <ng-template carouselSlide>
-            <img src="/assets/pizza_tlo2.jpg" alt="">
-          </ng-template>  
-          <ng-template carouselSlide>
-            <img src="/assets/pizza_tlo3.jpg" alt="">
-          </ng-template>  
-        </owl-carousel-o>
-      </div>
-    
-    
+    <div class="background-image">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <img src="/assets/pizza_tlo1.jpg" alt="">
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="/assets/pizza_tlo2.jpg" alt="">
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="/assets/pizza_tlo3.jpg" alt="">
+        </ng-template>
+      </owl-carousel-o>
+    </div>
     <div class="best-sellers">
-      
+
       <!-- ----------------------------------------------------------------- best-seller -->
-      
+
       <img class="best-img" src="\assets\best.png" alt="kurwa mac">
 
       <!-- ---------------------------------------------------------------------- pizza1 -->
-      
+
       <div class="card4">
         <div class="circle"></div>
         <div class="content">
@@ -42,9 +40,9 @@
         </div>
         <img src="\assets\pizza.png" alt="bruh">
       </div>
-      
+
       <!-- --------------------------------------------------------------------- pizza2 -->
-      
+
       <div class="card4">
         <div class="circle"></div>
         <div class="content">
@@ -54,9 +52,9 @@
         </div>
         <img src="\assets\pizza.png" alt="bruh">
       </div>
-      
+
       <!-- --------------------------------------------------------------------- pizza 3-->
-      
+
       <div class="card4">
         <div class="circle"></div>
         <div class="content">
@@ -66,8 +64,10 @@
         </div>
         <img src="\assets\pizza.png" alt="bruh">
       </div>
-                
+
     </div>
 
-  </body>
-  </html>
+  </div>
+</body>
+
+</html>
