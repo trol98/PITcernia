@@ -45,9 +45,7 @@
                 <img [src]="p.img_path" alt="" style="width:100%">
                 <h6 href><b>{{ p.name | titlecase}}</b></h6>
                 <p class="price">{{ p.price | currency:'GBP' }}<p>
-                <p class = "toppings">{{ formatToppings(p) | titlecase }}</p>
                 <p class = "card button"><button (click)="pizzaDetails(p)">Details</button></p>
-                <p class = "card button"><button (click)="addToCart(p)">Add to Cart</button></p>
             </div>
         </div>
     </div>
