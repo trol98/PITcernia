@@ -1,0 +1,15 @@
+.title{
+    display: flex;
+}
+.cogito{
+    text-align: center;
+}
+
+/* .pictures{
+    display: flex;
+    display: space-between 5px;
+
+} */
+.spictures{
+    flex:25%
+}
