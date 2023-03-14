@@ -1,0 +1,40 @@
+<!-- TODO: Change graphical design(UI) -->
+<h5>Cart</h5>
+<div class="row">
+  <div class="col-12" *ngFor="let line of lines; let i = index">
+    <div class="row" id="{{ line.pizza.id }}">
+      <div class="col-6">
+        <div>
+          {{ line.pizza.name }}
+          <small>( {{ line.pizza.price | currency }} ) x {{line.quantity}} </small>
+        </div>
+        <small>{{ line.pizza.description }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <hr />
+
+    <div>
+      <form>
+        <div class="form-group">
+          <label for="exampleInput">Shipping information</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInput"
+            name="ship"
+            placeholder="Enter shipping information"
+            [(ngModel)]="shipping_info"
+          />
+        </div>
+      </form>
+    </div>
+    <div>
+      Order Total:
+      <span class="font-weight-bold">{{ getTotal() | currency }}</span>
+      <hr />
+      <button class="btn btn-danger" (click)="order()">Order</button>
+    </div>
+  </div>
+</div>
