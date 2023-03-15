@@ -1,3 +1,5 @@
+import { HistoryComponent } from './comp/dashboard/history/history.component';
+import { ActiveComponent } from './comp/dashboard/active/active.component';
 import { CheckoutComponent } from './comp/checkout/checkout.component';
 import { PizzaDetailsComponent } from './comp/pizza-details/pizza-details.component';
 import { NgModule } from '@angular/core';
@@ -19,6 +21,14 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path:'active', component: ActiveComponent
+      },
+      {
+        path:'history', component: HistoryComponent
+      }
+    ]
   },
   {
     path: 'checkout',

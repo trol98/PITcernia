@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<div class="d-flex ">
+  <nav class="w-15 vh-100 bg-secondary d-flex flex-column d-flex justify-content-center">
+    <div class="">
+      <div [routerLink]="['active']">Active orders</div>
+      <div [routerLink]="['history']">Finished orders</div>
+    </div>
+  </nav>
+  <div class="w-85 h-100 bg-light">
+    <router-outlet></router-outlet>
+    a
+  </div>
+</div>

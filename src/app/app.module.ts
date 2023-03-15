@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { CommonModule } from '@angular/common';
 import { CheckoutComponent } from './comp/checkout/checkout.component';
+import { ActiveComponent } from './comp/dashboard/active/active.component';
+import { HistoryComponent } from './comp/dashboard/history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,8 @@ import { CheckoutComponent } from './comp/checkout/checkout.component';
     NotfoundComponent,
     PizzaDetailsComponent,
     CheckoutComponent,
+    ActiveComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,
