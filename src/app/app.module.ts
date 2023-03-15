@@ -23,6 +23,7 @@ import { NotfoundComponent } from './comp/notfound/notfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { CommonModule } from '@angular/common';
+import { CheckoutComponent } from './comp/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { CommonModule } from '@angular/common';
     DashboardComponent,
     NotfoundComponent,
     PizzaDetailsComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,

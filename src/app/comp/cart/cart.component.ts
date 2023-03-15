@@ -26,6 +26,5 @@ export class CartComponent {
   lines: CartLine[] = [];
   constructor(private cartService: CartService) {
     this.lines = this.cartService.getCart();
-    console.log(this.lines);
   }
 }

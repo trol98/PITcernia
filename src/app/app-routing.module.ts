@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './comp/checkout/checkout.component';
 import { PizzaDetailsComponent } from './comp/pizza-details/pizza-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,13 +20,18 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'details/:id', component: PizzaDetailsComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutComponent},
+  { path: 'about', component: AboutComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', component: NotfoundComponent },
 ];
