@@ -15,17 +15,56 @@ body
 .container-fluid
 {
     width: 80%;
+    max-width: 3000px;
     margin-left: auto;
     margin-right: auto;
-    padding: 5vmin 0;  
-
+    padding: 5vmin 0;
+    
+    animation-duration: 0.5s;
+    animation-name: container;
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
 }
-.row-1, .row-2, .row-3
+/* @keyframes container {
+    0% {
+        opacity: 0;
+        scale: 0.5;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+} */
+
+
+.row-1,.row-2, .row-3
 {
     justify-content: center;
     display: flex;
     padding: 1vmin;
+    position: relative;
     /* flex-wrap: wrap; */
+}
+.row-1, .row-3
+{
+    animation-duration: 0.5s;
+    animation-name: rowleft;
+    /* animation-delay: 0.2s; */
+    animation-fill-mode: backwards;
+}
+@keyframes rowleft {
+    0% {left: -100vh;}
+    100% {left: 0px;}
+}
+.row-2{
+    animation-duration: 0.5s;
+    animation-name: rowright;
+    /* animation-delay: 0.2s; */
+    animation-fill-mode: backwards;
+}
+@keyframes rowright {
+    0% {right: -50vh;}
+    100% {right: 0;}
 }
 
 .picture-1
