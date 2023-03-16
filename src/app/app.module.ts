@@ -26,6 +26,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutComponent } from './comp/checkout/checkout.component';
 import { ActiveComponent } from './comp/dashboard/active/active.component';
 import { HistoryComponent } from './comp/dashboard/history/history.component';
+import { ProfileComponent } from './comp/dashboard/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { HistoryComponent } from './comp/dashboard/history/history.component';
     CheckoutComponent,
     ActiveComponent,
     HistoryComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

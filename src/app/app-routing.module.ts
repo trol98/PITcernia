@@ -1,3 +1,4 @@
+import { ProfileComponent } from './comp/dashboard/profile/profile.component';
 import { HistoryComponent } from './comp/dashboard/history/history.component';
 import { ActiveComponent } from './comp/dashboard/active/active.component';
 import { CheckoutComponent } from './comp/checkout/checkout.component';
@@ -27,6 +28,9 @@ const routes: Routes = [
       },
       {
         path:'history', component: HistoryComponent
+      },
+      {
+        path:'profile', component: ProfileComponent
       }
     ]
   },
