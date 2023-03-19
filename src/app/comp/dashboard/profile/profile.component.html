@@ -1,37 +1,44 @@
 <div>
-    <form
-      [formGroup]="credentialsForm"
-      (ngSubmit)="onCredentailsChange()"
-      class="text-center border border-light p-5"
-    >
-      <p class="h4 mb-4">Profile information</p>
-      <div class="form-row mb-4">
-        <div class="col">
-          <input
-            type="text"
-            formControlName="login"
-            id="defaultRegisterFormLogin"
-            class="form-control mb-4"
-            placeholder="Nazwa"
-          />
-        </div>
+  <form
+    [formGroup]="credentialsForm"
+    (ngSubmit)="onCredentailsChange()"
+    class="text-center border border-light p-5"
+  >
+    <p class="h4 mb-4">Profile information</p>
+    <div class="form-row mb-4">
+      <div class="col">
+        <input
+          type="text"
+          formControlName="login"
+          id="defaultRegisterFormLogin"
+          class="form-control mb-4"
+          placeholder="Nazwa"
+        />
       </div>
-      <input
-        type="email"
-        formControlName="email"
-        id="defaultRegisterFormEmail"
-        class="form-control mb-4"
-        placeholder="Email"
-      />
-      <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
-      <hr/>
-    </form>
-    <!-- <p *ngIf="attemptedLogin && !loginFailed" class="bg-success">
+    </div>
+    <input
+      type="email"
+      formControlName="email"
+      id="defaultRegisterFormEmail"
+      class="form-control mb-4"
+      placeholder="Email"
+    />
+    <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
+    <hr />
+  </form>
+  <!-- <p *ngIf="attemptedLogin && !loginFailed" class="bg-success">
       Login was successful
     </p>
     <div *ngIf="attemptedLogin && loginFailed" class="bg-warning">
       <p>Login failed</p>
       <p>{{errorMessage}}</p>
     </div> -->
-  </div>
-  
+</div>
+<div>
+  <p>Użytkownik może zmnieć swoje dane osobowe i adresowe</p>
+  <p>użytkownik może usunąć konto (nie może to usuwać historii zamówień)</p>
+  <p>
+    użytkownik może usunąć konto (nie może usunąć konta jeżeli instnieją aktywne
+    zamówienia)
+  </p>
+</div>
