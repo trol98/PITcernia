@@ -10,7 +10,7 @@ import { Order } from 'src/app/order/interfaces/order.interface';
 export class ActiveComponent {
   orders: Order[] = [];
   constructor(private orderService: OrderService) {
-    this.orderService.getUserOrders(false).subscribe({
+    this.orderService.getUserOrders(true).subscribe({
       next: (orders: Order[]) => {
         this.orders = orders;
       },

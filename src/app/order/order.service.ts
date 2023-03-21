@@ -17,8 +17,8 @@ export class OrderService {
     return this.http.post(url, body, options);
   }
 
-  getUserOrders(isFinished: boolean) {
-    const url = this.HOST + `/orders?isFinished=${isFinished}`;
+  getUserOrders(isActive: boolean) {
+    const url = this.HOST + `/orders?isActive=${isActive}`;
     const options = { withCredentials: true };
     return this.http.get<Order[]>(url, options);
   }
