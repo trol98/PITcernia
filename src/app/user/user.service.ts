@@ -11,8 +11,15 @@ export class UserService {
 
   changeCredentials(newEmail: string, newLogin: string) {
     const url = this.HOST + `/user/update`;
-    const options = {withCredentials: true };
-    
-    return this.http.put(url, {newEmail, newLogin}, options);
+    const options = { withCredentials: true };
+
+    return this.http.put(url, { newEmail, newLogin }, options);
+  }
+
+  deleteAccount() {
+    const url = this.HOST + `/user/delete`;
+    const options = { withCredentials: true };
+
+    return this.http.put(url, {}, options);
   }
 }
