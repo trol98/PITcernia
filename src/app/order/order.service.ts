@@ -22,4 +22,10 @@ export class OrderService {
     const options = { withCredentials: true };
     return this.http.get<Order[]>(url, options);
   }
+
+  cancelOrder(id: number) {
+    const url = this.HOST + `/orders/cancel/${id}`;
+    const options = { withCredentials: true };
+    return this.http.put(url, {}, options);
+  }
 }

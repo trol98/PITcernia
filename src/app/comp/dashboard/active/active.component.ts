@@ -18,7 +18,14 @@ export class ActiveComponent {
     });
   }
 
-  displayOrders() {
-    return JSON.stringify(this.orders);
+  cancelOrder(id: number) {
+    this.orderService.cancelOrder(id).subscribe({
+      next: () => {
+        alert(`Order canceled: ${id}`);
+      },
+      error: () => {
+        alert(`Order cannot be canceled: ${id}`);
+      },
+    });
   }
 }
