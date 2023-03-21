@@ -2,4 +2,22 @@
 <p class="m-5">
   użytkownik może anulować zamówienie dopóki admin nie oznaczy jako wykonane
 </p>
-<p>{{displayOrders()}}</p>
+<div class="container-lg">
+  <p>{{displayOrders()}}</p>
+  <div class="row">
+    <div class="col-sm-20">
+      <div class="card">
+        <div class="card-body">
+          <div *ngFor="let order of orders">
+            <h5 class="card-title">Order number: {{order.id}}</h5>
+            <p class="card-text">Order date: {{order.order_date}}</p>
+            <p class="card-text">Delivery address: {{order.shipping_address}}</p>
+          </div>
+          <div class="card-body">
+            <div *ngFor="let order of orders">
+              <div *ngFor="let upizza of order.pizzaToOrder">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
