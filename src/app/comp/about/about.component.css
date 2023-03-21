@@ -1,15 +1,18 @@
-.title{
-    display: flex;
-}
+
+
 .cogito{
     text-align: center;
+    margin: 5vmin;
 }
-
-/* .pictures{
-    display: flex;
-    display: space-between 5px;
-
+.row
+{
+    text-align: center;
+}
+/* .col-lg-3
+{
+    padding-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: antiquewhite;
+    border-radius: 10%;
 } */
-.spictures{
-    flex:25%
-}
