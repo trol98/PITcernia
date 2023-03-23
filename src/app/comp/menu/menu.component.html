@@ -41,11 +41,23 @@
             </div>
         </div>
         <div class ="container">
-            <div class="item" *ngFor="let p of pizza; let i = index">
-                <img [src]="p.img_path" alt="" style="width:100%">
-                <h6 href><b>{{ p.name | titlecase}}</b></h6>
-                <p class="price">{{ p.price | currency:'GBP' }}<p>
-                <p class = "card button"><button (click)="pizzaDetails(p)">Details</button></p>
+            <div class="col-lg-5"  *ngFor="let p of pizza; let i = index">
+                <div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                    <img class="cropped-images"[src]="p.img_path" style="width:100%;position:relative;z-index: 5;">
+                    <!-- <div class="my-3 py-3"> class="card shadow-sm" -->
+                    <div class="putas">
+                        <table style="height: 100%;display: flex;justify-content: center;align-items: flex-end;">
+                            <tr style="height: 45%;">
+                                <td>        
+                                    <h6 href><b>{{ p.name | titlecase}}</b></h6>
+                                    <p>{{ p.price | currency:'GBP' }}<p>
+                                    <p><button style="border-radius: 1rem;padding: 0.5rem;"(click)="pizzaDetails(p)">Details</button></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- </div> -->
+                </div>
             </div>
         </div>
     </div>

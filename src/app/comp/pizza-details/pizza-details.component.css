@@ -23,9 +23,6 @@ body
 }
 .col-1
 {
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
     flex-basis: 30%;
     position: relative;
     background-color: #ff523b;
@@ -34,9 +31,8 @@ body
 }
 .png
 {
-    position: absolute;
-    z-index: 10;
     padding: 75px 0 0 50px;   /* top/right/bottom/left */
+    width: 1000px;
 }
 img
 {
