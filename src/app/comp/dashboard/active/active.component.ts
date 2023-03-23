@@ -1,6 +1,7 @@
 import { OrderService } from './../../../order/order.service';
 import { Component } from '@angular/core';
 import { Order } from 'src/app/order/interfaces/order.interface';
+import { animation ,transition, style, animate, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-active',
@@ -16,12 +17,14 @@ export class ActiveComponent {
       },
       error: () => {},
     });
+    
   }
-
+  shown = false
   cancelOrder(id: number) {
     this.orderService.cancelOrder(id).subscribe({
       next: () => {
         alert(`Order canceled: ${id}`);
+        this.shown = true;
       },
       error: () => {
         alert(`Order cannot be canceled: ${id}`);
@@ -29,3 +32,11 @@ export class ActiveComponent {
     });
   }
 }
+
+trigger('leave', [
+  transition(':leave', [
+    animate('500ms', style({opacity: 0}))
+  ])
+])
+
+
