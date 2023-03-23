@@ -3,21 +3,23 @@
   użytkownik może anulować zamówienie dopóki admin nie oznaczy jako wykonane
 </p>
 <div class="container-lg">
-  <p>{{displayOrders()}}</p>
   <div *ngFor="let order of orders">
-    <div class="row">
-      <div class="col-sm-20">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Order number: {{order.id}}</h5>
-            <p class="card-text">Order date: {{order.order_date}}</p>
-            <p class="card-text">Delivery address: {{order.shipping_address}}</p>
-            <div *ngFor="let upizza of order.pizzaToOrder">
-              <div *ngFor="let info of upizza.pizza | keyvalue">
-                <p *ngIf="info.key === 'name'">{{info.value}} x{{upizza.quantity}}</p>
-                <p *ngIf="info.key === 'img_path'"><img src="{{info.value}}" alt="" width="200px"></p>
-                <p *ngIf="info.key === 'price'">Price: {{info.value}}£</p>
+    <div @leave *ngIf="shown == false">
+      <div class="row">
+        <div class="col-sm-20">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Order number: {{order.id}}</h5>
+              <p class="card-text">Order date: {{order.order_date}}</p>
+              <p class="card-text">Delivery address: {{order.shipping_address}}</p>
+              <button class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel</button>
+              <div *ngFor="let upizza of order.pizzaToOrder">
+                <div *ngFor="let info of upizza.pizza | keyvalue">
+                  <p *ngIf="info.key === 'name'">{{info.value}} x{{upizza.quantity}}</p>
+                  <p *ngIf="info.key === 'img_path'"><img src="{{info.value}}" alt="" width="200px"></p>
+                  <p *ngIf="info.key === 'price'">Price: {{info.value}}£</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+    </div>

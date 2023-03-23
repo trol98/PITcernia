@@ -24,16 +24,26 @@ export class ProfileComponent {
   onCredentailsChange() {
     const { login, email } = this.credentialsForm.value;
     this.userService.changeCredentials(email, login).subscribe({
-      // FIXME: Instead of simplistic alerts, implement a real 
+      // FIXME: Instead of simplistic alerts, implement a real
       // UI for displaying errors
       next: () => {
-        alert("DEBUG: successful");
+        alert('DEBUG: successful');
       },
       error: () => {
-        alert("DEBUG: error");
+        alert('DEBUG: error');
       },
     });
     // TODO: Refresh navbar so that the new username display's correctly
     // TODO: Refresh session storage so that the info in there is correct
+  }
+  deleteAccount() {
+    this.userService.deleteAccount().subscribe({
+      next: () => {
+        alert('Account has been deleted successfully');
+      },
+      error: (error) => {
+        alert('Account has not been deleted successfully');
+      },
+    });
   }
 }
