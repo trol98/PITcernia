@@ -27,6 +27,7 @@ import { CheckoutComponent } from './comp/checkout/checkout.component';
 import { ActiveComponent } from './comp/dashboard/active/active.component';
 import { HistoryComponent } from './comp/dashboard/history/history.component';
 import { ProfileComponent } from './comp/dashboard/profile/profile.component';
+import { ConfirmComponent } from './comp/confirm/confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { ProfileComponent } from './comp/dashboard/profile/profile.component';
     ActiveComponent,
     HistoryComponent,
     ProfileComponent,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,

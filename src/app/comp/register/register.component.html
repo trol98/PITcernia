@@ -38,7 +38,9 @@
     <p>Registration failed</p>
     <p>{{ errorMessage }}</p>
   </div>
-  <p *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
-    Registration was successful
-  </p>
+  <!-- TODO: Notify the user, when the email is fake-->
+  <div *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
+    <p>Registration was successful</p>
+    <p>Account verification link has been sent to your email account</p>
+  </div>
 </div>
