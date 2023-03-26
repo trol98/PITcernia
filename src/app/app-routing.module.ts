@@ -1,3 +1,4 @@
+import { ConfirmComponent } from './comp/confirm/confirm.component';
 import { ProfileComponent } from './comp/dashboard/profile/profile.component';
 import { HistoryComponent } from './comp/dashboard/history/history.component';
 import { ActiveComponent } from './comp/dashboard/active/active.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
     component: CheckoutComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'confirm', component: ConfirmComponent},
   { path: 'details/:id', component: PizzaDetailsComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },
