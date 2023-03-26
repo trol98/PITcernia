@@ -31,8 +31,9 @@ body
 }
 .png
 {
-    padding: 75px 0 0 50px;   /* top/right/bottom/left */
-    width: 1000px;
+    padding: 75px 0 0 50px;   /*top/right/bottom/left */
+    width: 500px; /*Tutaj zmieniłech bo zasłaniało przycisk*/
+
 }
 img
 {
