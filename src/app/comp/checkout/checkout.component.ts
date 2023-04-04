@@ -2,6 +2,7 @@ import { OrderService } from './../../order/order.service';
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart/cart.service';
 import { CartLine } from 'src/app/cart/cartLine.interface';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,9 +14,17 @@ export class CheckoutComponent {
   shipping_info: string = '';
   constructor(
     private cartService: CartService,
-    private orderSevice: OrderService
+    private orderSevice: OrderService,
+    private authService: AuthService
   ) {
     this.lines = this.cartService.getCart();
+    // FIXME: Think about state managment, so to not duplicate the /authenticate API calls
+    this.authService.authenticate().subscribe({
+      next: (u) => {
+        this.shipping_info = u.shipping_address;
+        console.log(this.shipping_info);
+      },
+    });
   }
   private clearCart() {
     this.cartService.clearCart();
@@ -30,12 +39,14 @@ export class CheckoutComponent {
   }
   order() {
     // TODO: Notify user if order creation was successful
-    this.orderSevice.createOrder({
-      shipping_address: this.shipping_info,
-      pizzaLines: this.lines.map((v) => {
-        return { pizzaId: v.pizza.id, quantity: v.quantity };
-      }),
-    }).subscribe();
+    this.orderSevice
+      .createOrder({
+        shipping_address: this.shipping_info,
+        pizzaLines: this.lines.map((v) => {
+          return { pizzaId: v.pizza.id, quantity: v.quantity };
+        }),
+      })
+      .subscribe();
     this.clearCart();
   }
 }

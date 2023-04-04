@@ -5,4 +5,5 @@ export interface User {
   active: boolean;
   verified: boolean;
   admin: boolean;
+  shipping_address: string;
 }
