@@ -28,6 +28,7 @@ import { ActiveComponent } from './comp/dashboard/active/active.component';
 import { HistoryComponent } from './comp/dashboard/history/history.component';
 import { ProfileComponent } from './comp/dashboard/profile/profile.component';
 import { ConfirmComponent } from './comp/confirm/confirm.component';
+import { AdminComponent } from './comp/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { ConfirmComponent } from './comp/confirm/confirm.component';
     HistoryComponent,
     ProfileComponent,
     ConfirmComponent,
+    AdminComponent,
   ],
   imports: [
     CommonModule,
