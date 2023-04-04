@@ -19,11 +19,12 @@ export class ProfileComponent {
     this.credentialsForm = this.formBuilder.group({
       login: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      shipping_address: ['', [Validators.required]]
     });
   }
   onCredentailsChange() {
-    const { login, email } = this.credentialsForm.value;
-    this.userService.changeCredentials(email, login).subscribe({
+    const { login, email, shipping_address } = this.credentialsForm.value;
+    this.userService.changeCredentials(email, login, shipping_address).subscribe({
       // FIXME: Instead of simplistic alerts, implement a real
       // UI for displaying errors
       next: () => {

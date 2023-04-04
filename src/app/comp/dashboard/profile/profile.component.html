@@ -1,10 +1,12 @@
 <div>
+  <!-- TODO: Change the above behaviour  -->
   <form
     [formGroup]="credentialsForm"
     (ngSubmit)="onCredentailsChange()"
     class="text-center border border-light p-5"
   >
     <p class="h4 mb-4">Profile information</p>
+    <p>If you leave a field empty, this piece of information will be reset</p>
     <div class="form-row mb-4">
       <div class="col">
         <input
@@ -22,6 +24,13 @@
       id="defaultRegisterFormEmail"
       class="form-control mb-4"
       placeholder="Email"
+    />
+    <input
+      type="text"
+      formControlName="shipping_address"
+      id="defaultRegisterFormShippingAddress"
+      class="form-control mb-4"
+      placeholder="Shipping Address"
     />
     <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
     <hr />
@@ -42,14 +51,16 @@
     zamówienia)
   </p>
   <p class="m-5">użytkownik widzi aktywne zamówienia ilościowo/jakościowo</p>
-<p class="m-5">
-  użytkownik może anulować zamówienie dopóki admin nie oznaczy jako wykonane
-</p>
-<div class="card bg-danger mb-3" style="max-width: 18rem;">
-  <div class="card-header">Delete account</div>
-  <div class="card-body">
-    <h5 class="card-title">If all your orders are finished you can delete your account</h5>
-    <button class="btn btn-dark" (click)="deleteAccount()">Delete</button>
+  <p class="m-5">
+    użytkownik może anulować zamówienie dopóki admin nie oznaczy jako wykonane
+  </p>
+  <div class="card bg-danger mb-3" style="max-width: 18rem">
+    <div class="card-header">Delete account</div>
+    <div class="card-body">
+      <h5 class="card-title">
+        If all your orders are finished you can delete your account
+      </h5>
+      <button class="btn btn-dark" (click)="deleteAccount()">Delete</button>
+    </div>
   </div>
-</div>
 </div>

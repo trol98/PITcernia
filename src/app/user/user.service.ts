@@ -9,11 +9,11 @@ export class UserService {
   constructor(private http: HttpClient) {}
   HOST: string = environment.HOST;
 
-  changeCredentials(newEmail: string, newLogin: string) {
+  changeCredentials(newEmail: string, newLogin: string, shipping_address: string) {
     const url = this.HOST + `/user/update`;
     const options = { withCredentials: true };
 
-    return this.http.put(url, { newEmail, newLogin }, options);
+    return this.http.put(url, { newEmail, newLogin, shipping_address }, options);
   }
 
   deleteAccount() {
