@@ -9,7 +9,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
   HOST: string = environment.HOST;
 
-  changeCredentials(newEmail: string, newLogin: string, shipping_address: string) {
+  changeCredentials(newEmail?: string, newLogin?: string, shipping_address?: string) {
     const url = this.HOST + `/user/update`;
     const options = { withCredentials: true };
 

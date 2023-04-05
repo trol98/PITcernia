@@ -17,13 +17,23 @@ export class ProfileComponent {
   ) {}
   ngOnInit() {
     this.credentialsForm = this.formBuilder.group({
-      login: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      shipping_address: ['', [Validators.required]]
+      login: [''],
+      email: ['', [Validators.email]],
+      shipping_address: ['']
     });
   }
   onCredentailsChange() {
-    const { login, email, shipping_address } = this.credentialsForm.value;
+    let { login, email, shipping_address } = this.credentialsForm.value;
+    if (!login){
+      login = undefined
+    }
+    if (!email){
+      email = undefined
+    }
+    if (!shipping_address){
+      shipping_address = undefined
+    }
+  
     this.userService.changeCredentials(email, login, shipping_address).subscribe({
       // FIXME: Instead of simplistic alerts, implement a real
       // UI for displaying errors
