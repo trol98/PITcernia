@@ -3,7 +3,6 @@ import { AuthModule } from './auth/auth.module';
 import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './comp/register/register.component';
@@ -24,11 +23,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { CommonModule } from '@angular/common';
 import { CheckoutComponent } from './comp/checkout/checkout.component';
-import { ActiveComponent } from './comp/dashboard/active/active.component';
-import { HistoryComponent } from './comp/dashboard/history/history.component';
 import { ProfileComponent } from './comp/dashboard/profile/profile.component';
 import { ConfirmComponent } from './comp/confirm/confirm.component';
 import { AdminComponent } from './comp/admin/admin.component';
+import { UserOrdersComponent } from './comp/dashboard/user-order/user-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,8 +42,7 @@ import { AdminComponent } from './comp/admin/admin.component';
     NotfoundComponent,
     PizzaDetailsComponent,
     CheckoutComponent,
-    ActiveComponent,
-    HistoryComponent,
+    UserOrdersComponent,
     ProfileComponent,
     ConfirmComponent,
     AdminComponent,

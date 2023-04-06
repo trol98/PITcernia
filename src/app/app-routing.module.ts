@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ConfirmComponent } from './comp/confirm/confirm.component';
 import { ProfileComponent } from './comp/dashboard/profile/profile.component';
-import { HistoryComponent } from './comp/dashboard/history/history.component';
-import { ActiveComponent } from './comp/dashboard/active/active.component';
 import { CheckoutComponent } from './comp/checkout/checkout.component';
 import { PizzaDetailsComponent } from './comp/pizza-details/pizza-details.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,6 +16,7 @@ import { AboutComponent } from './comp/about/about.component';
 import { AuthGuard } from './auth/guards/authGuard.guard';
 import { AdminGuard } from './auth/guards/adminGuard.guard';
 import { AdminComponent } from './comp/admin/admin.component';
+import { UserOrdersComponent } from './comp/dashboard/user-order/user-order.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -27,10 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path:'active', component: ActiveComponent
-      },
-      {
-        path:'history', component: HistoryComponent
+        path:'orders', component: UserOrdersComponent
       },
       {
         path:'profile', component: ProfileComponent

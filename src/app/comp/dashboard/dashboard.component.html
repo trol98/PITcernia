@@ -1,13 +1,13 @@
 <div class="d-flex ">
-  <nav class="w-15 vh-100 bg-secondary d-flex flex-column d-flex justify-content-center">
-    <div>
-      <div [routerLink]="['active']">Active orders</div>
-      <div [routerLink]="['history']">Finished orders</div>
-      <div [routerLink]="['profile']">Profile</div>
-      <div class="bg-danger" *ngIf="isAdmin" [routerLink]="['/admin']">Admin</div>
+    <nav class="w-15 vh-100 bg-secondary d-flex flex-column d-flex justify-content-center">
+        <div>
+            <div [routerLink]="['orders']" [queryParams]="{active: true}">Active orders</div>
+            <div [routerLink]="['orders']" [queryParams]="{active: false}">Finished orders</div>
+            <div [routerLink]="['profile']">Profile</div>
+            <div class="bg-danger" *ngIf="isAdmin" [routerLink]="['/admin']">Admin</div>
+        </div>
+    </nav>
+    <div class="w-85 h-100 bg-light">
+        <router-outlet></router-outlet>
     </div>
-  </nav>
-  <div class="w-85 h-100 bg-light">
-    <router-outlet></router-outlet>
-  </div>
 </div>
