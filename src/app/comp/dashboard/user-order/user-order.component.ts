@@ -17,14 +17,15 @@ export class UserOrdersComponent {
     private orderService: OrderService
   ) {
     this.route.queryParams.subscribe((params) => {
-      this.isActive = params['active'];
+      this.isActive = params['active'] === 'true';
+      this.orderService.getUserOrders(this.isActive).subscribe({
+        next: (orders: Order[]) => {
+          this.orders = orders;
+        },
+        error: () => {},
+      });
     });
-    this.orderService.getUserOrders(this.isActive).subscribe({
-      next: (orders: Order[]) => {
-        this.orders = orders;
-      },
-      error: () => {},
-    });
+
   }
   cancelOrder(id: number) {
     this.orderService.cancelOrder(id).subscribe({
@@ -44,6 +45,14 @@ export class UserOrdersComponent {
     let sum = 0;
     order.pizzaToOrder.forEach((elem) => {
       sum += elem.quantity * elem.pizza.price;
+    });
+    return sum;
+  }
+
+  ordersSummary(){
+    let sum = 0
+    this.orders.forEach(order => {
+      sum += this.orderTotal(order);
     });
     return sum;
   }
