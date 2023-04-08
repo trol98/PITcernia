@@ -23,8 +23,20 @@ export class OrderService {
     return this.http.get<Order[]>(url, options);
   }
 
+  getAllOrders(isActive: boolean) {
+    const url = this.HOST + `/orders/all?isActive=${isActive}`;
+    const options = { withCredentials: true };
+    return this.http.get<Order[]>(url, options);
+  }
+
   cancelOrder(id: number) {
     const url = this.HOST + `/orders/cancel/${id}`;
+    const options = { withCredentials: true };
+    return this.http.put(url, {}, options);
+  }
+
+  finishOrder(id: number) {
+    const url = this.HOST + `/orders/finish/${id}`;
     const options = { withCredentials: true };
     return this.http.put(url, {}, options);
   }
