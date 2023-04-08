@@ -26,7 +26,9 @@ import { CheckoutComponent } from './comp/checkout/checkout.component';
 import { ProfileComponent } from './comp/dashboard/profile/profile.component';
 import { ConfirmComponent } from './comp/confirm/confirm.component';
 import { AdminComponent } from './comp/admin/admin.component';
-import { UserOrdersComponent } from './comp/dashboard/user-order/user-order.component';
+import { UserOrdersComponent } from './comp/dashboard/user-order/user-orders.component';
+import { AdminOrdersComponent } from './comp/admin/admin-orders/admin-orders.component';
+import { OrderDetailsComponent } from './comp/admin/order-details/order-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +48,8 @@ import { UserOrdersComponent } from './comp/dashboard/user-order/user-order.comp
     ProfileComponent,
     ConfirmComponent,
     AdminComponent,
+    AdminOrdersComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,

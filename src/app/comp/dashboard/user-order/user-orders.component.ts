@@ -5,8 +5,8 @@ import { Order } from 'src/app/order/interfaces/order.interface';
 
 @Component({
   selector: 'app-active',
-  templateUrl: './user-order.component.html',
-  styleUrls: ['./user-order.component.css'],
+  templateUrl: './user-orders.component.html',
+  styleUrls: ['./user-orders.component.css'],
 })
 export class UserOrdersComponent {
   orders: Order[] = [];

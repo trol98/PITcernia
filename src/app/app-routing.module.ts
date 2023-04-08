@@ -16,7 +16,9 @@ import { AboutComponent } from './comp/about/about.component';
 import { AuthGuard } from './auth/guards/authGuard.guard';
 import { AdminGuard } from './auth/guards/adminGuard.guard';
 import { AdminComponent } from './comp/admin/admin.component';
-import { UserOrdersComponent } from './comp/dashboard/user-order/user-order.component';
+import { UserOrdersComponent } from './comp/dashboard/user-order/user-orders.component';
+import { AdminOrdersComponent } from './comp/admin/admin-orders/admin-orders.component';
+import { OrderDetailsComponent } from './comp/admin/order-details/order-details.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -38,15 +40,12 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuard],
     children: [
-      // {
-      //   path:'active', component: ActiveComponent
-      // },
-      // {
-      //   path:'history', component: HistoryComponent
-      // },
-      // {
-      //   path:'profile', component: ProfileComponent
-      // }
+      {
+        path:'orders', component: AdminOrdersComponent
+      },
+      {
+        path:'order/details/:id', component: OrderDetailsComponent
+      }
     ]
   },
   {

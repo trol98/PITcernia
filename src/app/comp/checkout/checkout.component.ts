@@ -22,7 +22,6 @@ export class CheckoutComponent {
     this.authService.authenticate().subscribe({
       next: (u) => {
         this.shipping_info = u.shipping_address;
-        console.log(this.shipping_info);
       },
     });
   }
@@ -38,7 +37,6 @@ export class CheckoutComponent {
     return total;
   }
   order() {
-    // TODO: Notify user if order creation was successful
     this.orderSevice
       .createOrder({
         shipping_address: this.shipping_info,
@@ -46,7 +44,15 @@ export class CheckoutComponent {
           return { pizzaId: v.pizza.id, quantity: v.quantity };
         }),
       })
-      .subscribe();
+      .subscribe({
+        // TODO: Change alerts to proper information display
+        next: () => {
+          alert('Order successful');
+        },
+        error: () => {
+          alert('Order not successful');
+        },
+      });
     this.clearCart();
   }
 }
