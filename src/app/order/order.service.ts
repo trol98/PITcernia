@@ -23,8 +23,10 @@ export class OrderService {
     return this.http.get<Order[]>(url, options);
   }
 
-  getAllOrders(isActive: boolean) {
-    const url = this.HOST + `/orders/all?isActive=${isActive}`;
+  getAllOrders(isActive: boolean, after: Date, before: Date) {
+    let url = this.HOST + `/orders/all?isActive=${isActive}`;
+    url += `&after=${after.toISOString().split('T')[0]}`;
+    url += `&before=${before.toISOString().split('T')[0]}`;
     const options = { withCredentials: true };
     return this.http.get<Order[]>(url, options);
   }

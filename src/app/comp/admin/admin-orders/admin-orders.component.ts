@@ -11,18 +11,15 @@ import { OrderService } from 'src/app/order/order.service';
 export class AdminOrdersComponent {
   isActive: boolean = false;
   orders: Order[] = [];
+  after: Date = new Date();
+  before: Date = new Date();
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.isActive = params['active'] === 'true';
-      this.orderService.getAllOrders(this.isActive).subscribe({
-        next: (orders: Order[]) => {
-          this.orders = orders;
-        },
-        error: () => {},
-      });
+      this.refreshOrders();
     });
   }
 
@@ -54,5 +51,21 @@ export class AdminOrdersComponent {
       sum += this.orderTotal(order);
     });
     return sum;
+  }
+  refreshOrders() {
+    this.orderService
+      .getAllOrders(
+        this.isActive,
+        // FIXME: Ugly hack, fix ASAP
+        // https://github.com/angular/angular/issues/8203
+        this.after instanceof Date ? this.after : new Date(this.after),
+        this.before instanceof Date ? this.before : new Date(this.before),
+      )
+      .subscribe({
+        next: (orders: Order[]) => {
+          this.orders = orders;
+        },
+        error: () => {},
+      });
   }
 }

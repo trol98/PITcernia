@@ -1,4 +1,6 @@
 <h1>Works active:{{ isActive }}</h1>
+<input type="date" [(ngModel)]="after" (change)="refreshOrders()" />
+<input type="date" [(ngModel)]="before" (change)="refreshOrders()" />
 
 <div class="container-lg">
     <div *ngFor="let order of orders">
