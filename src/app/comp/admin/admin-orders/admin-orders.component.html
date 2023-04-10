@@ -1,6 +1,17 @@
+<h1>Buffer</h1>
 <h1>Works active:{{ isActive }}</h1>
 <input type="date" [(ngModel)]="after" (change)="refreshOrders()" />
 <input type="date" [(ngModel)]="before" (change)="refreshOrders()" />
+<form [formGroup]="dateForm">
+    <div class="d-flex flex-row justify-content-center flex-wrap">
+        <div class="m-1" *ngFor="let filter of dateFilter">
+            <input (change)="filterDate()" type="radio" class="btn-check" name="date" id="size-button-{{ filter.id }}" autocomplete="off" [value]="filter.id" formControlName="date" />
+            <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
+        filter.name
+      }}</label>
+        </div>
+    </div>
+</form>
 
 <div class="container-lg">
     <div *ngFor="let order of orders">
