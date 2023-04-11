@@ -1,2 +1,27 @@
 <p>order-details works!</p>
-<p>id: {{id}}</p>
+<div class="row">
+    <div class="col-sm-20">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Order number: {{ order.id }}</h5>
+                <h5 class="card-title">User: {{ order.user.email }}</h5>
+                <p class="card-text">Order date: {{ order.order_date }}</p>
+                <p class="card-text">
+                    Delivery address: {{ order.shipping_address }}
+                </p>
+                <div *ngFor="let upizza of order.pizzaToOrder">
+                    <div>
+                        <p>{{ upizza.pizza.name }} x{{ upizza.quantity }}</p>
+                        <p>
+                            <img class="img-fluid pizza-img" src="{{ upizza.pizza.img_path }}" />
+                        </p>
+                        <p>Price: {{ upizza.pizza.price | currency }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    Order Total: <b>{{ orderTotal(order) | currency }}</b>
+</p>

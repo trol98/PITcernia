@@ -42,4 +42,10 @@ export class OrderService {
     const options = { withCredentials: true };
     return this.http.put(url, {}, options);
   }
+
+  getOrder(id: number){
+    const url = this.HOST + `/orders/details/${id}`;
+    const options = { withCredentials: true };
+    return this.http.get<Order>(url, options);
+  }
 }
