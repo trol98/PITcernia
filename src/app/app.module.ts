@@ -29,6 +29,8 @@ import { AdminComponent } from './comp/admin/admin.component';
 import { UserOrdersComponent } from './comp/dashboard/user-order/user-orders.component';
 import { AdminOrdersComponent } from './comp/admin/admin-orders/admin-orders.component';
 import { OrderDetailsComponent } from './comp/admin/order-details/order-details.component';
+import { ResetComponent } from './comp/reset/reset.component';
+import { ForgotComponent } from './comp/forgot/forgot.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,8 @@ import { OrderDetailsComponent } from './comp/admin/order-details/order-details.
     AdminComponent,
     AdminOrdersComponent,
     OrderDetailsComponent,
+    ResetComponent,
+    ForgotComponent,
   ],
   imports: [
     CommonModule,

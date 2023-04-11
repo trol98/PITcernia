@@ -5,18 +5,13 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class EmailService {
+export class PasswordService {
   constructor(private http: HttpClient) {}
   HOST: string = environment.HOST;
 
-  confirmEmail(token: string) {
-    const url = this.HOST + `/email-confirmation/confirm/?token=${token}`;
-    return this.http.post(url, {});
-  }
-
-  forgotPassword(email: string) {
-    const url = this.HOST + `/reset/sendEmail`;
-    const body = { email };
+  resetPassword(token: string, password: string) {
+    const url = this.HOST + `/reset/password`;
+    const body = { token, password };
     return this.http.post(url, body);
   }
 }

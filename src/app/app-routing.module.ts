@@ -19,6 +19,8 @@ import { AdminComponent } from './comp/admin/admin.component';
 import { UserOrdersComponent } from './comp/dashboard/user-order/user-orders.component';
 import { AdminOrdersComponent } from './comp/admin/admin-orders/admin-orders.component';
 import { OrderDetailsComponent } from './comp/admin/order-details/order-details.component';
+import { ResetComponent } from './comp/reset/reset.component';
+import { ForgotComponent } from './comp/forgot/forgot.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -28,12 +30,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path:'orders', component: UserOrdersComponent
+        path: 'orders',
+        component: UserOrdersComponent,
       },
       {
-        path:'profile', component: ProfileComponent
-      }
-    ]
+        path: 'profile',
+        component: ProfileComponent,
+      },
+    ],
   },
   {
     path: 'admin',
@@ -41,19 +45,23 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path:'orders', component: AdminOrdersComponent
+        path: 'orders',
+        component: AdminOrdersComponent,
       },
       {
-        path:'order/details/:id', component: OrderDetailsComponent
-      }
-    ]
+        path: 'order/details/:id',
+        component: OrderDetailsComponent,
+      },
+    ],
   },
   {
     path: 'checkout',
     component: CheckoutComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'confirm', component: ConfirmComponent},
+  { path: 'confirm', component: ConfirmComponent },
+  { path: 'reset', component: ResetComponent },
+  { path: 'forgot', component: ForgotComponent },
   { path: 'details/:id', component: PizzaDetailsComponent },
   { path: 'nav', component: NavComponent },
   { path: 'cart', component: CartComponent },

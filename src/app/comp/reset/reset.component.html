@@ -1,0 +1,13 @@
+<div class="col-md-4 mx-auto">
+    <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+        <p class="h4 mb-4">Reset Password</p>
+        <div class="form-row mb-4">
+            <div class="col">
+                <input type="password" formControlName="password" id="defaultResetFormPassword" class="form-control mb-4" placeholder="Password" />
+                <input type="password" formControlName="repeatPassword" id="defaultResetFormRepeatPassword" class="form-control" placeholder="Repeat Password" />
+            </div>
+        </div>
+        <button class="btn btn-info my-4 btn-block" type="submit">Reset</button>
+        <hr />
+    </form>
+</div>
