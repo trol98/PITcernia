@@ -15,7 +15,7 @@ export class EmailService {
   }
 
   forgotPassword(email: string) {
-    const url = this.HOST + `/reset/sendEmail`;
+    const url = this.HOST + `/reset/send-email`;
     const body = { email };
     return this.http.post(url, body);
   }

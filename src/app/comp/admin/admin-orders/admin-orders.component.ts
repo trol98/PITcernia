@@ -92,7 +92,6 @@ export class AdminOrdersComponent {
         break;
       case 'month':
         const currentDate = new Date();
-        console.log(currentDate.getMonth());
         // FIXME: technically it takes into account the last day of the previous month
         const firstDay = this.getFirstDayOfMonth(
           currentDate.getFullYear(),

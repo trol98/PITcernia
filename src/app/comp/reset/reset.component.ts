@@ -65,7 +65,6 @@ export class ResetComponent {
   }
 
   onSubmit() {
-    console.log(this.passwordForm);
     const password = this.passwordForm.value.password
     this.passwordService.resetPassword(this.token, password).subscribe({
       next: () => {
