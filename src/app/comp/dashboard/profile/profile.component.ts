@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { UserService } from './../../../user/user.service';
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -9,21 +9,27 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
-  credentialsForm: any;
+  accountForm: FormGroup;
+  passwordForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router
-  ) {}
-  ngOnInit() {
-    this.credentialsForm = this.formBuilder.group({
+  ) {
+    this.accountForm = this.formBuilder.group({
       login: [''],
       email: ['', [Validators.email]],
       shipping_address: ['']
     });
+
+    this.passwordForm = this.formBuilder.group({
+      old_password: ['', [Validators.required]],
+      old_password_repeat: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
   }
   onCredentailsChange() {
-    let { login, email, shipping_address } = this.credentialsForm.value;
+    let { login, email, shipping_address } = this.accountForm.value;
     if (!login){
       login = undefined
     }
@@ -47,6 +53,28 @@ export class ProfileComponent {
     // TODO: Refresh navbar so that the new username display's correctly
     // TODO: Refresh session storage so that the info in there is correct
   }
+  onPasswordChange() {
+    let { old_password, old_password_repeat, password } = this.passwordForm.value;
+  
+    // FIXME: Instead of simplistic alerts, implement a real
+    // UI for displaying errorsF
+    if (old_password != old_password_repeat){
+      alert('DEBUG: Old passwords do not match');
+    }
+    else {
+      this.userService.changePassword(old_password, password).subscribe({
+        // FIXME: Instead of simplistic alerts, implement a real
+        // UI for displaying errors
+        next: () => {
+          alert('DEBUG: successful');
+        },
+        error: () => {
+          alert('DEBUG: error');
+        },
+      });
+    }
+  }
+
   deleteAccount() {
     this.userService.deleteAccount().subscribe({
       next: () => {

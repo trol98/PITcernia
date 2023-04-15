@@ -10,7 +10,7 @@ export class PasswordService {
   HOST: string = environment.HOST;
 
   resetPassword(token: string, password: string) {
-    const url = this.HOST + `/reset/password`;
+    const url = this.HOST + `/password/reset`;
     const body = { token, password };
     return this.http.post(url, body);
   }
