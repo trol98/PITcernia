@@ -1,3 +1,3 @@
 export const environment = {
-    ENV_TEST: "a"
+    HOST: "a"
 };
