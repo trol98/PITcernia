@@ -1,3 +1,3 @@
 export const environment = {
-    HOST: "a"
+    HOST: "https://pitcernia-api-production.up.railway.app"
 };
