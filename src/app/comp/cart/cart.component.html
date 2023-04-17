@@ -1,43 +1,38 @@
 <!-- TODO: Change graphical design(UI) -->
-<h5>Cart</h5>
-<div class="row">
-  <div class="col-12" *ngFor="let line of lines; let i = index">
-    <div class="row" id="{{ line.pizza.id }}">
-      <div class="col-6">
-        <div>
-          {{ line.pizza.name }}
-          <small>( {{ line.pizza.price | currency }} ) </small>
+<div class="m-5">
+    <h1>Cart</h1>
+    <div class="row">
+        <div class="col-12" *ngFor="let line of lines; let i = index">
+            <div class="row" id="{{ line.pizza.id }}">
+                <div class="col-6">
+                    <div>
+                        {{ line.pizza.name }}
+                        <small>( {{ line.pizza.price | currency }} ) </small>
+                    </div>
+                    <small>{{ line.pizza.description }}</small>
+                </div>
+                <div class="col-2 p-0">
+                    <input [(ngModel)]="line.quantity" [ngModelOptions]="{ standalone: true }" min="1" type="number" value="{{ line.quantity }}" class="form-control" />
+                </div>
+                <div class="col-1 pl-0">
+                    <button class="btn btn-secondary" (click)="removeFromCart(line)">
+            x
+          </button>
+                </div>
+            </div>
         </div>
-        <small>{{ line.pizza.description }}</small>
-      </div>
-      <div class="col-2 p-0">
-        <input
-          [(ngModel)]="line.quantity"
-          [ngModelOptions]="{ standalone: true }"
-          min="1"
-          type="number"
-          value="{{ line.quantity }}"
-          class="form-control"
-        />
-      </div>
-      <div class="col-1 pl-0">
-        <button class="btn btn-secondary" (click)="removeFromCart(line)">
-          x
-        </button>
-      </div>
-    </div>
-  </div>
 
-  <div class="col-12">
-    <hr />
-    <div>
-      Order Total:
-      <span class="font-weight-bold">{{ getTotal() | currency }}</span>
-      <hr />
-      <button class="btn btn-primary" (click)="clearCart()">Clear Cart</button>
-      <button class="btn btn-danger" [routerLink]="['/checkout']">
-        Check out
-      </button>
+        <div class="col-12">
+            <hr />
+            <div>
+                Order Total:
+                <span class="font-weight-bold">{{ getTotal() | currency }}</span>
+                <hr />
+                <button class="btn btn-primary" (click)="clearCart()">Clear Cart</button>
+                <button class="btn btn-danger" [routerLink]="['/checkout']">
+          Check out
+        </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
