@@ -25,7 +25,6 @@ export class UserOrdersComponent {
         error: () => {},
       });
     });
-
   }
   cancelOrder(id: number) {
     this.orderService.cancelOrder(id).subscribe({
@@ -49,11 +48,17 @@ export class UserOrdersComponent {
     return sum;
   }
 
-  ordersSummary(){
-    let sum = 0
-    this.orders.forEach(order => {
-      sum += this.orderTotal(order);
-    });
+  ordersSummary() {
+    let sum = 0;
+    // if an order was canceled don't count it towards the total sum
+    // becouse the payment was refundend
+    this.orders
+      .filter((order) => {
+        return !order.canceled;
+      })
+      .forEach((order) => {
+        sum += this.orderTotal(order);
+      });
     return sum;
   }
 }
