@@ -3,8 +3,9 @@
         <div class="row">
             <div class="col-sm-20">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" [ngClass]="{'bg-warning': order.canceled}">
                         <h5 class="card-title">Order number: {{order.id}}</h5>
+                        <h5 class="card-title text-danger" *ngIf="order.canceled">CANCELED</h5>
                         <p class="card-text">Order date: {{order.order_date}}</p>
                         <p class="card-text">Delivery address: {{order.shipping_address}}</p>
                         <button *ngIf="isActive" class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel</button>
