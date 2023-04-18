@@ -76,7 +76,7 @@ const routes: Routes = [
 @NgModule({
   // refer to FIXME in nav.component.ts
   // { onSameUrlNavigation: 'reload' }
-  imports: [RouterModule.forRoot(routes)],
+imports: [RouterModule.forRoot(routes, {useHash : true})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
