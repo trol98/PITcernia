@@ -1,30 +1,28 @@
 @import url('http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-*
-
-{
+* {
     margin: 0;
     /* padding: 0; */
     box-sizing: border-box;
     font-family: 'Poppins', snas-serif;
 }
 
-body
-{
-    background-color:rgb(0, 0, 0);
+body {
+    background-color: rgb(0, 0, 0);
 }
-.container-fluid
-{
+
+.container-fluid {
     width: 80%;
     max-width: 3000px;
     margin-left: auto;
     margin-right: auto;
     padding: 5vmin 0;
-    
     animation-duration: 0.5s;
     animation-name: container;
     animation-delay: 0.2s;
     animation-fill-mode: backwards;
 }
+
+
 /* @keyframes container {
     0% {
         opacity: 0;
@@ -36,39 +34,50 @@ body
     }
 } */
 
-
-.row-1,.row-2, .row-3
-{
+.row-1,
+.row-2,
+.row-3 {
     justify-content: center;
     display: flex;
     padding: 1vmin;
     position: relative;
     /* flex-wrap: wrap; */
 }
-.row-1, .row-3
-{
+
+.row-1,
+.row-3 {
     animation-duration: 0.5s;
     animation-name: rowleft;
     /* animation-delay: 0.2s; */
     animation-fill-mode: backwards;
 }
+
 @keyframes rowleft {
-    0% {left: -100vh;}
-    100% {left: 0px;}
+    0% {
+        left: -100vh;
+    }
+    100% {
+        left: 0px;
+    }
 }
-.row-2{
+
+.row-2 {
     animation-duration: 0.5s;
     animation-name: rowright;
     /* animation-delay: 0.2s; */
     animation-fill-mode: backwards;
 }
+
 @keyframes rowright {
-    0% {right: -50vh;}
-    100% {right: 0;}
+    0% {
+        right: -50vh;
+    }
+    100% {
+        right: 0;
+    }
 }
 
-.picture-1
-{
+.picture-1 {
     /* background-size: contain; */
     width: 100%;
     background-image: url(/assets/pizza_home_1.jpg);
@@ -77,57 +86,54 @@ body
     height: 22vmin;
     border-radius: 5vmin;
 }
-.picture-2
-{
+
+.picture-2 {
     background-image: url(/assets/pizza_home_2.png);
     background-size: cover;
     width: 100%;
     min-width: 200px;
     height: 22vmin;
-    border-radius: 5vmin 0 ;
-
+    border-radius: 5vmin 0;
 }
-.picture-3
-{
+
+.picture-3 {
     background-image: url(/assets/pizza_home_3.jpg);
     background-size: cover;
     width: 100%;
     min-width: 200px;
     height: 22vmin;
     border-radius: 5vmin 5vmin 0 5vmin;
-
 }
-.text-1, .text-2, .text-3
-{
+
+.text-1,
+.text-2,
+.text-3 {
     font-weight: 900;
-    font-size:12vmin;
-    margin: 3vmin 3vmin 0 3vmin; /* top,right,bottom,left */
+    font-size: 12vmin;
+    margin: 3vmin 3vmin 0 3vmin;
+    /* top,right,bottom,left */
     color: aliceblue;
 }
 
-.background-image
-{
+.background-image {
     margin: auto;
-    width: 1600px;
     height: auto;
-    background-color:rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
     padding-top: 60px;
 }
 
-.image{
+.image {
     vertical-align: middle;
     width: auto;
     height: auto;
 }
 
-.best-img
-{
+.best-img {
     height: 300px;
     width: auto;
 }
 
-
-.best{
+.best {
     padding-top: 60px;
     padding-bottom: 50px;
     padding-left: 300px;
@@ -136,8 +142,7 @@ body
     font-style: oblique;
 }
 
-.best-sellers
-{
+.best-sellers {
     /* justify-content: center; */
     gap: 45px;
     display: flex;
@@ -149,10 +154,9 @@ body
     /* min-height: 100vh; */
 }
 
-.card4
-{
+.card4 {
     position: relative;
-    width: 350px;
+    width: 250px;
     height: 400px;
     border-radius: 20px;
     display: flex;
@@ -160,11 +164,9 @@ body
     border-radius: 20px;
     transition: 0.5s;
     padding-bottom: 0;
-
 }
 
-.card4 .circle
-{
+.card4 .circle {
     position: absolute;
     top: 0;
     left: 0;
@@ -173,8 +175,8 @@ body
     border-radius: 20px;
     overflow: hidden;
 }
-.card4 .circle::before
-{
+
+.card4 .circle::before {
     content: '';
     position: absolute;
     top: 0;
@@ -185,13 +187,13 @@ body
     clip-path: circle(120px at center);
     transition: 0.5s;
 }
-.card4:hover .circle:before
-{
+
+.card4:hover .circle:before {
     clip-path: circle(400px at center);
     background-color: rgb(255, 219, 171);
 }
-.card4 img
-{
+
+.card4 img {
     position: absolute;
     bottom: -25%;
     left: 50%;
@@ -200,14 +202,14 @@ body
     pointer-events: none;
     transition: 0.5s;
 }
-.card4:hover img
-{
+
+.card4:hover img {
     /* transform: rotate(60deg); */
     bottom: 10%;
     height: 400px;
 }
-.card4 .content
-{
+
+.card4 .content {
     position: relative;
     width: 75%;
     top: 0%;
@@ -216,26 +218,26 @@ body
     text-align: center;
     transition: 0.5s;
 }
-.card4:hover .content
-{
+
+.card4:hover .content {
     top: 20%;
     opacity: 1;
     visibility: visible;
 }
-.card4 .content h2
-{
+
+.card4 .content h2 {
     color: rgb(82, 47, 54);
     text-transform: uppercase;
     font-size: 2em;
     line-height: 1em;
 }
-.card4 .content a
-{
+
+.card4 .content a {
     position: relative;
     color: wheat;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color:#fff;
+    background-color: #fff;
     color: rgb(0, 0, 0);
     margin-top: 10px;
     display: inline-block;
@@ -244,32 +246,29 @@ body
     text-align: center;
 }
 
-@media (max-width: 991px)
-{
-    .card4
-    {
+@media (max-width: 991px) {
+    .card4 {
         width: auto;
         max-width: 400px;
         align-items: flex-start;
     }
-    .card4:hover
-    {
+    .card4:hover {
         height: 600px;
     }
-    .card4 .content
-    {
-     width: 100%;
-     left: 0;
-     padding: 40px;
+    .card4 .content {
+        width: 100%;
+        left: 0;
+        padding: 40px;
     }
-    .card4:hover img
-    {
+    .card4:hover img {
         top: 70%;
         left: 50%;
         height: 320px;
-
     }
 }
 
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

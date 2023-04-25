@@ -1,107 +1,108 @@
-<!DOCTYPE html> <!-- kupa -->
+<!DOCTYPE html>
+<!-- kupa -->
 <html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  <div>
-    <!-- Ogarnąć ten szajs -->
-    
-    <div class="container-fluid">
-      <!-- <div class="col align-self-center"> -->
+    <div>
+        <!-- Ogarnąć ten szajs -->
 
-      <div class="row-1">
-        <div class="p-2 flex-grow-1 bd-highlight">
-          <div class="picture-1">
-            <!-- <img src="/assets/pizza_home_1.jpg"> -->
-          </div>
+        <div class="container-fluid">
+            <!-- <div class="col align-self-center"> -->
+
+            <div class="row-1">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <div class="picture-1">
+                        <!-- <img src="/assets/pizza_home_1.jpg"> -->
+                    </div>
+                </div>
+                <p class="text-1">Best</p>
+            </div>
+
+            <div class="row-2">
+                <p class="text-2">Fucking</p>
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <div class="picture-2">
+                        <!-- <img class="picture-2" src="/assets/banner.jpg"> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-3">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <div class="picture-3">
+                        <!-- <img class="picture-3" src="/assets/banner.jpg"> -->
+                    </div>
+                </div>
+                <p class="text-3">Pizza!</p>
+            </div>
+
+            <!-- </div> -->
+
+            <!-- <button class="button"></button> -->
         </div>
-        <p class="text-1">Best</p>
-      </div>
-
-      <div class="row-2">
-        <p class="text-2">Fucking</p>
-        <div class="p-2 flex-grow-1 bd-highlight">
-          <div class="picture-2">
-            <!-- <img class="picture-2" src="/assets/banner.jpg"> -->
-          </div>
+        <!-- ---------------------------------------------------- zmieniające się obrazki -->
+        <div class="img-fluid">
+            <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide>
+                    <img src="/assets/pizza_tlo1.jpg" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/assets/pizza_tlo2.jpg" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/assets/pizza_tlo3.jpg" alt="">
+                </ng-template>
+            </owl-carousel-o>
         </div>
-      </div>
+        <div class="best-sellers">
 
-      <div class="row-3">
-        <div class="p-2 flex-grow-1 bd-highlight">
-          <div class="picture-3">
-            <!-- <img class="picture-3" src="/assets/banner.jpg"> -->
-          </div>
+            <!-- ----------------------------------------------------------------- best-seller -->
+
+            <img class="best-img" src="\assets\best.png" alt="">
+
+            <!-- ---------------------------------------------------------------------- pizza1 -->
+
+            <div class="card4">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Margherita</h2>
+                    <p>Ingredients:tomato sauce, mozzarella, fresh basil. </p>
+                    <a [routerLink]="['/menu']">Add to cart!</a>
+                </div>
+                <img src="\assets\margherita.png" alt="bruh">
+            </div>
+
+            <!-- --------------------------------------------------------------------- pizza2 -->
+
+            <div class="card4">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Prosciutto</h2>
+                    <p>Ingredients: tomato sauce, mozzarella, prosciutto. </p>
+                    <a [routerLink]="['/menu']" href="#">Add to cart!</a>
+                </div>
+                <img src="\assets\prosciutto.png" alt="bruh">
+            </div>
+
+            <!-- --------------------------------------------------------------------- pizza 3-->
+
+            <div class="card4">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Farmer</h2>
+                    <p>Ingredients:tomato sauce, mozzarella + our fresh veggies. </p>
+                    <a [routerLink]="['/menu']" href="#">Add to cart!</a>
+                </div>
+                <img src="\assets\farmer.png" alt="bruh">
+            </div>
+
         </div>
-        <p class="text-3">Pizza!</p>
-      </div>
-      
-      <!-- </div> -->
 
-      <!-- <button class="button"></button> -->
-  </div>
-    <!-- ---------------------------------------------------- zmieniające się obrazki -->
-    <div class="background-image">
-      <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide>
-          <img src="/assets/pizza_tlo1.jpg" alt="">
-        </ng-template>
-        <ng-template carouselSlide>
-          <img src="/assets/pizza_tlo2.jpg" alt="">
-        </ng-template>
-        <ng-template carouselSlide>
-          <img src="/assets/pizza_tlo3.jpg" alt="">
-        </ng-template>
-      </owl-carousel-o>
     </div>
-    <div class="best-sellers">
-
-      <!-- ----------------------------------------------------------------- best-seller -->
-
-      <img class="best-img" src="\assets\best.png" alt="kurwa mac">
-
-      <!-- ---------------------------------------------------------------------- pizza1 -->
-
-      <div class="card4">
-        <div class="circle"></div>
-        <div class="content">
-          <h2>Margherita</h2>
-          <p>Ingredients:tomato sauce, mozzarella, fresh basil. </p>
-          <a [routerLink]="['/menu']">Add to cart!</a>
-        </div>
-        <img src="\assets\margherita.png" alt="bruh">
-      </div>
-
-      <!-- --------------------------------------------------------------------- pizza2 -->
-
-      <div class="card4">
-        <div class="circle"></div>
-        <div class="content">
-          <h2>Prosciutto</h2>
-          <p>Ingredients: tomato sauce, mozzarella, prosciutto. </p>
-          <a [routerLink]="['/menu']" href="#">Add to cart!</a>
-        </div>
-        <img src="\assets\prosciutto.png" alt="bruh">
-      </div>
-
-      <!-- --------------------------------------------------------------------- pizza 3-->
-
-      <div class="card4">
-        <div class="circle"></div>
-        <div class="content">
-          <h2>Farmer</h2>
-          <p>Ingredients:tomato sauce, mozzarella + our fresh veggies. </p>
-          <a [routerLink]="['/menu']" href="#">Add to cart!</a>
-        </div>
-        <img src="\assets\farmer.png" alt="bruh">
-      </div>
-
-    </div>
-
-  </div>
 </body>
 
 </html>
