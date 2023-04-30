@@ -1,47 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- <header>
+    <a [routerLink]="['/home']" class="logo"><img src="/assets/logou.png" alt=""></a>
+    <ul>
+        <li><a [routerLink]="['/menu']" routerLinkActive="router-link-active">Menu</a></li>
+        <li><a [routerLink]="['/about']" routerLinkActive="router-link-active">About</a></li>
+        <li>
+            <a *ngIf="!isLoggedIn()" [routerLink]="['/register']">
+                <fa-icon [icon]="faRightToBracket"></fa-icon>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="!isLoggedIn()" [routerLink]="['/login']">
+                <fa-icon [icon]="faUser"></fa-icon>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="isLoggedIn()" (click)="logout()">
+                <fa-icon [icon]="faDoorOpen"></fa-icon>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']">
+                <fa-icon [icon]="faGripHorizontal"></fa-icon>
+            </a>
+        </li>
+        <li>
+            <a class="cart" [routerLink]="['/cart']">
+                <fa-icon [icon]="faShoppingCart"></fa-icon>
+            </a>
+            <li><input type="text" placeholder="{{username}}..."></li>
+    </ul>
+</header>
+<section class="banner"></section> -->
 
-<head>
-    <meta charset="UTF-8">
-    <title>sticky navbar</title>
-</head>
 
-<body>
-    <header>
-        <a [routerLink]="['/home']" class="logo"><img src="/assets/logou.png" alt=""></a>
-        <ul>
-            <li><a [routerLink]="['/menu']" routerLinkActive="router-link-active">Menu</a></li>
-            <li><a [routerLink]="['/about']" routerLinkActive="router-link-active">About</a></li>
-            <li>
-                <a *ngIf="!isLoggedIn()" [routerLink]="['/register']">
-                    <fa-icon [icon]="faRightToBracket"></fa-icon>
-                </a>
-            </li>
-            <li>
-                <a *ngIf="!isLoggedIn()" [routerLink]="['/login']">
-                    <fa-icon [icon]="faUser"></fa-icon>
-                </a>
-            </li>
-            <li>
-                <a *ngIf="isLoggedIn()" (click)="logout()">
-                    <fa-icon [icon]="faDoorOpen"></fa-icon>
-                </a>
-            </li>
-            <li>
-                <a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']">
-                    <fa-icon [icon]="faGripHorizontal"></fa-icon>
-                </a>
-            </li>
-            <li>
-                <a class="cart" [routerLink]="['/cart']">
-                    <fa-icon [icon]="faShoppingCart"></fa-icon>
-                </a>
-                <li><input type="text" placeholder="{{username}}..."></li>
-        </ul>
-    </header>
-    <section class="banner"></section>
-    <!-- TODO: Change this to Angular syntax-->
-    <script src="/assets/nav.js" type="text/javascript"></script>
-</body>
+<mat-toolbar color="white">
+    <button mat-raised-button class="btn">
+    <img
+      [routerLink]="['/home']"
+      class="img-fluid img-thumbnail logo"
+      src="/assets/logo.png"
+    />
+  </button>
+    <span class="example-spacer m-1"></span>
+    <span [routerLink]="['/menu']" class="m-1">Menu</span>
+    <span [routerLink]="['/about']" class="m-1">About</span>
 
-</html>
+    <button *ngIf="!isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/register']">
+    <mat-icon>input</mat-icon>
+  </button>
+    <button *ngIf="!isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/login']">
+    <mat-icon>account_circle</mat-icon>
+    <button
+      *ngIf="isLoggedIn()"
+      mat-icon-button
+      class="btn"
+      [routerLink]="['/dashboard']"
+    >
+      <mat-icon>dashboard</mat-icon>
+    </button>
+    <button *ngIf="isLoggedIn()" mat-icon-button class="btn" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+    </button>
+    <button mat-icon-button class="btn" [routerLink]="['/cart']">
+    <mat-icon>add_shopping_cart</mat-icon>
+  </button>
+    <span>{{ username }}...</span>
+</mat-toolbar>

@@ -1,65 +1,87 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="banner">
-        <div class="text">
-          <h1 class="text-center">Welcome to our menu!</h1>
-          <h5 class="text-center">The best pizza is one click away!</h5>
-        </div>  
-      </div>
-    <div class="background">
-        <div class="d-flex justify-content-center flex-column ">
-            <!-- price range slider-->
-            <div class="custom-slider justify-content-center m-3 w-50 mx-auto">
-                <!-- TODO: Change the style of slider -->
-                <!-- Styling inside of styles.css -->
-                <!-- https://github.com/angular-slider/ngx-slider/blob/master/STYLING.md -->
-                <ngx-slider  [(value)]="value" [(highValue)]="highValue" [options]="options" (userChangeEnd)="searchPizza()"></ngx-slider> 
-            </div>
-
-
-            <!-- size pill-buttons -->
-            <div class="d-flex flex-row justify-content-center flex-wrap">
-                <div class="m-1" *ngFor="let filter of sizeFilters">
-                    <input [(ngModel)]="filter.on" (change)="searchPizza()" type="checkbox" class="btn-check" id="size-button-{{filter.size}}" autocomplete="off">
-                    <label class="btn btn-danger btn-sm" for="size-button-{{filter.size}}">{{filter.size}}</label>
-                </div>  
-            </div>
-            <!-- toppings pill-buttons -->
-            <div class="d-flex flex-row justify-content-center flex-wrap">
-                <div class="m-1" *ngFor="let filter of toppingFilters">
-                    <input [(ngModel)]="filter.on" (change)="searchPizza()" type="checkbox" class="btn-check" id="size-button-{{filter.topping.name}}" autocomplete="off">
-                    <label class="btn btn-success btn-sm" for="size-button-{{filter.topping.name}}">{{filter.topping.name}}</label>
-                </div>
-            </div>
-        </div>
-        <div class ="container">
-            <div class="col-lg-5"  *ngFor="let p of pizza; let i = index">
-                <div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-                    <img class="cropped-images"[src]="p.img_path" style="width:100%;position:relative;z-index: 5;">
-                    <!-- <div class="my-3 py-3"> class="card shadow-sm" -->
-                    <div class="putas">
-                        <table style="height: 100%;display: flex;justify-content: center;align-items: flex-end;">
-                            <tr style="height: 45%;">
-                                <td>        
-                                    <h6 href><b>{{ p.name | titlecase}}</b></h6>
-                                    <p>{{ p.price | currency:'GBP' }}<p>
-                                    <p><button style="border-radius: 1rem;padding: 0.5rem;"(click)="pizzaDetails(p)">Details</button></p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div>
+<div class="banner">
+    <div class="text">
+        <h1 class="text-center">Welcome to our menu!</h1>
+        <h5 class="text-center">The best pizza is one click away!</h5>
     </div>
-</body>
-</html>
+</div>
+<div class="background">
+    <div class="d-flex justify-content-center flex-column">
+        <!-- price range slider-->
+        <div class="custom-slider justify-content-center m-3 w-50 mx-auto">
+            <!-- TODO: Change the style of slider -->
+            <!-- Styling inside of styles.css -->
+            <!-- https://github.com/angular-slider/ngx-slider/blob/master/STYLING.md -->
+            <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (userChangeEnd)="searchPizza()"></ngx-slider>
+        </div>
+
+        <!-- size pill-buttons -->
+        <div class="d-flex flex-row justify-content-center flex-wrap">
+            <div class="m-1" *ngFor="let filter of sizeFilters">
+                <input [(ngModel)]="filter.on" (change)="searchPizza()" type="checkbox" class="btn-check" id="size-button-{{ filter.size }}" autocomplete="off" />
+                <label class="btn btn-danger btn-sm" for="size-button-{{ filter.size }}">{{ filter.size }}</label
+        >
+      </div>
+    </div>
+    <!-- toppings pill-buttons -->
+    <div class="d-flex flex-row justify-content-center flex-wrap">
+      <div class="m-1" *ngFor="let filter of toppingFilters">
+        <input
+          [(ngModel)]="filter.on"
+          (change)="searchPizza()"
+          type="checkbox"
+          class="btn-check"
+          id="size-button-{{ filter.topping.name }}"
+          autocomplete="off"
+        />
+        <label
+          class="btn btn-success btn-sm"
+          for="size-button-{{ filter.topping.name }}"
+          >{{ filter.topping.name }}</label
+        >
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-lg-5" *ngFor="let p of pizza; let i = index">
+      <div
+        class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
+      >
+        <img
+          class="cropped-images"
+          [src]="p.img_path"
+          style="width: 100%; position: relative; z-index: 5"
+        />
+        <!-- <div class="my-3 py-3"> class="card shadow-sm" -->
+        <div class="putas">
+          <table
+            style="
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: flex-end;
+            "
+          >
+            <tr style="height: 45%">
+              <td>
+                <h6 href>
+                  <b>{{ p.name | titlecase }}</b>
+                </h6>
+                <p>{{ p.price | currency : "GBP" }}</p>
+                <p></p>
+                <p>
+                  <button
+                    style="border-radius: 1rem; padding: 0.5rem"
+                    (click)="pizzaDetails(p)"
+                  >
+                    Details
+                  </button>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>

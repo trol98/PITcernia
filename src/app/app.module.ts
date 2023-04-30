@@ -31,6 +31,9 @@ import { AdminOrdersComponent } from './comp/admin/admin-orders/admin-orders.com
 import { OrderDetailsComponent } from './comp/admin/order-details/order-details.component';
 import { ResetComponent } from './comp/reset/reset.component';
 import { ForgotComponent } from './comp/forgot/forgot.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +70,8 @@ import { ForgotComponent } from './comp/forgot/forgot.component';
     FontAwesomeModule,
     FormsModule,
     NgxSliderModule,
+    MatToolbarModule,
+    MatIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
