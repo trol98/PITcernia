@@ -21,6 +21,9 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="isCartEmpty()">
+            <p class="text-muted">Empty! Add pizzas from the menu.</p>
+        </div>
 
         <div class="col-12">
             <hr />
@@ -29,7 +32,7 @@
                 <span class="font-weight-bold">{{ getTotal() | currency }}</span>
                 <hr />
                 <button class="btn btn-primary" (click)="clearCart()">Clear Cart</button>
-                <button class="btn btn-danger" [routerLink]="['/checkout']">
+                <button [disabled]="isCartEmpty()" class="btn btn-danger" [routerLink]="['/checkout']">
           Check out
         </button>
             </div>

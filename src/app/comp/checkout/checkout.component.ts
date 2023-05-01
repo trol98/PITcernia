@@ -48,11 +48,14 @@ export class CheckoutComponent {
         // TODO: Change alerts to proper information display
         next: () => {
           alert('Order successful');
+          this.clearCart();
         },
         error: () => {
           alert('Order not successful');
         },
       });
-    this.clearCart();
+  }
+  isEmpty(): boolean{
+    return this.lines.length == 0;
   }
 }

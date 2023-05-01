@@ -27,4 +27,8 @@ export class CartComponent {
   constructor(private cartService: CartService) {
     this.lines = this.cartService.getCart();
   }
+
+  isCartEmpty(): boolean{
+    return this.lines.length == 0;
+  }
 }

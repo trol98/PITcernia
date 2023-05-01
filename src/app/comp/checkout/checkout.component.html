@@ -1,5 +1,5 @@
 <!-- TODO: Change graphical design(UI) -->
-<h5>Cart</h5>
+<h3>Checkout</h3>
 <div class="row">
     <div class="col-12" *ngFor="let line of lines; let i = index">
         <div class="row" id="{{ line.pizza.id }}">
@@ -11,6 +11,9 @@
                 <small>{{ line.pizza.description }}</small>
             </div>
         </div>
+    </div>
+    <div *ngIf="isEmpty()">
+        <p class="text-muted">Empty! Add some pizza to your cart.</p>
     </div>
     <div class="col-12">
         <hr />
@@ -26,7 +29,7 @@
             Order Total:
             <span class="font-weight-bold">{{ getTotal() | currency }}</span>
             <hr />
-            <button class="btn btn-danger" (click)="order()">Order</button>
+            <button [disabled]="isEmpty()" class="btn btn-danger" (click)="order()">Order</button>
         </div>
     </div>
 </div>
