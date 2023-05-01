@@ -32,7 +32,6 @@
 </header>
 <section class="banner"></section> -->
 
-
 <mat-toolbar color="white">
     <button mat-raised-button class="btn">
     <img
@@ -48,20 +47,15 @@
     <button *ngIf="!isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/register']">
     <mat-icon>input</mat-icon>
   </button>
+    <button *ngIf="isLoggedIn()" mat-icon-button class="btn" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
     <button *ngIf="!isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/login']">
     <mat-icon>account_circle</mat-icon>
-    <button
-      *ngIf="isLoggedIn()"
-      mat-icon-button
-      class="btn"
-      [routerLink]="['/dashboard']"
-    >
-      <mat-icon>dashboard</mat-icon>
-    </button>
-    <button *ngIf="isLoggedIn()" mat-icon-button class="btn" (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
-    </button>
+  </button>
+    <button *ngIf="isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/dashboard']">
+    <mat-icon>dashboard</mat-icon>
+  </button>
     <button mat-icon-button class="btn" [routerLink]="['/cart']">
     <mat-icon>add_shopping_cart</mat-icon>
   </button>
