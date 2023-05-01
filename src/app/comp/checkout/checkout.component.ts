@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart/cart.service';
 import { CartLine } from 'src/app/cart/cartLine.interface';
 import { AuthService } from 'src/app/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-checkout',
@@ -15,7 +16,8 @@ export class CheckoutComponent {
   constructor(
     private cartService: CartService,
     private orderSevice: OrderService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
     this.lines = this.cartService.getCart();
     // FIXME: Think about state managment, so to not duplicate the /authenticate API calls
@@ -47,11 +49,12 @@ export class CheckoutComponent {
       .subscribe({
         // TODO: Change alerts to proper information display
         next: () => {
-          alert('Order successful');
+          this.snackBar.open('Order was placed successfully');
           this.clearCart();
         },
-        error: () => {
-          alert('Order not successful');
+        error: (e) => {
+          console.log(e)
+          this.snackBar.open('Order was not placed successfully');
         },
       });
   }

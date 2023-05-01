@@ -33,7 +33,7 @@ import { ResetComponent } from './comp/reset/reset.component';
 import { ForgotComponent } from './comp/forgot/forgot.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +72,7 @@ import { MatIconModule } from '@angular/material/icon';
     NgxSliderModule,
     MatToolbarModule,
     MatIconModule,
+    MatSnackBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
@@ -79,7 +80,12 @@ import { MatIconModule } from '@angular/material/icon';
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: { verticalPosition: 'top' },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
