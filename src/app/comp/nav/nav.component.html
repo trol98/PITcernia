@@ -1,38 +1,7 @@
-<!-- <header>
-    <a [routerLink]="['/home']" class="logo"><img src="/assets/logou.png" alt=""></a>
-    <ul>
-        <li><a [routerLink]="['/menu']" routerLinkActive="router-link-active">Menu</a></li>
-        <li><a [routerLink]="['/about']" routerLinkActive="router-link-active">About</a></li>
-        <li>
-            <a *ngIf="!isLoggedIn()" [routerLink]="['/register']">
-                <fa-icon [icon]="faRightToBracket"></fa-icon>
-            </a>
-        </li>
-        <li>
-            <a *ngIf="!isLoggedIn()" [routerLink]="['/login']">
-                <fa-icon [icon]="faUser"></fa-icon>
-            </a>
-        </li>
-        <li>
-            <a *ngIf="isLoggedIn()" (click)="logout()">
-                <fa-icon [icon]="faDoorOpen"></fa-icon>
-            </a>
-        </li>
-        <li>
-            <a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']">
-                <fa-icon [icon]="faGripHorizontal"></fa-icon>
-            </a>
-        </li>
-        <li>
-            <a class="cart" [routerLink]="['/cart']">
-                <fa-icon [icon]="faShoppingCart"></fa-icon>
-            </a>
-            <li><input type="text" placeholder="{{username}}..."></li>
-    </ul>
-</header>
-<section class="banner"></section> -->
-
-<mat-toolbar color="white">
+<!-- <mat-toolbar color="white">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
     <button mat-raised-button class="btn">
     <img
       [routerLink]="['/home']"
@@ -60,4 +29,63 @@
     <mat-icon>add_shopping_cart</mat-icon>
   </button>
     <span>{{ username }}...</span>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+        <mat-toolbar> <img [routerLink]="['/home']" class="img-fluid img-thumbnail logo" src="/assets/logo.png" /></mat-toolbar>
+        <mat-nav-list>
+            <mat-list-item class="d-flex justify-content-center text-center"><span [routerLink]="['/menu']" class="m-1">Menu</span></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center"><span mat-list-item [routerLink]="['/about']" class="m-1">About</span></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center" matListIcon *ngIf="!isLoggedIn()"><button mat-icon-button class="btn" [routerLink]="['/register']">
+            <mat-icon>input</mat-icon>
+          </button></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center" matListIcon *ngIf="isLoggedIn()"><button mat-icon-button class="btn" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center" matListIcon *ngIf="!isLoggedIn()"><button mat-icon-button class="btn" [routerLink]="['/login']">
+            <mat-icon>account_circle</mat-icon>
+          </button></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center" matListIcon *ngIf="isLoggedIn()"><button mat-icon-button class="btn" [routerLink]="['/dashboard']">
+            <mat-icon>dashboard</mat-icon>
+          </button></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center" matListIcon><button mat-icon-button class="btn" [routerLink]="['/cart']">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button></mat-list-item>
+            <mat-list-item class="d-flex justify-content-center text-center"><span>{{ username }}...</span></mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="white">
+            <div>
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+            </div>
+            <div class="d-flex flex-grow-1" *ngIf="!(isHandset$ | async)">
+                <img [routerLink]="['/home']" class="img-fluid img-thumbnail logo" src="/assets/logo.png" />
+                <span class="example-spacer m-1"></span>
+                <span [routerLink]="['/menu']" class="m-1">Menu</span>
+                <span [routerLink]="['/about']" class="m-1">About</span>
+
+                <button *ngIf="!isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/register']">
+          <mat-icon>input</mat-icon>
+        </button>
+                <button *ngIf="isLoggedIn()" mat-icon-button class="btn" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+                <button *ngIf="!isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/login']">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+                <button *ngIf="isLoggedIn()" mat-icon-button class="btn" [routerLink]="['/dashboard']">
+          <mat-icon>dashboard</mat-icon>
+        </button>
+                <button mat-icon-button class="btn" [routerLink]="['/cart']">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+                <span>{{ username }}...</span>
+            </div>
+        </mat-toolbar>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

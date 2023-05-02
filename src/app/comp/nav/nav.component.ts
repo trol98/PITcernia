@@ -10,7 +10,8 @@ import {
   faShoppingCart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { finalize } from 'rxjs';
+import { Observable, finalize, map, shareReplay } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-nav',
@@ -21,8 +22,17 @@ export class NavComponent {
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
   ) {}
+
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    );
+
   ngOnInit() {
     // this.router.routeReuseStrategy.shouldReuseRoute = () => {
     //   return false;
