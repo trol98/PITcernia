@@ -54,7 +54,7 @@ export class CheckoutComponent {
         },
         error: (e) => {
           console.log(e)
-          this.snackBar.open('Order was not placed successfully');
+          this.snackBar.open('Something went wrong');
         },
       });
   }
