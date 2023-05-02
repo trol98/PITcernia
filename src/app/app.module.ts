@@ -80,12 +80,6 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [
-    {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: { verticalPosition: 'top' },
-    },
-  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
