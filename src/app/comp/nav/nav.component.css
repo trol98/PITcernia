@@ -30,14 +30,12 @@ header a img {
     z-index: 1;
 }
 
-
-/* 
-    @media (min-width: 568px) {
-        .sidenav {
-            display: none;
-        }
-    } */
-
 .hidden {
     display: none;
+}
+
+.c {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
