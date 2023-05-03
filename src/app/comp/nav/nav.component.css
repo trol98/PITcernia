@@ -34,7 +34,7 @@ header a img {
     display: none;
 }
 
-.c {
+.span-item {
     display: inline-flex;
     align-items: center;
     justify-content: center;
