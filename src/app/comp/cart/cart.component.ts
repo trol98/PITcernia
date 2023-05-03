@@ -1,6 +1,9 @@
 import { CartLine } from './../../cart/cartLine.interface';
 import { CartService } from './../../cart/cart.service';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Observable, map, shareReplay } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-cart',
@@ -8,9 +11,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
+  displayedColumns: string[];
+
+  @ViewChild(MatTable) table: MatTable<CartLine> = {} as  MatTable<CartLine>;
+
   removeFromCart(delLine: CartLine) {
     this.cartService.delete(delLine.pizza);
     this.lines = this.cartService.getCart();
+    this.table.renderRows();
   }
   clearCart() {
     this.cartService.clearCart();
@@ -24,11 +32,23 @@ export class CartComponent {
     return total;
   }
   lines: CartLine[] = [];
-  constructor(private cartService: CartService) {
+  isMobile: boolean = false;
+  constructor(
+    private cartService: CartService,
+    private breakpointObserver: BreakpointObserver,
+  ) {
     this.lines = this.cartService.getCart();
+    this.displayedColumns = ['name', 'size', 'price', 'quantity', 'delete'];
   }
 
-  isCartEmpty(): boolean{
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    );
+
+  isCartEmpty(): boolean {
     return this.lines.length == 0;
   }
 }

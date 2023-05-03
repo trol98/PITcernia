@@ -1,37 +1,62 @@
-<!-- TODO: Change graphical design(UI) -->
 <div class="m-5">
     <h1>Cart</h1>
     <div class="row">
-        <div class="col-12" *ngFor="let line of lines; let i = index">
-            <div class="row" id="{{ line.pizza.id }}">
-                <div class="col-6">
-                    <div>
-                        {{ line.pizza.name }}
-                        <small>( {{ line.pizza.price | currency }} ) </small>
-                    </div>
-                    <small>{{ line.pizza.description }}</small>
-                </div>
-                <div class="col-2 p-0">
-                    <input [(ngModel)]="line.quantity" [ngModelOptions]="{ standalone: true }" min="1" type="number" value="{{ line.quantity }}" class="form-control" />
-                </div>
-                <div class="col-1 pl-0">
-                    <button class="btn btn-secondary" (click)="removeFromCart(line)">
-            x
-          </button>
-                </div>
-            </div>
-        </div>
+        <table *ngIf="!isCartEmpty()" mat-table [dataSource]="lines" class="mat-elevation-z8">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element">{{ element.pizza.name }}</td>
+            </ng-container>
+
+            <!-- Size Column -->
+            <ng-container matColumnDef="size">
+                <th mat-header-cell *matHeaderCellDef>Size</th>
+                <td mat-cell *matCellDef="let element">{{ element.pizza.size }}</td>
+            </ng-container>
+
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let element">{{ element.pizza.price }}</td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                <td mat-cell *matCellDef="let element">
+                    <!-- FIXME: Vertically center the input-->
+                    <mat-form-field [ngClass]="!(isHandset$ | async) ? 'flex-column' : 'flex-row'">
+                        <input matInput [(ngModel)]="element.quantity" [ngModelOptions]="{ standalone: true }" min="1" type="number" value="{{ element.quantity }}" class="form-control" />
+                    </mat-form-field>
+                </td>
+            </ng-container>
+
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon (click)="removeFromCart(element)">delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
         <div *ngIf="isCartEmpty()">
             <p class="text-muted">Empty! Add pizzas from the menu.</p>
         </div>
 
         <div class="col-12">
-            <hr />
+            <hr/>
+            <!-- TODO: Move this summary as a foot row inside the table -->
             <div>
                 Order Total:
                 <span class="font-weight-bold">{{ getTotal() | currency }}</span>
                 <hr />
-                <button class="btn btn-primary" (click)="clearCart()">Clear Cart</button>
+                <button class="btn btn-primary" (click)="clearCart()">
+          Clear Cart
+        </button>
                 <button [disabled]="isCartEmpty()" class="btn btn-danger" [routerLink]="['/checkout']">
           Check out
         </button>
