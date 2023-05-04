@@ -1,27 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="small-container">
-      <div class="col-1">
-        <div class="png">
-          <img src="{{ pizza.img_path }}" id="ProductImg" />
+<main>
+    <!-- <div class="small-container">
+        <div class="col-1">
+            <div class="png">
+                <img src="{{ pizza?.img_path }}" id="ProductImg" />
+            </div>
         </div>
-      </div>
-      <div class="col-2">
-        <h1>{{ pizza.name }}({{ pizza.size }})</h1>
-        <hr />
-        <p>{{ pizza.description }}</p>
+        <div class="col-2">
+            <h1>{{ pizza?.name }}({{ pizza?.size }})</h1>
+            <hr />
+            <p>{{ pizza?.description }}</p>
+            <ul class="list">
+                <li *ngFor="let top of pizza?.toppings">{{ top.name }}</li>
+            </ul>
+            <a class="btn" (click)="addToCart()">Add To Cart</a>
+        </div>
+    </div> -->
+
+    <div class="row small-container m-3">
+        <div class="col-md-6 col-sm-6 col-1 magic">
+            <div>
+                <div class="png">
+                    <img class="img-fluid" src="{{ pizza?.img_path }}" id="ProductImg" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="text-center">
+                <span><h1>{{ pizza?.name }}</h1>
+          <h1>({{ pizza?.size }})</h1></span
+        >
+        <p>{{ pizza?.description }}</p>
+        </div>
+        <div class="p-4">
         <ul class="list">
-          <li *ngFor="let top of pizza.toppings">{{ top.name }}</li>
+          <li *ngFor="let top of pizza?.toppings">{{ top.name }}</li>
         </ul>
         <a class="btn" (click)="addToCart()">Add To Cart</a>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</main>

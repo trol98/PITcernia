@@ -17,24 +17,17 @@ export class PizzaDetailsComponent {
     private cartService: CartService,
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.pizzaService.getPizzaDetails(id).subscribe({
-      next: (pizza: Pizza) => {
-        this.pizza = pizza;
-      },
+    this.pizzaService.getPizzaDetails(id).subscribe((p) => {
+      this.pizza = p;
     });
   }
-  pizza: Pizza = {
-    id: -1,
-    name: 'No pizza',
-    description: 'No pizza',
-    img_path: 'assets/pizza_not_found.png',
-    price: -1,
-    size: 'no',
-    toppings: [],
-  };
+
+  pizza: Pizza | null = null;
 
   addToCart() {
+    if (this.pizza){
     this.cartService.add(this.pizza);
+  }
     this.router.navigateByUrl('/cart');
   }
 }

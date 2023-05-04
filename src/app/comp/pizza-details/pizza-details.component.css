@@ -1,80 +1,61 @@
-@import url('http://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
-*
-{
+/* @import url('http://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap'); */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body
-{
+
+main {
     font-family: 'Poppins', sans-serif;
     background-color: rgb(0, 0, 0);
-    padding: 100px 0 200px 0;
 }
-.small-container
-{
-    display: flex;
-    width: 1200px;
-    height: 600px;
-    /* margin-top: 100px !important; */
+
+.small-container {
     margin: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 25px;
 }
-.col-1
-{
-    flex-basis: 30%;
-    position: relative;
+
+.col-1 {
     background-color: #ff523b;
-    /* margin-right: 10px;     */
     border-radius: 25px 0 0 25px;
 }
-.png
-{
-    padding: 75px 0 0 50px;   /*top/right/bottom/left */
-    width: 500px; /*Tutaj zmieniłech bo zasłaniało przycisk*/
 
+@media (max-width: 576px) {
+    .magic {
+        min-height: 50vh !important;
+        min-width: 100%;
+    }
 }
-img
-{
-    width: auto;
-    height: 450px;
+
+img {
+    max-width: 100%;
 }
-.col-2
-{
-    flex-basis: 50%;
-    padding: 50px 0 0 200px;
-    font-size: 30px;
-}
-h1
-{
+
+h1 {
     font-size: 60px;
     line-height: 60px;
     margin: 25px 0;
 }
-hr
-{
-    width: 500px;
-    color: azure;
-}
-a
-{
+
+a {
     text-decoration: none;
     color: #555;
 }
-p
-{
+
+p {
     color: #555;
     font-size: 25px;
 }
-.list
-{
+
+.list {
     color: #555;
     padding-top: 15px;
     font-size: 25px;
 }
-.btn
-{
+
+.btn {
     background: #ff523b;
     color: #fff;
     padding: 15px 60px;
@@ -84,9 +65,8 @@ p
     font-size: 25px;
     display: flex;
     justify-content: center;
-
 }
-.btn:hover
-{
+
+.btn:hover {
     background: #563434;
 }

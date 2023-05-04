@@ -4,6 +4,7 @@ import { Order } from 'src/app/order/interfaces/order.interface';
 import { OrderService } from 'src/app/order/order.service';
 import { DateFilter } from './interfaces/dateFilter.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin-orders',
@@ -26,7 +27,8 @@ export class AdminOrdersComponent {
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
   ) {
     this.route.queryParams.subscribe((params) => {
       this.isActive = params['active'] === 'true';
@@ -40,14 +42,14 @@ export class AdminOrdersComponent {
   finishOrder(id: number) {
     this.orderService.finishOrder(id).subscribe({
       next: () => {
-        alert(`Order finished: ${id}`);
+        this.snackBar.open(`Order finished: ${id}`);
         const index = this.orders.findIndex((v) => {
           return v.id == id;
         });
         this.orders.splice(index, 1);
       },
       error: () => {
-        alert(`Order cannot be finished: ${id}`);
+        this.snackBar.open(`Something went wrong`);
       },
     });
   }

@@ -1,5 +1,6 @@
 import { OrderService } from '../../../order/order.service';
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/order/interfaces/order.interface';
 
@@ -14,7 +15,8 @@ export class UserOrdersComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private snackBar: MatSnackBar
   ) {
     this.route.queryParams.subscribe((params) => {
       this.isActive = params['active'] === 'true';
@@ -29,14 +31,14 @@ export class UserOrdersComponent {
   cancelOrder(id: number) {
     this.orderService.cancelOrder(id).subscribe({
       next: () => {
-        alert(`Order canceled: ${id}`);
+        this.snackBar.open(`Order ${id} has been canceled`);
         const index = this.orders.findIndex((v) => {
           return v.id == id;
         });
         this.orders.splice(index, 1);
       },
       error: () => {
-        alert(`Order cannot be canceled: ${id}`);
+        this.snackBar.open(`Something went wrong`);
       },
     });
   }
@@ -51,7 +53,7 @@ export class UserOrdersComponent {
   ordersSummary() {
     let sum = 0;
     // if an order was canceled don't count it towards the total sum
-    // becouse the payment was refundend
+    // becouse it was refunded
     this.orders
       .filter((order) => {
         return !order.canceled;

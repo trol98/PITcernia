@@ -1,64 +1,43 @@
-<div>
-    <!-- TODO: Change the above behaviour  -->
-    <form [formGroup]="accountForm" (ngSubmit)="onCredentailsChange()" class="text-center border border-light p-5">
-        <p class="h4 mb-4">Profile information</p>
-        <div class="form-row mb-4">
-            <div class="col">
-                <input type="text" formControlName="login" id="defaultRegisterFormLogin" class="form-control mb-4" placeholder="Name" />
+<main class="d-flex flex-column align-items-center justify-content-center">
+    <div>
+        <!-- TODO: Change the above behaviour  -->
+        <form [formGroup]="accountForm" (ngSubmit)="onCredentailsChange()" class="text-center border border-light p-5">
+            <p class="h4 mb-4">Profile information</p>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input type="text" formControlName="login" id="defaultRegisterFormLogin" class="form-control mb-4" placeholder="Name" />
+                </div>
             </div>
-        </div>
-        <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Email" />
-        <input type="text" formControlName="shipping_address" id="defaultRegisterFormShippingAddress" class="form-control mb-4" placeholder="Shipping Address" />
-        <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
-        <hr />
-    </form>
-    <!-- <p *ngIf="attemptedLogin && !loginFailed" class="bg-success">
-      Login was successful
-    </p>
-    <div *ngIf="attemptedLogin && loginFailed" class="bg-warning">
-      <p>Login failed</p>
-      <p>{{errorMessage}}</p>
-    </div> -->
-</div>
-<div>
-    <!-- TODO: Change the above behaviour  -->
-    <form [formGroup]="passwordForm" (ngSubmit)="onPasswordChange()" class="text-center border border-light p-5">
-        <p class="h4 mb-4">Change password</p>
-        <div class="form-row mb-4">
-            <div class="col">
-                <input type="password" formControlName="old_password" class="form-control mb-4" placeholder="Old password" />
+            <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Email" />
+            <input type="text" formControlName="shipping_address" id="defaultRegisterFormShippingAddress" class="form-control mb-4" placeholder="Shipping Address" />
+            <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
+            <hr />
+        </form>
+    </div>
+    <div>
+        <!-- TODO: Change the above behaviour  -->
+        <form [formGroup]="passwordForm" (ngSubmit)="onPasswordChange()" class="text-center border border-light p-5">
+            <p class="h4 mb-4">Change password</p>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input type="password" formControlName="old_password" class="form-control mb-4" placeholder="Old password" />
+                </div>
             </div>
-        </div>
-        <input type="password" formControlName="old_password_repeat" class="form-control mb-4" placeholder="Repeat old password" />
-        <input type="password" formControlName="password" class="form-control mb-4" placeholder="New password" />
-        <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
-        <hr />
-    </form>
-    <!-- <p *ngIf="attemptedLogin && !loginFailed" class="bg-success">
-      Login was successful
-    </p>
-    <div *ngIf="attemptedLogin && loginFailed" class="bg-warning">
-      <p>Login failed</p>
-      <p>{{errorMessage}}</p>
-    </div> -->
-</div>
-<div>
-    <p>Użytkownik może zmnieć swoje dane osobowe i adresowe</p>
-    <p>użytkownik może usunąć konto (nie może to usuwać historii zamówień)</p>
-    <p>
-        użytkownik może usunąć konto (nie może usunąć konta jeżeli instnieją aktywne zamówienia)
-    </p>
-    <p class="m-5">użytkownik widzi aktywne zamówienia ilościowo/jakościowo</p>
-    <p class="m-5">
-        użytkownik może anulować zamówienie dopóki admin nie oznaczy jako wykonane
-    </p>
-    <div class="card bg-danger mb-3" style="max-width: 18rem">
-        <div class="card-header">Delete account</div>
-        <div class="card-body">
-            <h5 class="card-title">
-                If all your orders are finished you can delete your account
-            </h5>
-            <button class="btn btn-dark" (click)="deleteAccount()">Delete</button>
+            <input type="password" formControlName="old_password_repeat" class="form-control mb-4" placeholder="Repeat old password" />
+            <input type="password" formControlName="password" class="form-control mb-4" placeholder="New password" />
+            <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
+            <hr />
+        </form>
+    </div>
+    <div>
+        <div class="card bg-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">Delete account</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    If all your orders are finished you can delete your account
+                </h5>
+                <button class="btn btn-dark" (click)="deleteAccount()">Delete</button>
+            </div>
         </div>
     </div>
-</div>
+</main>

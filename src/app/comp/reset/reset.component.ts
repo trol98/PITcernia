@@ -7,6 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +22,9 @@ export class ResetComponent {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private passwordService: PasswordService
+    private passwordService: PasswordService,
+    private snackBar: MatSnackBar,
+
   ) {
     this.passwordForm = this.formBuilder.group({
       password: [
@@ -68,10 +71,10 @@ export class ResetComponent {
     const password = this.passwordForm.value.password
     this.passwordService.resetPassword(this.token, password).subscribe({
       next: () => {
-        alert('Password reset successfully');
+        this.snackBar.open('Password reset successfully');
       },
       error: () => {
-        alert('Password reset not successfully');
+        this.snackBar.open('Something went wrong');
       },
     });
   }

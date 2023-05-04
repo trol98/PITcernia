@@ -1,5 +1,6 @@
 import { EmailService } from './../../email/email.service';
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ConfirmComponent {
   constructor(
     private route: ActivatedRoute,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private snackBar: MatSnackBar,
   ) {}
 
   token: string = '';
@@ -21,10 +23,10 @@ export class ConfirmComponent {
 
     this.emailService.confirmEmail(this.token).subscribe({
       next: () => {
-        alert("Email confirmed successfully");
+        this.snackBar.open("Email confirmed successfully");
       },
       error: () => {
-        alert("Email confirmed not successfully");
+        this.snackBar.open("Something went wrong");
       },
     });
   }
