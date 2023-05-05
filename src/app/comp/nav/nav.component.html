@@ -1,14 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
-        <mat-toolbar>
+    <mat-sidenav #drawer class="sidenav justify-content-center" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+        <mat-toolbar class="justify-content-center my-4">
             <img [routerLink]="['/home']" class="img-fluid img-thumbnail logo" src="/assets/logo.png" /></mat-toolbar>
         <mat-nav-list>
-            <mat-list-item class="d-flex justify-content-center text-center"><span [routerLink]="['/menu']" class="m-1">Menu</span></mat-list-item>
-            <mat-list-item class="d-flex justify-content-center text-center"><span mat-list-item [routerLink]="['/about']" class="m-1">About</span
+            <mat-list-item class="justify-content-center text-center"><span [routerLink]="['/menu']" class="m-1">Menu</span></mat-list-item>
+            <mat-list-item class="justify-content-center text-center"><span mat-list-item [routerLink]="['/about']" class="m-1">About</span
         ></mat-list-item
       >
       <mat-list-item
-        class="d-flex justify-content-center text-center"
+        class="justify-content-center text-center"
         matListIcon
         *ngIf="!isLoggedIn()"
         ><button mat-icon-button class="btn" [routerLink]="['/register']">
@@ -16,7 +16,7 @@
         </button></mat-list-item
       >
       <mat-list-item
-        class="d-flex justify-content-center text-center"
+        class="justify-content-center text-center"
         matListIcon
         *ngIf="isLoggedIn()"
         ><button mat-icon-button class="btn" (click)="logout()">
@@ -24,7 +24,7 @@
         </button></mat-list-item
       >
       <mat-list-item
-        class="d-flex justify-content-center text-center"
+        class="justify-content-center text-center"
         matListIcon
         *ngIf="!isLoggedIn()"
         ><button mat-icon-button class="btn" [routerLink]="['/login']">
@@ -32,7 +32,7 @@
         </button></mat-list-item
       >
       <mat-list-item
-        class="d-flex justify-content-center text-center"
+        class="justify-content-center text-center"
         matListIcon
         *ngIf="isLoggedIn()"
         ><button mat-icon-button class="btn" [routerLink]="['/dashboard']">
@@ -40,13 +40,13 @@
         </button></mat-list-item
       >
       <mat-list-item
-        class="d-flex justify-content-center text-center"
+        class="justify-content-center text-center"
         matListIcon
         ><button mat-icon-button class="btn" [routerLink]="['/cart']">
           <mat-icon>add_shopping_cart</mat-icon>
         </button></mat-list-item
       >
-      <mat-list-item class="d-flex justify-content-center text-center"
+      <mat-list-item class="justify-content-center text-center"
         ><span>{{ username }}...</span></mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
