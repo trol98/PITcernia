@@ -1,4 +1,5 @@
 <div class="container-lg">
+    <h1 class="text-center">{{isActive ? 'Active' : 'Finished'}} orders panel</h1>
     <div *ngFor="let order of orders">
         <div class="row">
             <div class="col-sm-20">
@@ -21,6 +22,20 @@
             </div>
         </div>
         <p>Order Total: <b>{{orderTotal(order) | currency}}</b></p>
+    </div>
+    <div *ngIf="isEmpty()">
+        <div class="row">
+            <div class="col-sm-20">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-center">
+                            <h3>There aren't any orders here</h3>
+                            <h6 class="text-muted">Hint: Place one from the menu</h6> 
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div>
         Summary: {{ordersSummary() | currency}}

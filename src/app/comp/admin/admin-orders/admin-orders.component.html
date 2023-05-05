@@ -1,7 +1,11 @@
+<h1 class="text-center">
+    {{ isActive ? "Active" : "Finished" }} orders admin panel
+</h1>
+
 <form [formGroup]="dateForm">
     <div class="d-flex flex-row justify-content-center flex-wrap">
         <div class="m-1" *ngFor="let filter of dateFilter">
-            <input (change)="filterDate()" type="radio" class="btn-check" name="date" id="size-button-{{ filter.id }}" autocomplete="off" [value]="filter.id" formControlName="date" />
+            <input (change)="filterDate()" type="radio" class="btn-check" name="date" id="size-button-{{ filter.id }}" [value]="filter.id" formControlName="date" />
             <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
         filter.name
       }}</label>
@@ -43,6 +47,22 @@
         <p>
             Order Total: <b>{{ orderTotal(order) | currency }}</b>
         </p>
+    </div>
+    <div *ngIf="isEmpty()">
+        <div class="row">
+            <div class="col-sm-20">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-center">
+              <h3>There aren't any orders here</h3>
+              <h6 class="text-muted">
+                Hint: Try changing the specified date range
+              </h6>
+            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div>Summary: {{ ordersSummary() | currency }}</div>
 </div>
