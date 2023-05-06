@@ -63,4 +63,8 @@ export class UserOrdersComponent {
       });
     return sum;
   }
+
+  isEmpty(): boolean{
+    return this.orders.length == 0;
+  }
 }

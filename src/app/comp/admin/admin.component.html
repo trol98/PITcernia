@@ -1,11 +1,40 @@
-<div class="d-flex ">
-    <nav class="w-15 vh-100 bg-secondary d-flex flex-column d-flex justify-content-center">
-        <div>
-            <div [routerLink]="['orders']" [queryParams]="{active: true}">Active user orders</div>
-            <div [routerLink]="['orders']" [queryParams]="{active: false}">Finished user orders</div>
-        </div>
-    </nav>
-    <div class="w-85 h-100 bg-light">
-        <router-outlet></router-outlet>
-    </div>
-</div>
+<nav
+  mat-tab-nav-bar
+  color="primary"
+  fitInkBarToContent
+  mat-stretch-tabs="false"
+  mat-align-tabs="center"
+  [tabPanel]="tabPanel"
+  class="mb-5 mt-2"
+>
+  <a
+    mat-tab-link
+    [routerLink]="['orders']"
+    [queryParams]="{ active: true }"
+    routerLinkActive
+    #rlaActive="routerLinkActive"
+    [active]="rlaActive.isActive"
+    >Active</a
+  >
+  <a
+    mat-tab-link
+    [routerLink]="['orders']"
+    [queryParams]="{ active: false }"
+    routerLinkActive
+    #routerLinkFinished="routerLinkActive"
+    [active]="routerLinkFinished.isActive"
+    >Finished</a
+  >
+  <a
+    mat-tab-link
+    [routerLink]="['/dashboard', 'orders']"
+    [queryParams]="{ active: true }"
+    routerLinkActive
+    #rlaDashboard="routerLinkActive"
+    [active]="rlaDashboard.isActive"
+    >Dashboard</a
+  >
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>

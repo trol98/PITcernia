@@ -1,48 +1,86 @@
+<h1 class="text-center">
+  {{ isActive ? "Active" : "Finished" }} orders admin panel
+</h1>
+
 <form [formGroup]="dateForm">
-    <div class="d-flex flex-row justify-content-center flex-wrap">
-        <div class="m-1" *ngFor="let filter of dateFilter">
-            <input (change)="filterDate()" type="radio" class="btn-check" name="date" id="size-button-{{ filter.id }}" autocomplete="off" [value]="filter.id" formControlName="date" />
-            <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
+  <div class="d-flex flex-row justify-content-center flex-wrap">
+    <div class="m-1" *ngFor="let filter of dateFilter">
+      <input
+        (change)="filterDate()"
+        type="radio"
+        class="btn-check"
+        name="date"
+        id="size-button-{{ filter.id }}"
+        [value]="filter.id"
+        formControlName="date"
+      />
+      <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
         filter.name
       }}</label>
-        </div>
     </div>
+  </div>
 </form>
-
 <div class="container-lg">
-    <div *ngFor="let order of orders">
+  <mat-accordion multi>
+    <mat-expansion-panel
+      *ngFor="let order of orders; first as isFirst"
+      [expanded]="isFirst"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h5>ID: {{ order.id }}</h5>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p>{{ order.order_date | date : "short" }}</p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
         <div class="row">
-            <div class="col-sm-20">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Order number: {{ order.id }}</h5>
-                        <h5 class="card-title">User: {{ order.user.email }}</h5>
-                        <p class="card-text">Order date: {{ order.order_date }}</p>
-                        <p class="card-text">
-                            Delivery address: {{ order.shipping_address }}
-                        </p>
-                        <button *ngIf="isActive" class="btn btn-danger" (click)="finishOrder(order.id)">
-              Finish
-            </button>
-                        <button class="btn btn-info" [routerLink]="['/admin', 'order', 'details', order.id]">
-              Details
-            </button>
-                        <div *ngFor="let upizza of order.pizzaToOrder">
-                            <div>
-                                <p>{{ upizza.pizza.name }} x{{ upizza.quantity }}</p>
-                                <p>
-                                    <img class="img-fluid pizza-img" src="{{ upizza.pizza.img_path }}" />
-                                </p>
-                                <p>Price: {{ upizza.pizza.price | currency }}</p>
-                            </div>
-                        </div>
-                    </div>
+          <div class="col-sm-20">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Order number: {{ order.id }}</h5>
+                <h5 class="card-title">User: {{ order.user.email }}</h5>
+                <p class="card-text">
+                  Order date: {{ order.order_date | date : "medium" }}
+                </p>
+                <p class="card-text">
+                  Delivery address: {{ order.shipping_address }}
+                </p>
+                <button
+                  *ngIf="isActive"
+                  class="btn btn-danger"
+                  (click)="finishOrder(order.id)"
+                >
+                  Finish
+                </button>
+                <button
+                  class="btn btn-info"
+                  [routerLink]="['/admin', 'order', 'details', order.id]"
+                >
+                  Details
+                </button>
+                <div *ngFor="let upizza of order.pizzaToOrder">
+                  <div>
+                    <p>{{ upizza.pizza.name }} x{{ upizza.quantity }}</p>
+                    <p>
+                      <img
+                        class="img-fluid pizza-img"
+                        src="{{ upizza.pizza.img_path }}"
+                      />
+                    </p>
+                    <p>Price: {{ upizza.pizza.price | currency }}</p>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
         <p>
-            Order Total: <b>{{ orderTotal(order) | currency }}</b>
+          Order Total: <b>{{ orderTotal(order) | currency }}</b>
         </p>
-    </div>
-    <div>Summary: {{ ordersSummary() | currency }}</div>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

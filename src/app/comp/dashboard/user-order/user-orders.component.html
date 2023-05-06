@@ -1,5 +1,6 @@
 <div class="container-lg">
-    <div *ngFor="let order of orders">
+    <h1 class="text-center">{{isActive ? 'Active' : 'Finished'}} orders panel</h1>
+    <!-- <div *ngFor="let order of orders">
         <div class="row">
             <div class="col-sm-20">
                 <div class="card">
@@ -21,7 +22,68 @@
             </div>
         </div>
         <p>Order Total: <b>{{orderTotal(order) | currency}}</b></p>
+    </div> -->
+
+    <mat-accordion multi>
+        <mat-expansion-panel *ngFor="let order of orders; first as isFirst" [expanded]="isFirst">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h5>ID: {{ order.id }}</h5>
+            </mat-panel-title>
+            <mat-panel-description>
+              <p>{{ order.order_date | date: 'short' }}</p>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <ng-template matExpansionPanelContent>
+              <div class="row">
+                  <div class="col-sm-20">
+                      <div class="card">
+                          <div class="card-body" [ngClass]="{'bg-warning': order.canceled}">
+                              <h5 class="card-title">Order number: {{ order.id }}</h5>
+                              <p class="card-text">Order date: {{ order.order_date  | date: 'medium' }}</p>
+                              <p class="card-text">
+                                  Delivery address: {{ order.shipping_address }}
+                              </p>
+                              <button *ngIf="isActive" class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel</button>
+                              <button class="btn btn-info" [routerLink]="['/admin', 'order', 'details', order.id]">
+                    Details
+                  </button>
+                              <div *ngFor="let upizza of order.pizzaToOrder">
+                                  <div>
+                                      <p>{{ upizza.pizza.name }} x{{ upizza.quantity }}</p>
+                                      <p>
+                                          <img class="img-fluid pizza-img" src="{{ upizza.pizza.img_path }}" />
+                                      </p>
+                                      <p>Price: {{ upizza.pizza.price | currency }}</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <p>
+                  Order Total: <b>{{ orderTotal(order) | currency }}</b>
+              </p>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+      <div *ngIf="isEmpty()">
+        <div class="row">
+            <div class="col-sm-20">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-center">
+                            <h3>There aren't any orders here</h3>
+                            <h6 class="text-muted">Hint: Place one from the menu</h6> 
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div>
         Summary: {{ordersSummary() | currency}}
     </div>
+</div>

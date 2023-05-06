@@ -28,7 +28,7 @@ export class AdminOrdersComponent {
     private route: ActivatedRoute,
     private orderService: OrderService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {
     this.route.queryParams.subscribe((params) => {
       this.isActive = params['active'] === 'true';
@@ -118,6 +118,7 @@ export class AdminOrdersComponent {
         this.before = cDate;
         break;
     }
+
     this.refreshOrders();
   }
 
@@ -126,5 +127,9 @@ export class AdminOrdersComponent {
   }
   getFirstDayOfMonth(year: number, month: number) {
     return new Date(year, month, 1);
+  }
+
+  isEmpty(): boolean {
+    return this.orders.length == 0;
   }
 }
