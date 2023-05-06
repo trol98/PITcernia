@@ -43,6 +43,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +94,8 @@ import {MatInputModule} from '@angular/material/input';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
