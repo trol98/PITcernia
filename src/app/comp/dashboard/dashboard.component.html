@@ -1,21 +1,49 @@
-<div class="d-flex">
-    <nav class="flex-grow-0 col vh-100 bg-secondary d-flex flex-column justify-content-center">
-        <div>
-            <div [routerLink]="['orders']" [queryParams]="{ active: true }">
-                <p>Active orders</p>
-            </div>
-            <div [routerLink]="['orders']" [queryParams]="{ active: false }">
-                <p>Finished orders</p>
-            </div>
-            <div [routerLink]="['profile']">
-                <p>Profile</p>
-            </div>
-            <div class="bg-danger" *ngIf="isAdmin" [routerLink]="['/admin']">
-                <p>Admin</p>
-            </div>
-        </div>
-    </nav>
-    <div class="col h-100 bg-light">
-        <router-outlet></router-outlet>
-    </div>
-</div>
+<nav 
+  mat-tab-nav-bar
+  color="primary"
+  fitInkBarToContent
+  mat-stretch-tabs="false"
+  mat-align-tabs="center"
+  [tabPanel]="tabPanel"
+  class="mb-5 mt-2"
+>
+  <a
+    mat-tab-link
+    [routerLink]="['orders']"
+    [queryParams]="{ active: true }"
+    routerLinkActive
+    #rlaActive="routerLinkActive"
+    [active]="rlaActive.isActive"
+    >Active</a
+  >
+  <a
+    mat-tab-link
+    [routerLink]="['orders']"
+    [queryParams]="{ active: false }"
+    routerLinkActive
+    #routerLinkFinished="routerLinkActive"
+    [active]="routerLinkFinished.isActive"
+    >Finished</a
+  >
+  <a
+    mat-tab-link
+    [routerLink]="['profile']"
+    routerLinkActive
+    #routerLinkProfile="routerLinkActive"
+    [active]="routerLinkProfile.isActive"
+    >Profile</a
+  >
+  <a
+    mat-tab-link
+    *ngIf="isAdmin"
+    [routerLink]="['/admin', 'orders']"
+    [queryParams]="{ active: true }"
+    routerLinkActive
+    #routerLinkAdmin="routerLinkActive"
+    [active]="routerLinkAdmin.isActive"
+    >Admin</a
+  >
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>

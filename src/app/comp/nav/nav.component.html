@@ -35,7 +35,7 @@
         class="justify-content-center text-center"
         matListIcon
         *ngIf="isLoggedIn()"
-        ><button mat-icon-button class="btn" [routerLink]="['/dashboard']">
+        ><button mat-icon-button class="btn" [routerLink]="['/dashboard', 'orders']" [queryParams]="{ active: true }">
           <mat-icon>dashboard</mat-icon>
         </button></mat-list-item
       >
