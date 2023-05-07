@@ -31,20 +31,7 @@ import { AdminOrdersComponent } from './comp/admin/admin-orders/admin-orders.com
 import { OrderDetailsComponent } from './comp/admin/order-details/order-details.component';
 import { ResetComponent } from './comp/reset/reset.component';
 import { ForgotComponent } from './comp/forgot/forgot.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import {
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-  MatSnackBarModule,
-} from '@angular/material/snack-bar';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import {MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatExpansionModule} from '@angular/material/expansion'; 
-import {MatTabsModule} from '@angular/material/tabs';
+import { MaterialModule } from './material/material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,26 +68,13 @@ import {MatTabsModule} from '@angular/material/tabs';
     FontAwesomeModule,
     FormsModule,
     NgxSliderModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSnackBarModule,
+    MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    LayoutModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTableModule,
-    MatInputModule,
-    MatExpansionModule,
-    MatTabsModule,
-  ],
-  providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ],
   bootstrap: [AppComponent],
 })
