@@ -10,11 +10,11 @@
         type="radio"
         class="btn-check"
         name="date"
-        id="size-button-{{ filter.id }}"
+        id="size-button-{{filter.id}}"
         [value]="filter.id"
         formControlName="date"
       />
-      <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
+      <label class="btn btn-danger btn-sm" for="size-button-{{filter.id}}">{{
         filter.name
       }}</label>
     </div>
@@ -83,4 +83,18 @@
       </ng-template>
     </mat-expansion-panel>
   </mat-accordion>
+  <div *ngIf="isEmpty()">
+    <div class="row">
+        <div class="col-sm-20">
+            <div class="card">
+                <div class="card-body">
+                    <span class="text-center">
+                        <h3>There aren't any orders here</h3>
+                        <h6 class="text-muted">Hint: Try changing the selected date range</h6> 
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

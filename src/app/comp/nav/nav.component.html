@@ -1,10 +1,23 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav justify-content-center" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
-        <mat-toolbar class="justify-content-center my-4">
-            <img [routerLink]="['/home']" class="img-fluid img-thumbnail logo" src="/assets/logo.png" /></mat-toolbar>
-        <mat-nav-list>
-            <mat-list-item class="justify-content-center text-center"><span [routerLink]="['/menu']" class="m-1">Menu</span></mat-list-item>
-            <mat-list-item class="justify-content-center text-center"><span mat-list-item [routerLink]="['/about']" class="m-1">About</span
+  <mat-sidenav
+    #drawer
+    class="sidenav justify-content-center"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  >
+    <mat-toolbar class="justify-content-center my-4">
+      <img
+        [routerLink]="['/home']"
+        class="img-fluid img-thumbnail logo"
+        src="/assets/logo.png"
+    /></mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item class="justify-content-center text-center"
+        ><span [routerLink]="['/menu']" class="m-1">Menu</span></mat-list-item
+      >
+      <mat-list-item class="justify-content-center text-center"
+        ><span mat-list-item [routerLink]="['/about']" class="m-1"
+          >About</span
         ></mat-list-item
       >
       <mat-list-item
@@ -35,35 +48,49 @@
         class="justify-content-center text-center"
         matListIcon
         *ngIf="isLoggedIn()"
-        ><button mat-icon-button class="btn" [routerLink]="['/dashboard', 'orders']" [queryParams]="{ active: true }">
+        ><button
+          mat-icon-button
+          class="btn"
+          [routerLink]="['/dashboard', 'orders']"
+          [queryParams]="{ active: true }"
+        >
           <mat-icon>dashboard</mat-icon>
         </button></mat-list-item
       >
-      <mat-list-item
-        class="justify-content-center text-center"
-        matListIcon
+      <mat-list-item class="justify-content-center text-center" matListIcon
         ><button mat-icon-button class="btn" [routerLink]="['/cart']">
           <mat-icon>add_shopping_cart</mat-icon>
         </button></mat-list-item
       >
       <mat-list-item class="justify-content-center text-center"
-        ><span>{{ username }}...</span></mat-list-item>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar color="white">
-            <div>
-                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        ><span>{{ username }}...</span></mat-list-item
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="white">
+      <div>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async"
+        >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-            </div>
-            <div class="d-flex flex-grow-1" *ngIf="!(isHandset$ | async)">
-                <img [routerLink]="['/home']" class="img-fluid img-thumbnail logo" src="/assets/logo.png" />
-                <span class="example-spacer m-1 span-item"></span>
-                <span [routerLink]="['/menu']" class="m-1 span-item">Menu</span>
-                <span [routerLink]="['/about']" class="m-1 span-item">About</span>
+      </div>
+      <div class="d-flex flex-grow-1" *ngIf="!(isHandset$ | async)">
+        <img
+          [routerLink]="['/home']"
+          class="img-fluid img-thumbnail logo"
+          src="/assets/logo.png"
+        />
+        <span class="example-spacer m-1 span-item"></span>
+        <span [routerLink]="['/menu']" class="m-1 span-item">Menu</span>
+        <span [routerLink]="['/about']" class="m-1 span-item">About</span>
 
-                <span class="span-item">
+        <span class="span-item">
           <button
             *ngIf="!isLoggedIn()"
             mat-icon-button
@@ -73,7 +100,7 @@
             <mat-icon>input</mat-icon>
           </button>
         </span>
-                <span class="span-item">
+        <span class="span-item">
           <button
             *ngIf="isLoggedIn()"
             mat-icon-button
@@ -83,7 +110,7 @@
             <mat-icon>exit_to_app</mat-icon>
           </button>
         </span>
-                <span class="span-item">
+        <span class="span-item">
           <button
             *ngIf="!isLoggedIn()"
             mat-icon-button
@@ -93,24 +120,29 @@
             <mat-icon>account_circle</mat-icon>
           </button>
         </span>
-                <span class="span-item">
+        <span class="span-item">
           <button
             *ngIf="isLoggedIn()"
             mat-icon-button
             class="btn"
-            [routerLink]="['/dashboard']"
+            [routerLink]="['/dashboard', 'orders']"
+            [queryParams]="{ active: true }"
           >
             <mat-icon>dashboard</mat-icon>
           </button>
         </span>
-                <span class="span-item">
-          <button mat-icon-button class="btn span-item" [routerLink]="['/cart']">
+        <span class="span-item">
+          <button
+            mat-icon-button
+            class="btn span-item"
+            [routerLink]="['/cart']"
+          >
             <mat-icon>add_shopping_cart</mat-icon>
           </button>
         </span>
-                <span class="m-1 span-item">{{ username }}...</span>
-            </div>
-        </mat-toolbar>
-        <ng-content></ng-content>
-    </mat-sidenav-content>
+        <span class="m-1 span-item">{{ username }}...</span>
+      </div>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
 </mat-sidenav-container>

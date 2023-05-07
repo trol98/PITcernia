@@ -29,7 +29,7 @@ export class LoginComponent {
       password: ['', [Validators.required]],
     });
     if(this.storageService.isLoggedIn()){
-      this.router.navigateByUrl("/dashboard");
+      this.router.navigateByUrl("/dashboard/orders?active=true");
     }
   }
   onSubmit() {
