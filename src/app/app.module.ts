@@ -32,6 +32,7 @@ import { OrderDetailsComponent } from './comp/admin/order-details/order-details.
 import { ResetComponent } from './comp/reset/reset.component';
 import { ForgotComponent } from './comp/forgot/forgot.component';
 import { MaterialModule } from './material/material.module';
+import { DialogComponent } from './comp/dialog/dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { MaterialModule } from './material/material.module';
     OrderDetailsComponent,
     ResetComponent,
     ForgotComponent,
+    DialogComponent,
   ],
   imports: [
     CommonModule,

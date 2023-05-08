@@ -1,7 +1,9 @@
 import { UserService } from './../../../user/user.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogComponent } from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,8 @@ export class ProfileComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.accountForm = this.formBuilder.group({
       login: [''],
@@ -24,11 +27,11 @@ export class ProfileComponent {
 
     this.passwordForm = this.formBuilder.group({
       old_password: ['', [Validators.required]],
-      old_password_repeat: ['', [Validators.required]],
+      password_repeat: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
-  onCredentailsChange() {
+  credentailsChange() {
     let { login, email, shipping_address } = this.accountForm.value;
     if (!login) {
       login = undefined;
@@ -54,11 +57,11 @@ export class ProfileComponent {
     // TODO: Refresh navbar so that the new username display's correctly
     // TODO: Refresh session storage so that the info in there is correct
   }
-  onPasswordChange() {
-    let { old_password, old_password_repeat, password } =
+  passwordChange() {
+    let { old_password, password, password_repeat } =
       this.passwordForm.value;
 
-    if (old_password != old_password_repeat) {
+    if (password != password_repeat) {
       this.snackBar.open('Passwords do not match');
     } else {
       this.userService.changePassword(old_password, password).subscribe({
@@ -72,16 +75,23 @@ export class ProfileComponent {
       });
     }
   }
-
   deleteAccount() {
-    this.userService.deleteAccount().subscribe({
-      next: () => {
-        this.snackBar.open('Account has been deleted successfully');
-      },
-      error: () => {
-        // TODO: Add more detailed errors
-        this.snackBar.open('Something went wrong');
-      },
-    });
+    this.dialog
+      .open(DialogComponent)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.userService.deleteAccount().subscribe({
+            next: () => {
+              this.snackBar.open('Account has been deleted successfully');
+            },
+            error: (e) => {
+              // TODO: Check if detailed errors don't show 
+              // inappropriate messages to the user
+              this.snackBar.open(e.error.message);
+            },
+          });
+        }
+      });
   }
 }

@@ -1,43 +1,86 @@
 <main class="d-flex flex-column align-items-center justify-content-center">
-    <div>
-        <!-- TODO: Change the above behaviour  -->
-        <form [formGroup]="accountForm" (ngSubmit)="onCredentailsChange()" class="text-center border border-light p-5">
-            <p class="h4 mb-4">Profile information</p>
-            <div class="form-row mb-4">
-                <div class="col">
-                    <input type="text" formControlName="login" id="defaultRegisterFormLogin" class="form-control mb-4" placeholder="Name" />
-                </div>
-            </div>
-            <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Email" />
-            <input type="text" formControlName="shipping_address" id="defaultRegisterFormShippingAddress" class="form-control mb-4" placeholder="Shipping Address" />
-            <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
-            <hr />
-        </form>
-    </div>
-    <div>
-        <!-- TODO: Change the above behaviour  -->
-        <form [formGroup]="passwordForm" (ngSubmit)="onPasswordChange()" class="text-center border border-light p-5">
-            <p class="h4 mb-4">Change password</p>
-            <div class="form-row mb-4">
-                <div class="col">
-                    <input type="password" formControlName="old_password" class="form-control mb-4" placeholder="Old password" />
-                </div>
-            </div>
-            <input type="password" formControlName="old_password_repeat" class="form-control mb-4" placeholder="Repeat old password" />
-            <input type="password" formControlName="password" class="form-control mb-4" placeholder="New password" />
-            <button class="btn btn-danger my-4 btn-block" type="submit">Change</button>
-            <hr />
-        </form>
-    </div>
-    <div>
-        <div class="card bg-danger mb-3" style="max-width: 18rem">
-            <div class="card-header">Delete account</div>
-            <div class="card-body">
-                <h5 class="card-title">
-                    If all your orders are finished you can delete your account
-                </h5>
-                <button class="btn btn-dark" (click)="deleteAccount()">Delete</button>
-            </div>
+  <div>
+    <form
+      [formGroup]="accountForm"
+      (ngSubmit)="credentailsChange()"
+      class="text-center border border-light p-5"
+    >
+      <p class="h4 mb-4">Profile information</p>
+      <div class="form-row mb-4">
+        <div class="col">
+          <input
+            type="text"
+            formControlName="login"
+            id="defaultRegisterFormLogin"
+            class="form-control mb-4"
+            placeholder="Name"
+          />
         </div>
+      </div>
+      <input
+        type="email"
+        formControlName="email"
+        id="defaultRegisterFormEmail"
+        class="form-control mb-4"
+        placeholder="Email"
+      />
+      <input
+        type="text"
+        formControlName="shipping_address"
+        id="defaultRegisterFormShippingAddress"
+        class="form-control mb-4"
+        placeholder="Shipping Address"
+      />
+      <button class="btn btn-danger my-4 btn-block" type="submit">
+        Change
+      </button>
+      <hr />
+    </form>
+  </div>
+  <div>
+    <form
+      [formGroup]="passwordForm"
+      (ngSubmit)="passwordChange()"
+      class="text-center border border-light p-5"
+    >
+      <p class="h4 mb-4">Change password</p>
+      <div class="form-row mb-4">
+        <div class="col">
+          <input
+            type="password"
+            formControlName="old_password"
+            class="form-control mb-4"
+            placeholder="Old password"
+          />
+        </div>
+      </div>
+      <input
+      type="password"
+      formControlName="password"
+      class="form-control mb-4"
+      placeholder="New password"
+      />
+      <input
+        type="password"
+        formControlName="password_repeat"
+        class="form-control mb-4"
+        placeholder="Repeat password"
+      />
+      <button class="btn btn-danger my-4 btn-block" type="submit">
+        Change
+      </button>
+      <hr />
+    </form>
+  </div>
+  <div>
+    <div class="card bg-danger mb-3">
+      <div class="card-header"><p>Delete account</p></div>
+      <div class="card-body text-center">
+        <h5 class="card-title">
+          If all your orders are finished you can delete your account
+        </h5>
+        <button class="btn btn-dark" (click)="deleteAccount()">Delete</button>
+      </div>
     </div>
+  </div>
 </main>
