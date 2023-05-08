@@ -37,7 +37,7 @@
       <hr />
     </form>
   </div>
-  <div>
+  <!-- <div>
     <form
       [formGroup]="passwordForm"
       (ngSubmit)="passwordChange()"
@@ -55,10 +55,10 @@
         </div>
       </div>
       <input
-      type="password"
-      formControlName="password"
-      class="form-control mb-4"
-      placeholder="New password"
+        type="password"
+        formControlName="password"
+        class="form-control mb-4"
+        placeholder="New password"
       />
       <input
         type="password"
@@ -71,6 +71,86 @@
       </button>
       <hr />
     </form>
+  </div> -->
+  <div class="text-center">
+    <form [formGroup]="passwordForm" (ngSubmit)="passwordChange()" novalidate> 
+      <div class="form-row mb-3">
+        <mat-form-field>
+          <mat-label>Old password</mat-label>
+          <input
+            matInput
+            formControlName="oldPassword"
+            required
+            [type]="hideOldPass ? 'text' : 'password'"
+          />
+          <button type="button" mat-icon-button matSuffix (click)="hideOldPass= !hideOldPass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideOldPass">
+            <mat-icon>{{hideOldPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="errorHandling('oldPassword', 'required')">
+            You must provide a <strong>password</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div formGroupName="newPassword">
+        <div class="form-row mb-3">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              required
+              [type]="hidePass ? 'text' : 'password'"
+            />
+            <button type="button" mat-icon-button matSuffix (click)="hidePass= !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+              <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="nestedErrorHandling('password', 'required')">
+              You must provide a <strong>password</strong>
+            </mat-error>
+            <!-- <mat-error
+              class="password-too-short"
+              *ngIf="nestedErrorHandling('password', 'minlength')"
+            >
+              You must provide a <strong>longer</strong> password
+            </mat-error> -->
+            <!-- <mat-error *ngIf="nestedErrorHandling('password', 'maxlength')">
+              You must provide a <strong>shorter</strong> password
+            </mat-error> -->
+            <mat-error
+              class="password-mismatch"
+              *ngIf="nestedErrorHandling('password', 'mismatch')"
+            >
+            Passwords don't <strong>match</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row mb-3">
+          <mat-form-field>
+            <mat-label>Confirm password</mat-label>
+            <input
+            matInput
+            formControlName="confirmPassword"
+            required
+            [type]="hideConfPass ? 'text' : 'password'"
+          />
+          <button mat-icon-button type="button" matSuffix (click)="hideConfPass= !hideConfPass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfPass">
+            <mat-icon>{{hideConfPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+            <mat-error *ngIf="nestedErrorHandling('confirmPassword', 'required')">
+              You must provide a <strong>password</strong>
+            </mat-error>
+            <mat-error
+              class="password-mismatch"
+              *ngIf="nestedErrorHandling('confirmPassword', 'mismatch')"
+            >
+            Passwords don't <strong>match</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-raised-button color="warn" type="submit" [disabled]="passwordForm.invalid">Reset</button>
+    </form>
+    <hr>
   </div>
   <div>
     <div class="card bg-danger mb-3">

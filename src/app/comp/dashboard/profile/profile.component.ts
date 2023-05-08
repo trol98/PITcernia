@@ -1,9 +1,15 @@
 import { UserService } from './../../../user/user.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent } from '../../dialog/dialog.component';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +19,11 @@ import { DialogComponent } from '../../dialog/dialog.component';
 export class ProfileComponent {
   accountForm: FormGroup;
   passwordForm: FormGroup;
+
+  hidePass: boolean = false;
+  hideOldPass: boolean = false;
+  hideConfPass: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -26,11 +37,28 @@ export class ProfileComponent {
     });
 
     this.passwordForm = this.formBuilder.group({
-      old_password: ['', [Validators.required]],
-      password_repeat: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      oldPassword: ['', [Validators.required]],
+      newPassword: this.formBuilder.group({
+        password: ['', [Validators.required, this.passwordMatchValidator]],
+        confirmPassword: [
+          '',
+          [Validators.required, this.passwordMatchValidator],
+        ],
+      }),
     });
   }
+
+  passwordMatchValidator: ValidatorFn = (
+    formGroup
+  ): ValidationErrors | null => {
+    const parent = formGroup.parent as FormGroup;
+    if (!parent) return null;
+    return parent.get('password')?.value ===
+      parent.get('confirmPassword')?.value
+      ? null
+      : { mismatch: true };
+  };
+
   credentailsChange() {
     let { login, email, shipping_address } = this.accountForm.value;
     if (!login) {
@@ -58,23 +86,31 @@ export class ProfileComponent {
     // TODO: Refresh session storage so that the info in there is correct
   }
   passwordChange() {
-    let { old_password, password, password_repeat } =
-      this.passwordForm.value;
-
-    if (password != password_repeat) {
-      this.snackBar.open('Passwords do not match');
-    } else {
-      this.userService.changePassword(old_password, password).subscribe({
+    let { oldPassword, newPassword } = this.passwordForm.value;
+    this.userService
+      .changePassword(oldPassword, newPassword.password)
+      .subscribe({
         next: () => {
           this.snackBar.open('Password has been changed successfully');
         },
-        error: () => {
-          // TODO: Add more detailed errors
-          this.snackBar.open('Something went wrong');
+        error: (e) => {
+          // TODO: Check if detailed errors don't show
+          // inappropriate messages to the user
+          this.snackBar.open(e.error.message);
         },
       });
-    }
   }
+  public errorHandling = (control: string, error: string) => {
+    return this.passwordForm.controls[control].hasError(error);
+  };
+
+  public nestedErrorHandling = (control: string, error: string) => {
+    // cast to FormGroup becouse Angular returns it as AbstractControl base class
+    return (this.passwordForm.controls['newPassword'] as FormGroup).controls[
+      control
+    ].hasError(error);
+  };
+
   deleteAccount() {
     this.dialog
       .open(DialogComponent)
@@ -86,7 +122,7 @@ export class ProfileComponent {
               this.snackBar.open('Account has been deleted successfully');
             },
             error: (e) => {
-              // TODO: Check if detailed errors don't show 
+              // TODO: Check if detailed errors don't show
               // inappropriate messages to the user
               this.snackBar.open(e.error.message);
             },

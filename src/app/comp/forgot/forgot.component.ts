@@ -38,7 +38,7 @@ export class ForgotComponent {
     });
   }
 
-  /* Handle form errors in Angular 8 */
+  /* Handle form errors in Angular */
   public errorHandling = (control: string, error: string) => {
     return this.emailForm.controls[control].hasError(error);
   };
