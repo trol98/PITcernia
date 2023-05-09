@@ -23,7 +23,7 @@
       <mat-list-item
         class="justify-content-center text-center"
         matListIcon
-        *ngIf="!isLoggedIn()"
+        *ngIf="!isLoggedIn"
         ><button mat-icon-button class="btn" [routerLink]="['/register']">
           <mat-icon>input</mat-icon>
         </button></mat-list-item
@@ -31,7 +31,7 @@
       <mat-list-item
         class="justify-content-center text-center"
         matListIcon
-        *ngIf="isLoggedIn()"
+        *ngIf="isLoggedIn"
         ><button mat-icon-button class="btn" (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
         </button></mat-list-item
@@ -39,7 +39,7 @@
       <mat-list-item
         class="justify-content-center text-center"
         matListIcon
-        *ngIf="!isLoggedIn()"
+        *ngIf="!isLoggedIn"
         ><button mat-icon-button class="btn" [routerLink]="['/login']">
           <mat-icon>account_circle</mat-icon>
         </button></mat-list-item
@@ -47,7 +47,7 @@
       <mat-list-item
         class="justify-content-center text-center"
         matListIcon
-        *ngIf="isLoggedIn()"
+        *ngIf="isLoggedIn"
         ><button
           mat-icon-button
           class="btn"
@@ -92,7 +92,7 @@
 
         <span class="span-item">
           <button
-            *ngIf="!isLoggedIn()"
+            *ngIf="!isLoggedIn"
             mat-icon-button
             class="btn"
             [routerLink]="['/register']"
@@ -102,7 +102,7 @@
         </span>
         <span class="span-item">
           <button
-            *ngIf="isLoggedIn()"
+            *ngIf="isLoggedIn"
             mat-icon-button
             class="btn"
             (click)="logout()"
@@ -112,7 +112,7 @@
         </span>
         <span class="span-item">
           <button
-            *ngIf="!isLoggedIn()"
+            *ngIf="!isLoggedIn"
             mat-icon-button
             class="btn"
             [routerLink]="['/login']"
@@ -122,7 +122,7 @@
         </span>
         <span class="span-item">
           <button
-            *ngIf="isLoggedIn()"
+            *ngIf="isLoggedIn"
             mat-icon-button
             class="btn"
             [routerLink]="['/dashboard', 'orders']"

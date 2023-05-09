@@ -33,6 +33,7 @@ import { ResetComponent } from './comp/reset/reset.component';
 import { ForgotComponent } from './comp/forgot/forgot.component';
 import { MaterialModule } from './material/material.module';
 import { DialogComponent } from './comp/dialog/dialog.component';
+import { httpInterceptorProviders } from './auth/interceptors/http.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +79,7 @@ import { DialogComponent } from './comp/dialog/dialog.component';
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
