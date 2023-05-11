@@ -30,10 +30,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       catchError((error) => {
         if (
           error instanceof HttpErrorResponse &&
-          //   !req.url.includes('auth/signin') &&
-          // TODO: After changing error codes on the backend
-          // modify this check to take into account more endpoints
-          req.url.includes('/auth') &&
+          // TODO: Check for unintentional logouts
+          // req.url.includes('/auth') &&
           error.status === 401
         ) {
           return this.handleAuthError(req, next);
