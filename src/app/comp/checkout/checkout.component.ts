@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CheckoutComponent {
   lines: CartLine[] = [];
   shipping_info: string = '';
+  displayedColumns = [ 'name', 'size', 'price', 'quantity'];
+
   constructor(
     private cartService: CartService,
     private orderSevice: OrderService,
