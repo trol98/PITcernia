@@ -42,6 +42,14 @@
 
     <div class="col-12">
       <hr />
+      <div>
+        <form>
+            <div class="form-group">
+                <label for="exampleInput">Shipping information</label>
+                <input type="text" class="form-control" id="exampleInput" name="ship" placeholder="Enter shipping information" [(ngModel)]="shipping_info" />
+            </div>
+        </form>
+    </div>
       <!-- TODO: Move this summary as a foot row inside the table -->
       <div>
         Order Total:

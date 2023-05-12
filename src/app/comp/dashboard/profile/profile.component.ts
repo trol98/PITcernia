@@ -32,7 +32,7 @@ export class ProfileComponent {
   ) {
     this.accountForm = this.formBuilder.group({
       login: [''],
-      email: ['', [Validators.email]],
+      email: ['', [Validators.email, Validators.minLength(6)]],
       shipping_address: [''],
     });
 
@@ -100,6 +100,11 @@ export class ProfileComponent {
         },
       });
   }
+
+  public credentailsErrorHandling = (control: string, error: string) => {
+    return this.accountForm.controls[control].hasError(error);
+  };
+
   public errorHandling = (control: string, error: string) => {
     return this.passwordForm.controls[control].hasError(error);
   };
