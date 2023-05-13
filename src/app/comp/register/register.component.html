@@ -1,46 +1,112 @@
 <div class="col-md-4 mx-auto">
-  <form
-    [formGroup]="userForm"
-    (ngSubmit)="onSubmit()"
-    class="text-center border border-light p-5"
-  >
-    <p class="h4 mb-4">Sign up</p>
-    <div class="form-row mb-4">
-      <div class="col">
-        <input
-          type="text"
-          formControlName="login"
-          id="defaultRegisterFormLogin"
-          class="form-control mb-4"
-          placeholder="Login"
-        />
+  <div class="text-center mt-4">
+    <p class="h4">Register</p>
+  </div>
+  <div>
+    <form
+      [formGroup]="registrationForm"
+      (ngSubmit)="onSubmit()"
+      class="text-center border border-light p-5"
+    >
+      <!-- <div class="form-row mb-4">
+        <div class="col">
+          <input
+            type="text"
+            formControlName="login"
+            id="defaultRegisterFormLogin"
+            class="form-control mb-4"
+            placeholder="Login"
+          />
 
-        <input
-          type="email"
-          formControlName="email"
-          id="defaultRegisterFormEmail"
-          class="form-control"
-          placeholder="E-mail"
-        />
+          <input
+            type="email"
+            formControlName="email"
+            id="defaultRegisterFormEmail"
+            class="form-control"
+            placeholder="E-mail"
+          />
+        </div>
       </div>
-    </div>
-    <input
-      type="password"
-      formControlName="password"
-      id="defaultRegisterFormPassword"
-      class="form-control mb-4"
-      placeholder="Password"
-    />
-    <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
-    <hr />
-  </form>
-  <div *ngIf="attemptedRegistration && registrationFailed" class="bg-warning">
+      <input
+        type="password"
+        formControlName="password"
+        id="defaultRegisterFormPassword"
+        class="form-control mb-4"
+        placeholder="Password"
+      />
+      <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+      <hr /> -->
+
+      <div class="form-row mb-3">
+        <mat-form-field class="full-width-field">
+          <mat-label>Enter your login</mat-label>
+          <input
+            matInput
+            placeholder="user123"
+            formControlName="login"
+            required
+          />
+          <mat-error *ngIf="errorHandling('login', 'required')">
+            You must provide a <strong>login</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-field">
+          <mat-label>Enter your email</mat-label>
+          <input
+            matInput
+            placeholder="pat@example.com"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="errorHandling('email', 'required')">
+            You must provide a <strong>email</strong>
+          </mat-error>
+          <mat-error *ngIf="errorHandling('email', 'email')">
+            You must provide a <strong>valid</strong> email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-field">
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            required
+            [type]="hidePass ? 'text' : 'password'"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hidePass = !hidePass"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePass"
+          >
+            <mat-icon>{{
+              hidePass ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="errorHandling('password', 'required')">
+            You must provide a <strong>password</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="registrationForm.invalid"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+  <!-- <mat-error *ngIf="attemptedRegistration && registrationFailed" class="bg-warning">
     <p>Registration failed</p>
     <p>{{ errorMessage }}</p>
-  </div>
+  </mat-error> -->
   <!-- TODO: Notify the user, when the email is fake-->
-  <div *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
+  <!-- <mat-error *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
     <p>Registration was successful</p>
     <p>Account verification link has been sent to your email account</p>
-  </div>
+  </mat-error> -->
 </div>
