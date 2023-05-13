@@ -27,7 +27,7 @@ export class RegisterComponent {
       password: ['', [Validators.required]],
     });
   }
-    
+  
   onSubmit() {
 
     const { login, email, password } = this.registrationForm.value;

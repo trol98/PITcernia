@@ -8,35 +8,6 @@
       (ngSubmit)="onSubmit()"
       class="text-center border border-light p-5"
     >
-      <!-- <div class="form-row mb-4">
-        <div class="col">
-          <input
-            type="text"
-            formControlName="login"
-            id="defaultRegisterFormLogin"
-            class="form-control mb-4"
-            placeholder="Login"
-          />
-
-          <input
-            type="email"
-            formControlName="email"
-            id="defaultRegisterFormEmail"
-            class="form-control"
-            placeholder="E-mail"
-          />
-        </div>
-      </div>
-      <input
-        type="password"
-        formControlName="password"
-        id="defaultRegisterFormPassword"
-        class="form-control mb-4"
-        placeholder="Password"
-      />
-      <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
-      <hr /> -->
-
       <div class="form-row mb-3">
         <mat-form-field class="full-width-field">
           <mat-label>Enter your login</mat-label>
@@ -100,13 +71,4 @@
       </button>
     </form>
   </div>
-  <!-- <mat-error *ngIf="attemptedRegistration && registrationFailed" class="bg-warning">
-    <p>Registration failed</p>
-    <p>{{ errorMessage }}</p>
-  </mat-error> -->
-  <!-- TODO: Notify the user, when the email is fake-->
-  <!-- <mat-error *ngIf="attemptedRegistration && !registrationFailed" class="bg-success">
-    <p>Registration was successful</p>
-    <p>Account verification link has been sent to your email account</p>
-  </mat-error> -->
 </div>
