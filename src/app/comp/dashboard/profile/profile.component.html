@@ -1,60 +1,16 @@
 <main class="d-flex flex-column align-items-center justify-content-center">
-  <!-- <div>
-    <form
-      [formGroup]="accountForm"
-      (ngSubmit)="credentailsChange()"
-      class="text-center border border-light p-5"
-    >
-      <p class="h4 mb-4">Profile information</p>
-      <div class="form-row mb-4">
-        <div class="col">
-          <input
-            type="text"
-            formControlName="login"
-            id="defaultRegisterFormLogin"
-            class="form-control mb-4"
-            placeholder="Name"
-          />
-        </div>
-      </div>
-      <input
-        type="email"
-        formControlName="email"
-        id="defaultRegisterFormEmail"
-        class="form-control mb-4"
-        placeholder="Email"
-      />
-      <input
-        type="text"
-        formControlName="shipping_address"
-        id="defaultRegisterFormShippingAddress"
-        class="form-control mb-4"
-        placeholder="Shipping Address"
-      />
-      <button class="btn btn-danger my-4 btn-block" type="submit">
-        Change
-      </button>
-      <hr />
-    </form>
-  </div> -->
   <div class="text-center">
     <form [formGroup]="accountForm" (ngSubmit)="credentailsChange()">
       <div class="form-row mb-3">
         <mat-form-field>
           <mat-label>Name</mat-label>
-          <input
-            matInput
-            formControlName="login"
-          />
+          <input matInput formControlName="login" />
         </mat-form-field>
       </div>
       <div class="form-row mb-3">
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input
-            matInput
-            formControlName="email"
-          />
+          <input matInput formControlName="email" />
           <mat-error *ngIf="credentailsErrorHandling('email', 'email')">
             You must provide a <strong>valid</strong> email
           </mat-error>
@@ -66,10 +22,7 @@
       <div class="form-row mb-3">
         <mat-form-field>
           <mat-label>Shipping Address</mat-label>
-          <input
-            matInput
-            formControlName="shipping_address"
-          />
+          <input matInput formControlName="shipping_address" />
         </mat-form-field>
       </div>
       <button
