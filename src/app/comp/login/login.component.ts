@@ -1,8 +1,9 @@
-import { StorageService } from './../../auth/storage.service';
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { StorageService } from './../../auth/storage.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,51 +11,47 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  userForm: any;
-
-  loginFailed: boolean = false;
-  attemptedLogin: boolean = false;
-  errorMessage: string = '';
+  loginForm: FormGroup;
+  hidePass: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private storageService: StorageService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private snackBar: MatSnackBar
 
-  ngOnInit() {
-    this.userForm = this.formBuilder.group({
+  ) {
+    this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
     if(this.storageService.isLoggedIn()){
-      this.router.navigateByUrl("/dashboard");
+      this.router.navigateByUrl("/dashboard/orders?active=true");
     }
   }
+
   onSubmit() {
-    this.attemptedLogin = true;
-    if (this.userForm.valid) {
-      this.loginFailed = false;
-      const { email, password } = this.userForm.value;
+      const { email, password } = this.loginForm.value;
 
       this.authService.login({ email, password }).subscribe({
         next: (data) => {
           this.storageService.saveUser(data);
-          this.loginFailed = false;
+          this.snackBar.open("Success");
           this.reloadPage();
         },
         error: (err) => {
-          this.errorMessage = err.error.message;
-          this.loginFailed = true;
+          // TODO: Check if not too much information is given to the user
+          this.snackBar.open(err.error.message);
         },
       });
-    } else {
-      this.loginFailed = true;
-      this.errorMessage = "The form is not valid";
-    }
   }
   reloadPage(): void {
     window.location.reload();
   }
+
+  /* Handle form errors in Angular */
+  public errorHandling = (control: string, error: string) => {
+    return this.loginForm.controls[control].hasError(error);
+  };
 }

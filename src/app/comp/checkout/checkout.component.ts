@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CheckoutComponent {
   lines: CartLine[] = [];
   shipping_info: string = '';
+  displayedColumns = [ 'name', 'size', 'price', 'quantity'];
+
   constructor(
     private cartService: CartService,
     private orderSevice: OrderService,
@@ -47,13 +49,12 @@ export class CheckoutComponent {
         }),
       })
       .subscribe({
-        // TODO: Change alerts to proper information display
         next: () => {
           this.snackBar.open('Order was placed successfully');
           this.clearCart();
         },
         error: (e) => {
-          console.log(e)
+          // Add more specific errors
           this.snackBar.open('Something went wrong');
         },
       });

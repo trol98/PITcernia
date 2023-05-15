@@ -1,8 +1,5 @@
-/* @import url('http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); */
-
 * {
     margin: 0;
-    /* padding: 0; */
     box-sizing: border-box;
     font-family: 'Poppins', snas-serif;
 }
@@ -23,18 +20,6 @@ main {
     animation-fill-mode: backwards;
 }
 
-
-/* @keyframes container {
-    0% {
-        opacity: 0;
-        scale: 0.5;
-    }
-    100% {
-        opacity: 1;
-        scale: 1;
-    }
-} */
-
 .row-1,
 .row-2,
 .row-3 {
@@ -42,14 +27,12 @@ main {
     display: flex;
     padding: 1vmin;
     position: relative;
-    /* flex-wrap: wrap; */
 }
 
 .row-1,
 .row-3 {
     animation-duration: 0.5s;
     animation-name: rowleft;
-    /* animation-delay: 0.2s; */
     animation-fill-mode: backwards;
 }
 
@@ -65,7 +48,6 @@ main {
 .row-2 {
     animation-duration: 0.5s;
     animation-name: rowright;
-    /* animation-delay: 0.2s; */
     animation-fill-mode: backwards;
 }
 
@@ -79,7 +61,6 @@ main {
 }
 
 .picture-1 {
-    /* background-size: contain; */
     width: 100%;
     background-image: url(/assets/pizza_home_1.jpg);
     background-size: cover;
@@ -112,7 +93,6 @@ main {
     font-weight: 900;
     font-size: 12vmin;
     margin: 3vmin 3vmin 0 3vmin;
-    /* top,right,bottom,left */
     color: aliceblue;
 }
 
@@ -144,7 +124,6 @@ main {
 }
 
 .best-sellers {
-    /* justify-content: center; */
     gap: 45px;
     display: flex;
     background-color: rgb(0, 0, 0);
@@ -152,7 +131,6 @@ main {
     align-items: center;
     padding-bottom: 220px;
     padding-top: 220px;
-    /* min-height: 100vh; */
 }
 
 .card4 {
@@ -205,7 +183,6 @@ main {
 }
 
 .card4:hover img {
-    /* transform: rotate(60deg); */
     bottom: 10%;
     height: 400px;
 }
@@ -214,7 +191,6 @@ main {
     position: relative;
     width: 75%;
     top: 0%;
-    /*padding: 0px 0px 0px 0px;*/
     margin: 0 auto;
     text-align: center;
     transition: 0.5s;
@@ -267,9 +243,3 @@ main {
         height: 320px;
     }
 }
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

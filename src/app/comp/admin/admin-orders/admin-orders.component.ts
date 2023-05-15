@@ -37,6 +37,13 @@ export class AdminOrdersComponent {
     this.dateForm = formBuilder.group({
       date: [Validators.required],
     });
+
+  }
+
+  // FIXME: Ugly hack, fix ASAP
+  ngAfterViewInit(){
+    const elem: HTMLInputElement = (document.querySelector('#size-button-today') as HTMLInputElement);
+    elem.checked = true;
   }
 
   finishOrder(id: number) {
@@ -69,6 +76,7 @@ export class AdminOrdersComponent {
     return sum;
   }
   refreshOrders() {
+
     this.orderService
       .getAllOrders(
         this.isActive,

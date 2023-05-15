@@ -38,7 +38,7 @@ export class CartComponent {
     private breakpointObserver: BreakpointObserver,
   ) {
     this.lines = this.cartService.getCart();
-    this.displayedColumns = ['name', 'size', 'price', 'quantity', 'delete'];
+    this.displayedColumns = ['delete', 'name', 'size', 'price', 'quantity'];
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver

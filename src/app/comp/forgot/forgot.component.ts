@@ -1,6 +1,11 @@
 import { EmailService } from 'src/app/email/email.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -17,7 +22,7 @@ export class ForgotComponent {
     private snackBar: MatSnackBar
   ) {
     this.emailForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -25,11 +30,16 @@ export class ForgotComponent {
     const emial = this.emailForm.value.email;
     this.emailService.forgotPassword(emial).subscribe({
       next: () => {
-        this.snackBar.open('Email send successfully')
+        this.snackBar.open('Email send successfully');
       },
       error: () => {
         this.snackBar.open('Something went wrong');
       },
     });
   }
+
+  /* Handle form errors in Angular */
+  public errorHandling = (control: string, error: string) => {
+    return this.emailForm.controls[control].hasError(error);
+  };
 }

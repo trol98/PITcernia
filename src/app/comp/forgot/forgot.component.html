@@ -1,12 +1,16 @@
-<div class="col-md-4 mx-auto">
-    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-        <p class="h4 mb-4">Reset password through email</p>
-        <div class="form-row mb-4">
-            <div class="col">
-                <input type="email" formControlName="email" id="defaultForgotFormEmail" class="form-control" placeholder="Email" />
-            </div>
-        </div>
-        <button class="btn btn-info my-4 btn-block" type="submit">Send email</button>
-        <hr />
+<div class="col-md-4 mt-5 mx-auto text-center align-items-center justify-content-center">
+    <p class="h4 mb-4">Reset password through email</p>
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+        <div class="form-row mb-3"><mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email"  required>
+            <mat-error *ngIf="errorHandling('email', 'required')">
+                You must provide a <strong>email</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('email', 'email')">
+                You must provide a <strong>valid</strong> email
+            </mat-error>
+        </mat-form-field></div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="emailForm.invalid">Send email</button>
     </form>
 </div>

@@ -1,17 +1,10 @@
-import { User } from '../../auth/interface/user.interface';
 import { AuthService } from './../../auth/auth.service';
 import { Router } from '@angular/router';
 import { StorageService } from './../../auth/storage.service';
 import { Component } from '@angular/core';
-import {
-  faDoorOpen,
-  faGripHorizontal,
-  faRightToBracket,
-  faShoppingCart,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import { Observable, finalize, map, shareReplay } from 'rxjs';
+import { Observable, Subscription, finalize, map, shareReplay } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { EventBusService } from 'src/app/_shared/event-bus.service';
 
 @Component({
   selector: 'app-nav',
@@ -23,8 +16,10 @@ export class NavComponent {
     private storageService: StorageService,
     private authService: AuthService,
     private router: Router,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private eventBusService: EventBusService
   ) {}
+  eventBusSub?: Subscription;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -33,39 +28,38 @@ export class NavComponent {
       shareReplay()
     );
 
+  isLoggedIn: boolean = false;
+
   ngOnInit() {
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => {
-    //   return false;
-    // };
-    this.authService.authenticate().subscribe({
-      next: (user: User) => {
-        this.username = user.login;
-      },
-      error: () => {
-        this.username = 'Guest';
-      },
+    if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      this.username = this.storageService.getUser()?.login ?? 'Guest';
+    }
+
+    this.eventBusSub = this.eventBusService.on('logout', () => {
+      console.log("Log out")
+      this.logout();
     });
+    // this.authService.authenticate().subscribe({
+    //   next: (user: User) => {
+    //     this.username = user.login;
+    //     this.storageService.saveUser(user);
+    //   },
+    //   error: () => {
+    //     this.username = 'Guest';
+    //   },
+    // });
   }
-  faRightToBracket = faRightToBracket;
-  faUser = faUser;
-  faShoppingCart = faShoppingCart;
-  faGripHorizontal = faGripHorizontal;
-  faDoorOpen = faDoorOpen;
 
   username = 'Guest';
 
-  isLoggedIn() {
-    // TODO: Consider making an authorization call to backend
-    // TODO: Consider additionally clearing the storageService,
-    // and doing force logout
-    return this.storageService.isLoggedIn();
-  }
   logout() {
     this.authService
       .logout()
       .pipe(
         finalize(() => {
           this.storageService.clean();
+          this.username = 'Guest';
           this.router.navigateByUrl('/home');
           // FIXME: Totally non-angularish way of refreshing
           // A work around for the username, not refreshing after logging out
