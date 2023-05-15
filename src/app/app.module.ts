@@ -78,17 +78,6 @@ import { httpInterceptorProviders } from './auth/interceptors/http.interceptor';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    LayoutModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTableModule,
-    MatInputModule,
-    MatExpansionModule,
-    MatTabsModule,
-  ],
-  providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
