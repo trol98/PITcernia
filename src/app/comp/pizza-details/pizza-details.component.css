@@ -31,11 +31,6 @@ img {
     max-width: 100%;
 }
 
-h1 {
-    font-size: 60px;
-    line-height: 60px;
-    margin: 25px 0;
-}
 
 a {
     text-decoration: none;
@@ -44,13 +39,12 @@ a {
 
 p {
     color: #555;
-    font-size: 25px;
 }
 
 .list {
     color: #555;
     padding-top: 15px;
-    font-size: 25px;
+    font-size: 1.5rem;
 }
 
 .btn {
