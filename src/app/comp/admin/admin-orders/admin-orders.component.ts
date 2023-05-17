@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/order/interfaces/order.interface';
 import { OrderService } from 'src/app/order/order.service';
 import { DateFilter } from './interfaces/dateFilter.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin-orders',
@@ -13,16 +16,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AdminOrdersComponent {
   isActive: boolean = false;
-  orders: Order[] = [];
   after: Date = new Date();
   before: Date = new Date();
   dateForm: FormGroup;
-
+  
   dateFilter: DateFilter[] = [
     { name: 'Today', on: true, id: 'today' },
     { name: 'This month', on: false, id: 'month' },
     { name: 'Last 12 months', on: false, id: 'year' },
   ];
+  
+  
+  orders: Order[] = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator = {} as MatPaginator;
+  displayedOrders$: any;
+  dataSource = new MatTableDataSource();
 
   constructor(
     private route: ActivatedRoute,
@@ -76,7 +84,6 @@ export class AdminOrdersComponent {
     return sum;
   }
   refreshOrders() {
-
     this.orderService
       .getAllOrders(
         this.isActive,
@@ -88,8 +95,10 @@ export class AdminOrdersComponent {
       .subscribe({
         next: (orders: Order[]) => {
           this.orders = orders;
+          this.dataSource = new MatTableDataSource<any>(this.orders);
+          this.dataSource.paginator = this.paginator;
+          this.displayedOrders$ = this.dataSource.connect();
         },
-        error: () => {},
       });
   }
   filterDate() {

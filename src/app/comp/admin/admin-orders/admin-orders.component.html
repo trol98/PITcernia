@@ -1,5 +1,5 @@
 <h1 class="text-center">
-  {{ isActive ? "Active" : "Finished" }} orders admin panel
+  {{ isActive ? "Active" : "Finished" }} admin orders
 </h1>
 
 <form [formGroup]="dateForm">
@@ -10,11 +10,11 @@
         type="radio"
         class="btn-check"
         name="date"
-        id="size-button-{{filter.id}}"
+        id="size-button-{{ filter.id }}"
         [value]="filter.id"
         formControlName="date"
       />
-      <label class="btn btn-danger btn-sm" for="size-button-{{filter.id}}">{{
+      <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
         filter.name
       }}</label>
     </div>
@@ -22,10 +22,7 @@
 </form>
 <div class="container-lg">
   <mat-accordion multi>
-    <mat-expansion-panel
-      *ngFor="let order of orders; first as isFirst"
-      [expanded]="isFirst"
-    >
+    <mat-expansion-panel *ngFor="let order of (displayedOrders$ | async)">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h5>ID: {{ order.id }}</h5>
@@ -85,16 +82,19 @@
   </mat-accordion>
   <div *ngIf="isEmpty()">
     <div class="row">
-        <div class="col-sm-20">
-            <div class="card">
-                <div class="card-body">
-                    <span class="text-center">
-                        <h3>There aren't any orders here</h3>
-                        <h6 class="text-muted">Hint: Try changing the selected date range</h6> 
-                    </span>
-                </div>
-            </div>
+      <div class="col-sm-20">
+        <div class="card">
+          <div class="card-body">
+            <span class="text-center">
+              <h3>There aren't any orders here</h3>
+              <h6 class="text-muted">
+                Hint: Try changing the selected date range
+              </h6>
+            </span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
 </div>

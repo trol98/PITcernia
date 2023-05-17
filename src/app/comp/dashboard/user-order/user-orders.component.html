@@ -1,29 +1,5 @@
 <div class="container-lg">
-    <h1 class="text-center">{{isActive ? 'Active' : 'Finished'}} orders panel</h1>
-    <!-- <div *ngFor="let order of orders">
-        <div class="row">
-            <div class="col-sm-20">
-                <div class="card">
-                    <div class="card-body" [ngClass]="{'bg-warning': order.canceled}">
-                        <h5 class="card-title">Order number: {{order.id}}</h5>
-                        <h5 class="card-title text-danger" *ngIf="order.canceled">CANCELED</h5>
-                        <p class="card-text">Order date: {{order.order_date}}</p>
-                        <p class="card-text">Delivery address: {{order.shipping_address}}</p>
-                        <button *ngIf="isActive" class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel</button>
-                        <div *ngFor="let upizza of order.pizzaToOrder">
-                            <div>
-                                <p>{{upizza.pizza.name}} x{{upizza.quantity}}</p>
-                                <p><img class="img-fluid pizza-img" src="{{upizza.pizza.img_path}}"></p>
-                                <p>Price: {{upizza.pizza.price | currency}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p>Order Total: <b>{{orderTotal(order) | currency}}</b></p>
-    </div> -->
-
+    <h1 class="text-center">{{isActive ? 'Active' : 'Finished'}} orders</h1>
     <mat-accordion multi>
         <mat-expansion-panel *ngFor="let order of orders; first as isFirst" [expanded]="isFirst">
           <mat-expansion-panel-header>
