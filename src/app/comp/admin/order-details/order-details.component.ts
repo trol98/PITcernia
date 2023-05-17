@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Order } from 'src/app/order/interfaces/order.interface';
 import { OrderService } from 'src/app/order/order.service';
 
@@ -9,18 +10,13 @@ import { OrderService } from 'src/app/order/order.service';
   styleUrls: ['./order-details.component.css'],
 })
 export class OrderDetailsComponent {
-  order: any;
+  order$: Observable<Order>;
   constructor(
     private route: ActivatedRoute,
     private orderSerice: OrderService
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.orderSerice.getOrder(id).subscribe({
-      next: (order: Order) => {
-        this.order = order;
-      },
-      error: () => {},
-    });
+    this.order$ = this.orderSerice.getOrder(id);
   }
   orderTotal(order: Order) {
     let sum = 0;

@@ -2,3 +2,6 @@
     max-width: 30%;
     height: auto;
 }
+.strike-through{
+    text-decoration: line-through;
+}

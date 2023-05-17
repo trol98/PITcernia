@@ -1,27 +1,35 @@
-<div class="row large-container justify-content-center">
-  <div class="col-lg-5">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Order number: {{ order.id }}</h5>
-        <h5 class="card-title">User: {{ order.user.email }}</h5>
-        <p class="card-text">Order date: {{ order.order_date | date:'medium' }}</p>
-        <p class="card-text">Delivery address: {{ order.shipping_address }}</p>
-        <div *ngFor="let upizza of order.pizzaToOrder">
-          <div>
-            <p>{{ upizza.pizza.name }} x{{ upizza.quantity }}</p>
+<div class="d-flex justify-content-center">
+  <div class="col-5" *ngIf="order$ | async as order">
+    <div class="card card-body">
+      <h5>
+        Order number: <strong>{{ order.id }}</strong>
+      </h5>
+      <h5>
+        User: <strong>{{ order.user.email }}</strong>
+      </h5>
+      <p>
+        Order date: <strong>{{ order.order_date | date : "medium" }}</strong>
+      </p>
+      <p>
+        Delivery address: <strong>{{ order.shipping_address }}</strong>
+      </p>
+      <div class="row">
+        <div *ngFor="let line of order.pizzaToOrder" class="col-6">
+          <div class="text-center">
+            <p>{{ line.pizza.name }} x{{ line.quantity }}</p>
             <p>
               <img
                 class="img-fluid pizza-img"
-                src="{{ upizza.pizza.img_path }}"
+                src="{{ line.pizza.img_path }}"
               />
             </p>
-            <p>Price: {{ upizza.pizza.price | currency }}</p>
+            <p>Price: {{ line.pizza.price | currency }}</p>
           </div>
         </div>
       </div>
     </div>
     <p class="text-center">
-        Order Total: <b>{{ orderTotal(order) | currency }}</b>
-      </p>
+      Order Total: <b>{{ orderTotal(order) | currency }}</b>
+    </p>
   </div>
 </div>
