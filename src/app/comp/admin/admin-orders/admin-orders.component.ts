@@ -1,13 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Order } from 'src/app/order/interfaces/order.interface';
 import { OrderService } from 'src/app/order/order.service';
-import { DateFilter } from './interfaces/dateFilter.interface';
+
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+
+import { DateFilter } from './interfaces/dateFilter.interface';
 
 @Component({
   selector: 'app-admin-orders',
@@ -19,18 +21,17 @@ export class AdminOrdersComponent {
   after: Date = new Date();
   before: Date = new Date();
   dateForm: FormGroup;
-  
+
   dateFilter: DateFilter[] = [
     { name: 'Today', on: true, id: 'today' },
     { name: 'This month', on: false, id: 'month' },
     { name: 'Last 12 months', on: false, id: 'year' },
   ];
-  
-  
+
   orders: Order[] = [];
   @ViewChild(MatPaginator) paginator: MatPaginator = {} as MatPaginator;
-  displayedOrders$: any;
-  dataSource = new MatTableDataSource();
+  displayedOrders$: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>([]);
+  dataSource = new MatTableDataSource<Order>();
 
   constructor(
     private route: ActivatedRoute,
@@ -45,12 +46,13 @@ export class AdminOrdersComponent {
     this.dateForm = formBuilder.group({
       date: [Validators.required],
     });
-
   }
 
   // FIXME: Ugly hack, fix ASAP
-  ngAfterViewInit(){
-    const elem: HTMLInputElement = (document.querySelector('#size-button-today') as HTMLInputElement);
+  ngAfterViewInit() {
+    const elem: HTMLInputElement = document.querySelector(
+      '#size-button-today'
+    ) as HTMLInputElement;
     elem.checked = true;
   }
 
@@ -84,6 +86,9 @@ export class AdminOrdersComponent {
     return sum;
   }
   refreshOrders() {
+    console.log(`After: ${this.after}`);
+    console.log(`Before: ${this.before}`);
+
     this.orderService
       .getAllOrders(
         this.isActive,
@@ -111,7 +116,6 @@ export class AdminOrdersComponent {
         break;
       case 'month':
         const currentDate = new Date();
-        // FIXME: technically it takes into account the last day of the previous month
         const firstDay = this.getFirstDayOfMonth(
           currentDate.getFullYear(),
           currentDate.getMonth()
