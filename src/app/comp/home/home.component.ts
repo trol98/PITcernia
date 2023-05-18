@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -10,12 +9,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class HomeComponent {
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
+    dots: true,
+    smartSpeed: 700,
+    navText: ['<', '>'],
+    autoplay: true,
+    autoplayHoverPause: true,
     responsive: {
       0: {
         items: 1,

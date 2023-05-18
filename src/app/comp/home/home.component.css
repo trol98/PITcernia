@@ -124,7 +124,6 @@ main {
 }
 
 .best-sellers {
-    gap: 45px;
     display: flex;
     background-color: rgb(0, 0, 0);
     justify-content: center;
@@ -135,7 +134,7 @@ main {
 
 .card4 {
     position: relative;
-    width: 250px;
+    /* width: 250px; */
     height: 400px;
     border-radius: 20px;
     display: flex;
@@ -223,7 +222,7 @@ main {
     text-align: center;
 }
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
     .card4 {
         width: auto;
         max-width: 400px;
@@ -242,4 +241,4 @@ main {
         left: 50%;
         height: 320px;
     }
-}
+} */
