@@ -39,7 +39,6 @@ export class NavComponent {
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {
-      console.log("Log out")
       this.logout();
     });
   }
