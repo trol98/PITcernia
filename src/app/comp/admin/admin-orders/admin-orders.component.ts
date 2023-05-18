@@ -86,9 +86,6 @@ export class AdminOrdersComponent {
     return sum;
   }
   refreshOrders() {
-    console.log(`After: ${this.after}`);
-    console.log(`Before: ${this.before}`);
-
     this.orderService
       .getAllOrders(
         this.isActive,
@@ -144,10 +141,10 @@ export class AdminOrdersComponent {
   }
 
   getLastDayOfMonth(year: number, month: number) {
-    return new Date(year, month + 1, 0);
+    return new Date(year, month + 1, 0, 12);
   }
   getFirstDayOfMonth(year: number, month: number) {
-    return new Date(year, month, 1);
+    return new Date(year, month, 1, 12);
   }
 
   isEmpty(): boolean {
