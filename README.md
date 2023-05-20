@@ -1,7 +1,7 @@
 # PITcernia
 Repository for school project "pitcernia"
 
-Check out [Backend](https://github.com/trol98/PITcernia-api)
+Checkout [backend](https://github.com/trol98/PITcernia-api)
 
 ![](https://github.com/trol98/PITcernia/blob/main/res/front.gif)
 
