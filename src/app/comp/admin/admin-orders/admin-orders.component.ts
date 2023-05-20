@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Order } from 'src/app/order/interfaces/order.interface';
 import { OrderService } from 'src/app/order/order.service';
-import { DateFilter } from './interfaces/dateFilter.interface';
+
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+
+import { DateFilter } from './interfaces/dateFilter.interface';
 
 @Component({
   selector: 'app-admin-orders',
@@ -13,7 +18,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AdminOrdersComponent {
   isActive: boolean = false;
-  orders: Order[] = [];
   after: Date = new Date();
   before: Date = new Date();
   dateForm: FormGroup;
@@ -23,6 +27,11 @@ export class AdminOrdersComponent {
     { name: 'This month', on: false, id: 'month' },
     { name: 'Last 12 months', on: false, id: 'year' },
   ];
+
+  orders: Order[] = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator = {} as MatPaginator;
+  displayedOrders$: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>([]);
+  dataSource = new MatTableDataSource<Order>();
 
   constructor(
     private route: ActivatedRoute,
@@ -37,12 +46,13 @@ export class AdminOrdersComponent {
     this.dateForm = formBuilder.group({
       date: [Validators.required],
     });
-
   }
 
   // FIXME: Ugly hack, fix ASAP
-  ngAfterViewInit(){
-    const elem: HTMLInputElement = (document.querySelector('#size-button-today') as HTMLInputElement);
+  ngAfterViewInit() {
+    const elem: HTMLInputElement = document.querySelector(
+      '#size-button-today'
+    ) as HTMLInputElement;
     elem.checked = true;
   }
 
@@ -76,7 +86,6 @@ export class AdminOrdersComponent {
     return sum;
   }
   refreshOrders() {
-
     this.orderService
       .getAllOrders(
         this.isActive,
@@ -88,8 +97,10 @@ export class AdminOrdersComponent {
       .subscribe({
         next: (orders: Order[]) => {
           this.orders = orders;
+          this.dataSource = new MatTableDataSource<any>(this.orders);
+          this.dataSource.paginator = this.paginator;
+          this.displayedOrders$ = this.dataSource.connect();
         },
-        error: () => {},
       });
   }
   filterDate() {
@@ -102,7 +113,6 @@ export class AdminOrdersComponent {
         break;
       case 'month':
         const currentDate = new Date();
-        // FIXME: technically it takes into account the last day of the previous month
         const firstDay = this.getFirstDayOfMonth(
           currentDate.getFullYear(),
           currentDate.getMonth()
@@ -131,10 +141,10 @@ export class AdminOrdersComponent {
   }
 
   getLastDayOfMonth(year: number, month: number) {
-    return new Date(year, month + 1, 0);
+    return new Date(year, month + 1, 0, 12);
   }
   getFirstDayOfMonth(year: number, month: number) {
-    return new Date(year, month, 1);
+    return new Date(year, month, 1, 12);
   }
 
   isEmpty(): boolean {

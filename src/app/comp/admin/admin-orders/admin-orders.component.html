@@ -1,7 +1,4 @@
-<h1 class="text-center">
-  {{ isActive ? "Active" : "Finished" }} orders admin panel
-</h1>
-
+<h1 class="text-center">{{ isActive ? "Active" : "Finished" }} admin orders</h1>
 <form [formGroup]="dateForm">
   <div class="d-flex flex-row justify-content-center flex-wrap">
     <div class="m-1" *ngFor="let filter of dateFilter">
@@ -10,11 +7,11 @@
         type="radio"
         class="btn-check"
         name="date"
-        id="size-button-{{filter.id}}"
+        id="size-button-{{ filter.id }}"
         [value]="filter.id"
         formControlName="date"
       />
-      <label class="btn btn-danger btn-sm" for="size-button-{{filter.id}}">{{
+      <label class="btn btn-danger btn-sm" for="size-button-{{ filter.id }}">{{
         filter.name
       }}</label>
     </div>
@@ -22,13 +19,10 @@
 </form>
 <div class="container-lg">
   <mat-accordion multi>
-    <mat-expansion-panel
-      *ngFor="let order of orders; first as isFirst"
-      [expanded]="isFirst"
-    >
+    <mat-expansion-panel *ngFor="let order of displayedOrders$ | async">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h5>ID: {{ order.id }}</h5>
+          <h3>ID: {{ order.id }}</h3>
         </mat-panel-title>
         <mat-panel-description>
           <p>{{ order.order_date | date : "short" }}</p>
@@ -36,65 +30,57 @@
       </mat-expansion-panel-header>
 
       <ng-template matExpansionPanelContent>
-        <div class="row">
-          <div class="col-sm-20">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Order number: {{ order.id }}</h5>
-                <h5 class="card-title">User: {{ order.user.email }}</h5>
-                <p class="card-text">
-                  Order date: {{ order.order_date | date : "medium" }}
-                </p>
-                <p class="card-text">
-                  Delivery address: {{ order.shipping_address }}
-                </p>
-                <button
-                  *ngIf="isActive"
-                  class="btn btn-danger"
-                  (click)="finishOrder(order.id)"
-                >
-                  Finish
-                </button>
-                <button
-                  class="btn btn-info"
-                  [routerLink]="['/admin', 'order', 'details', order.id]"
-                >
-                  Details
-                </button>
-                <div *ngFor="let upizza of order.pizzaToOrder">
-                  <div>
-                    <p>{{ upizza.pizza.name }} x{{ upizza.quantity }}</p>
-                    <p>
-                      <img
-                        class="img-fluid pizza-img"
-                        src="{{ upizza.pizza.img_path }}"
-                      />
-                    </p>
-                    <p>Price: {{ upizza.pizza.price | currency }}</p>
-                  </div>
-                </div>
-              </div>
+        <div>
+          <p>
+            User: <strong>{{ order.user.email }}</strong>
+          </p>
+          <p>
+            Order date:
+            <strong>{{ order.order_date | date : "medium" }}</strong>
+          </p>
+          <p>
+            Delivery address: <strong>{{ order.shipping_address }}</strong>
+          </p>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div *ngFor="let upizza of order.pizzaToOrder" class="col-6">
+              <p>{{ upizza.pizza.name }} x {{ upizza.quantity }}</p>
+              <p>
+                <img
+                  class="img-fluid pizza-img"
+                  src="{{ upizza.pizza.img_path }}"
+                />
+              </p>
+              <p>Price: {{ upizza.pizza.price | currency }}</p>
             </div>
           </div>
+          <button
+            *ngIf="isActive"
+            class="btn btn-danger"
+            (click)="finishOrder(order.id)"
+          >
+            Finish
+          </button>
+          <button
+            class="btn btn-info"
+            [routerLink]="['/admin', 'order', 'details', order.id]"
+          >
+            Details
+          </button>
         </div>
         <p>
-          Order Total: <b>{{ orderTotal(order) | currency }}</b>
+          Order Total: <strong>{{ orderTotal(order) | currency }}</strong>
         </p>
       </ng-template>
     </mat-expansion-panel>
   </mat-accordion>
-  <div *ngIf="isEmpty()">
-    <div class="row">
-        <div class="col-sm-20">
-            <div class="card">
-                <div class="card-body">
-                    <span class="text-center">
-                        <h3>There aren't any orders here</h3>
-                        <h6 class="text-muted">Hint: Try changing the selected date range</h6> 
-                    </span>
-                </div>
-            </div>
-        </div>
+  <div *ngIf="isEmpty()" class="card">
+    <div class="card-body">
+      <span class="text-center">
+        <h3>There aren't any orders here</h3>
+        <h6 class="text-muted">Hint: Try changing the selected date range</h6>
+      </span>
     </div>
-</div>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
 </div>

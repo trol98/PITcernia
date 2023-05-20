@@ -1,10 +1,12 @@
-import { AuthService } from './../../auth/auth.service';
-import { Router } from '@angular/router';
-import { StorageService } from './../../auth/storage.service';
-import { Component } from '@angular/core';
-import { Observable, Subscription, finalize, map, shareReplay } from 'rxjs';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { finalize, map, Observable, shareReplay, Subscription } from 'rxjs';
 import { EventBusService } from 'src/app/_shared/event-bus.service';
+
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../auth/auth.service';
+import { StorageService } from '../../auth/storage.service';
 
 @Component({
   selector: 'app-nav',
@@ -37,18 +39,8 @@ export class NavComponent {
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {
-      console.log("Log out")
       this.logout();
     });
-    // this.authService.authenticate().subscribe({
-    //   next: (user: User) => {
-    //     this.username = user.login;
-    //     this.storageService.saveUser(user);
-    //   },
-    //   error: () => {
-    //     this.username = 'Guest';
-    //   },
-    // });
   }
 
   username = 'Guest';
@@ -61,8 +53,6 @@ export class NavComponent {
           this.storageService.clean();
           this.username = 'Guest';
           this.router.navigateByUrl('/home');
-          // FIXME: Totally non-angularish way of refreshing
-          // A work around for the username, not refreshing after logging out
           window.location.reload();
         })
       )

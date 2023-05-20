@@ -32,7 +32,7 @@
       (ngSubmit)="onSubmit()"
       class="text-center border border-light p-5"
     >
-      <div class="form-row mb-3">
+      <div class="form-row mb-1">
         <mat-form-field class="full-width-field">
           <mat-label>Enter your email</mat-label>
           <input
@@ -73,6 +73,9 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <p class="h6 text-muted font-weight-light mb-4" [routerLink]="['/forgot']">
+        Forgot password?
+      </p>
       <button
         mat-raised-button
         color="primary"

@@ -1,25 +1,25 @@
-<main>
-    <div class="row small-container m-3">
-        <div class="col-md-6 col-sm-6 col-1 magic">
-            <div>
-                <div class="png">
-                    <img class="img-fluid" src="{{ pizza?.img_path }}" id="ProductImg" />
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-6">
-            <div class="text-center">
-                <span><h1>{{ pizza?.name }}</h1>
-          <h1>({{ pizza?.size }})</h1></span
-        >
-        <p>{{ pizza?.description }}</p>
-        </div>
-        <div class="p-4">
-        <ul class="list">
-          <li *ngFor="let top of pizza?.toppings">{{ top.name }}</li>
-        </ul>
-        <a class="btn" (click)="addToCart()">Add To Cart</a>
+<main> 
+  <div class="row small-container m-3">
+      <div class="col-md-6 col-sm-6 col-1 magic">
+          <div>
+              <div class="png">
+                  <img class="img-fluid" src="{{ pizza?.img_path }}" id="ProductImg" />
+              </div>
+          </div>
       </div>
+      <div class="col-md-6 col-sm-6">
+          <div class="text-center">
+              <span><p class="display-1">{{ pizza?.name }}</p>
+        <p class="display-4">({{ pizza?.size }})</p></span
+      >
+      <p class="display-6">{{ pizza?.description }}</p>
+      </div>
+      <div class="p-4">
+      <ul class="list">
+        <li *ngFor="let top of pizza?.toppings">{{ top.name }}</li>
+      </ul>
+      <a class="btn" (click)="addToCart()">Add</a>
     </div>
   </div>
+</div>
 </main>

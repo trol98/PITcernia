@@ -1,7 +1,7 @@
-import { OrderService } from '../../../order/order.service';
-import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OrderService } from '../../../order/order.service';
 import { Order } from 'src/app/order/interfaces/order.interface';
 
 @Component({
@@ -24,7 +24,6 @@ export class UserOrdersComponent {
         next: (orders: Order[]) => {
           this.orders = orders;
         },
-        error: () => {},
       });
     });
   }

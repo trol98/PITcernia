@@ -24,9 +24,11 @@ export class OrderService {
   }
 
   getAllOrders(isActive: boolean, after: Date, before: Date) {
+    const afterISO = after.toISOString().split('T')[0];
+    const beforeISO = before.toISOString().split('T')[0];
     let url = this.HOST + `/orders/all?isActive=${isActive}`;
-    url += `&after=${after.toISOString().split('T')[0]}`;
-    url += `&before=${before.toISOString().split('T')[0]}`;
+    url += `&after=${afterISO}`;
+    url += `&before=${beforeISO}`;
     const options = { withCredentials: true };
     return this.http.get<Order[]>(url, options);
   }
