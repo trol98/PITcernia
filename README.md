@@ -1,6 +1,10 @@
 # PITcernia
 Repository for school project "pitcernia"
 
+Check out [Backend](https://github.com/trol98/PITcernia-api)
+
+![](https://github.com/trol98/PITcernia/blob/main/res/front.gif)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
 ## Development server
