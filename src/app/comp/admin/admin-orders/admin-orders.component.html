@@ -1,4 +1,5 @@
 <h1 class="text-center">{{ isActive ? "Active" : "Finished" }} admin orders</h1>
+<p class="text-center">Sum of orders: {{ordersSummary() | currency}}</p>
 <form [formGroup]="dateForm">
   <div class="d-flex flex-row justify-content-center flex-wrap">
     <div class="m-1" *ngFor="let filter of dateFilter">

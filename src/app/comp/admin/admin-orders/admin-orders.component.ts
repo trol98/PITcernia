@@ -79,6 +79,7 @@ export class AdminOrdersComponent {
   }
 
   ordersSummary() {
+    // even if the order was canceled or is still active count it towards the final sum
     let sum = 0;
     this.orders.forEach((order) => {
       sum += this.orderTotal(order);
