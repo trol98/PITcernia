@@ -26,6 +26,7 @@ export class AdminOrdersComponent {
     { name: 'Today', on: true, id: 'today' },
     { name: 'This month', on: false, id: 'month' },
     { name: 'Last 12 months', on: false, id: 'year' },
+    { name: 'All', on: false, id: 'all' },
   ];
 
   orders: Order[] = [];
@@ -77,7 +78,6 @@ export class AdminOrdersComponent {
     });
     return sum;
   }
-
   ordersSummary() {
     // even if the order was canceled or is still active count it towards the final sum
     let sum = 0;
@@ -132,13 +132,21 @@ export class AdminOrdersComponent {
           cDate.getMonth(),
           cDate.getDate()
         );
-
         this.after = twelveMonthAgo;
         this.before = cDate;
+        break;
+      case 'all':
+      default:
+        // 01-01-1970
+        this.after = new Date(0);
+        this.before = new Date();
         break;
     }
 
     this.refreshOrders();
+  }
+  isEmpty(): boolean {
+    return this.orders.length == 0;
   }
 
   getLastDayOfMonth(year: number, month: number) {
@@ -146,9 +154,5 @@ export class AdminOrdersComponent {
   }
   getFirstDayOfMonth(year: number, month: number) {
     return new Date(year, month, 1, 12);
-  }
-
-  isEmpty(): boolean {
-    return this.orders.length == 0;
   }
 }
